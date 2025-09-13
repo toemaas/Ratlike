@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5sulhcjpw1ms"]
+
+[ext_resource type="PackedScene" uid="uid://cynbqdfy3ogq3" path="res://Cheese Wheel.fbx" id="1_kw545"]
+[ext_resource type="Script" uid="uid://bur81xlc6umrh" path="res://cheese.gd" id="1_s0ldm"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_s0ldm"]
+height = 0.590088
+
+[node name="RigidBody3D" type="Area3D"]
+collision_layer = 2
+script = ExtResource("1_s0ldm")
+
+[node name="Cheese Wheel" parent="." instance=ExtResource("1_kw545")]
+transform = Transform3D(23, 0, 0, 0, 23, 0, 0, 0, 23, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.315063, 0)
+shape = SubResource("CylinderShape3D_s0ldm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

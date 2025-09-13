@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://baxh2r4gf7ou2"]
+
+[ext_resource type="PackedScene" path="res://cheese.tscn" id="1_uiouw"]
+[ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="2_javah"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lqjdl"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oxyw6"]
+size = Vector3(100, 1, 100)
+
+[node name="TestingGrounds" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_lqjdl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_oxyw6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, -0.00249581, 0.999997, 0, -0.999997, -0.00249581, 0, 34.5189, 0)
+
+[node name="Cheese" type="Node3D" parent="."]
+
+[node name="RigidBody3D2" parent="Cheese" instance=ExtResource("1_uiouw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6309, 0.577494, -20.6454)
+
+[node name="RigidBody3D" parent="Cheese" instance=ExtResource("1_uiouw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30933, 13.2665)
+
+[node name="RigidBody3D3" parent="Cheese" instance=ExtResource("1_uiouw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.0718, 2.91104, -12.6354)
+
+[node name="Player" parent="." instance=ExtResource("2_javah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.012, 0)
+collision_mask = 3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.862531, 0.506004, 0, -0.506004, 0.862531, 0, 6.47847, 20.0605)
