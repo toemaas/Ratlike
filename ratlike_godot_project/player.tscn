@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://0nd7lniffuj4"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://dgu756bp8feam" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://c0e080ge2t8ho" path="res://RatModelDraft1Brown.fbx" id="3_i3pqv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
