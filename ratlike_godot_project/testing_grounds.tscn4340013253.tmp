@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://baxh2r4gf7ou2"]
+[gd_scene load_steps=7 format=3 uid="uid://baxh2r4gf7ou2"]
 
+[ext_resource type="Script" uid="uid://b5rtkr6x1aset" path="res://main.gd" id="1_lqjdl"]
 [ext_resource type="PackedScene" uid="uid://c5sulhcjpw1ms" path="res://cheese.tscn" id="1_uiouw"]
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="2_javah"]
 [ext_resource type="PackedScene" uid="uid://c14c4ncsogmd8" path="res://hud.tscn" id="3_javah"]
@@ -11,6 +12,7 @@ size = Vector3(100, 1, 100)
 size = Vector3(100, 1, 100)
 
 [node name="TestingGrounds" type="Node3D"]
+script = ExtResource("1_lqjdl")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 

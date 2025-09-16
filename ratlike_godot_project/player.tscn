@@ -42,3 +42,4 @@ spring_length = 7.0
 transform = Transform3D(1, 0, 0, 0, 0.935684, 0.352838, 0, -0.352838, 0.935684, 0, 4.66525, 4.25001)
 
 [connection signal="timeout" from="RollCooldown" to="." method="_on_roll_cooldown_timeout"]
+[connection signal="set_cam_rotation" from="CamRoot" to="." method="_on_cam_root_set_cam_rotation"]

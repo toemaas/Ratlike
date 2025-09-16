@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://buo5576owrisc"]
+[gd_scene load_steps=23 format=3 uid="uid://buo5576owrisc"]
 
 [ext_resource type="PackedScene" uid="uid://c5sulhcjpw1ms" path="res://cheese.tscn" id="1_4eunm"]
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="2_tl3x3"]
+[ext_resource type="PackedScene" uid="uid://c14c4ncsogmd8" path="res://hud.tscn" id="3_tl3x3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wrtsm"]
 
@@ -187,5 +188,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.1456, 34.0018)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7232, 38.4376)
 collision_mask = 3
 
+[node name="Hud" parent="Player" instance=ExtResource("3_tl3x3")]
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.354748, 0.934962, 0, -0.934962, 0.354748, 0, 46.8651, 0)
+
+[connection signal="cheese_collected" from="Cheese/Cheese 1" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese 2" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese 3" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese 4" to="Player" method="collect_cheese"]

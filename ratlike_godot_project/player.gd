@@ -20,8 +20,9 @@ extends CharacterBody3D
 @export var max_jumps = 2
 @export var roll_strength = 150
 @export var roll_duration = 0.5
-
 # ---------------- GLOBAL VARIABLES
+var cheese_count = 0 # cheese...
+var cam_rotation : float = 0 # camera yaw rotation amount
 var consec_jump_impulse = jump_impulse / 2 # lowers jump intensity after initial jump
 var roll_gravity = fall_acceleration * 0.3 # lowers gravity during roll
 var jumped = 0 # counts how many times player has jumped
@@ -41,23 +42,24 @@ var target_velocity = Vector3.ZERO
 """
 func _physics_process(delta):	
 	# ---------------- MOVEMENT INPUT
-	var direction = Vector3.ZERO
-	
 	if Input.is_action_just_pressed("roll"):
 		roll()
-	if Input.is_action_pressed("move_right"):
-		direction.x += 1
-	if Input.is_action_pressed("move_left"):
-		direction.x -= 1
-	if Input.is_action_pressed("move_back"):
-		direction.z += 1
-	if Input.is_action_pressed("move_forward"):
-		direction.z -= 1
 	
+	var input_dir = Vector2(
+		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
+	)
+	
+	var direction = Vector3.ZERO
 	# ---------------- APPLYING MOVEMENT
-	if direction != Vector3.ZERO and not rolling: # player is moving
-		direction = direction.normalized()
-		$Pivot.basis = Basis.looking_at(direction)
+	if input_dir.length_squared() > 0: # player is moving
+		input_dir = input_dir.normalized()
+		
+		# Rotate the input vector by the camera's horizontal rotation
+		direction = Vector3(input_dir.x, 0.0, input_dir.y).rotated(Vector3.UP, cam_rotation)
+		
+		# Rotate the player model to face the direction of movement
+		$Pivot.look_at(global_position + direction, Vector3.UP)
 		animation_player.play("WalkCycle")
 	else: # player is idle
 		animation_player.stop()
@@ -133,3 +135,18 @@ func roll():
 	$RollCooldown.start(roll_duration)
 	rolling = true
 	roll_direction = -$Pivot.transform.basis.z.normalized()
+
+func _on_cam_root_set_cam_rotation(_cam_rotation: float):
+	cam_rotation = _cam_rotation
+
+# This function is called when a cheese is collected
+func collect_cheese():
+	print("collect cheese called")
+	cheese_count += 1
+	update_ui()
+
+# This function updates the text on the UI label
+func update_ui():
+	print("update ui called")
+	if get_node("Hud/Label") != null:
+		get_node("Hud/Label").text = "Cheese: " + str(cheese_count)
