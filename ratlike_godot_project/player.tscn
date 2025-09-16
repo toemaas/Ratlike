@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://0nd7lniffuj4"]
+[gd_scene load_steps=6 format=3 uid="uid://0nd7lniffuj4"]
 
 [ext_resource type="Script" uid="uid://dgu756bp8feam" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://sg1d2g6d6jk3" path="res://camera_controller.gd" id="3_hqtel"]
 [ext_resource type="PackedScene" uid="uid://c0e080ge2t8ho" path="res://RatModelDraft1Brown.fbx" id="3_i3pqv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
 size = Vector3(1, 1.07617, 1.14148)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sweqy"]
+radius = 0.07
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 2
@@ -16,10 +20,25 @@ script = ExtResource("1_onrkg")
 transform = Transform3D(-23, 0, -2.01072e-06, 0, 23, 0, 2.01072e-06, 0, -23, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.333, 0, 0, 0, 1, 0, 0, 0, 1.333, -0.000841349, 0.512474, -0.0553795)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000841349, 0.512474, -0.0553795)
 shape = SubResource("BoxShape3D_onrkg")
 
 [node name="RollCooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="CamRoot" type="Node3D" parent="."]
+script = ExtResource("3_hqtel")
+
+[node name="CamYaw" type="Node3D" parent="CamRoot"]
+
+[node name="CamPitch" type="Node3D" parent="CamRoot/CamYaw"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamRoot/CamYaw/CamPitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.655491, 0.859596)
+shape = SubResource("SphereShape3D_sweqy")
+spring_length = 7.0
+
+[node name="Camera3D" type="Camera3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.935684, 0.352838, 0, -0.352838, 0.935684, 0, 4.66525, 4.25001)
 
 [connection signal="timeout" from="RollCooldown" to="." method="_on_roll_cooldown_timeout"]

@@ -1,17 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://baxh2r4gf7ou2"]
+[gd_scene load_steps=5 format=3 uid="uid://baxh2r4gf7ou2"]
 
 [ext_resource type="PackedScene" uid="uid://c5sulhcjpw1ms" path="res://cheese.tscn" id="1_uiouw"]
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="2_javah"]
-[ext_resource type="Script" uid="uid://sg1d2g6d6jk3" path="res://camera_controller.gd" id="3_javah"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lqjdl"]
 size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_oxyw6"]
 size = Vector3(100, 1, 100)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_javah"]
-radius = 0.07
 
 [node name="TestingGrounds" type="Node3D"]
 
@@ -40,18 +36,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.0718, 2.91104, -12.6354)
 [node name="Player" parent="." instance=ExtResource("2_javah")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.012, 0)
 collision_mask = 3
-
-[node name="CamRoot" type="Node3D" parent="Player"]
-script = ExtResource("3_javah")
-
-[node name="CamYaw" type="Node3D" parent="Player/CamRoot"]
-
-[node name="CamPitch" type="Node3D" parent="Player/CamRoot/CamYaw"]
-
-[node name="SpringArm3D" type="SpringArm3D" parent="Player/CamRoot/CamYaw/CamPitch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.655491, 0.859596)
-shape = SubResource("SphereShape3D_javah")
-spring_length = 7.0
-
-[node name="Camera3D" type="Camera3D" parent="Player/CamRoot/CamYaw/CamPitch/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 0.935684, 0.352838, 0, -0.352838, 0.935684, 0, 4.66525, 4.25001)
