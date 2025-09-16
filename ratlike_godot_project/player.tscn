@@ -27,6 +27,7 @@ shape = SubResource("BoxShape3D_onrkg")
 one_shot = true
 
 [node name="CamRoot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.35383, 0)
 script = ExtResource("3_hqtel")
 
 [node name="CamYaw" type="Node3D" parent="CamRoot"]
@@ -37,9 +38,10 @@ script = ExtResource("3_hqtel")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.655491, 0.859596)
 shape = SubResource("SphereShape3D_sweqy")
 spring_length = 7.0
+margin = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 0.935684, 0.352838, 0, -0.352838, 0.935684, 0, 4.66525, 4.25001)
+transform = Transform3D(1, 0, 0, 0, 0.935684, 0.352838, 0, -0.352838, 0.935684, 0, 6.09558, 6.75458)
 
 [connection signal="timeout" from="RollCooldown" to="." method="_on_roll_cooldown_timeout"]
 [connection signal="set_cam_rotation" from="CamRoot" to="." method="_on_cam_root_set_cam_rotation"]

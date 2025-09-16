@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5sulhcjpw1ms"]
+[gd_scene load_steps=5 format=3 uid="uid://c5sulhcjpw1ms"]
 
-[ext_resource type="PackedScene" uid="uid://cynbqdfy3ogq3" path="res://Cheese Wheel.fbx" id="1_kw545"]
+[ext_resource type="PackedScene" uid="uid://ds512fl7oyvxw" path="res://Cheese Wheel.fbx" id="1_kw545"]
 [ext_resource type="Script" uid="uid://bur81xlc6umrh" path="res://cheese.gd" id="1_s0ldm"]
+[ext_resource type="AudioStream" uid="uid://dbh8ydgrpl8e1" path="res://carrotnom-92106.mp3" id="3_d3rdx"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_s0ldm"]
 height = 0.590088
@@ -17,4 +18,11 @@ transform = Transform3D(23, 0, 0, 0, 23, 0, 0, 0, 23, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.315063, 0)
 shape = SubResource("CylinderShape3D_s0ldm")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.762936, 0)
+stream = ExtResource("3_d3rdx")
+volume_db = 52.059
+doppler_tracking = 1
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]
