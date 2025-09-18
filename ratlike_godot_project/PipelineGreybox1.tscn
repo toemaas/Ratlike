@@ -198,6 +198,7 @@ transform = Transform3D(1, 0, 0, 0, 0.354748, 0.934962, 0, -0.934962, 0.354748, 
 [node name="Teleporter" parent="." instance=ExtResource("4_1ohtg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.727005, 6.44508, 38.5424)
 next_scene = ExtResource("5_yblg1")
+needed_cheese = 4
 
 [connection signal="cheese_collected" from="Cheese/Cheese 1" to="Player" method="collect_cheese"]
 [connection signal="cheese_collected" from="Cheese/Cheese 2" to="Player" method="collect_cheese"]

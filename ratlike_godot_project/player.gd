@@ -11,6 +11,13 @@ extends CharacterBody3D
 	
 	Any variable which is not exported is not meant to be modified outside of
 	'Inspector' window.
+	
+	Player movement controls:
+		Walk: W A S D
+		Roll: R
+		Cancel Roll: R
+		Jump: SPACE
+			Can be done multiple times if var max_jumps is changed
 """
 
 # ---------------- EXPORTED GLOBAL VARIABLES (DEFAULTS)
@@ -150,3 +157,7 @@ func update_ui():
 	print("update ui called")
 	if get_node("Hud/Label") != null:
 		get_node("Hud/Label").text = "Cheese: " + str(cheese_count)
+
+
+func get_cheese_count():
+	return cheese_count
