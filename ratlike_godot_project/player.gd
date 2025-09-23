@@ -41,6 +41,7 @@ var knockback = Vector3.ZERO # If there is knockback
 @onready # animation_player must be set when Player is first created
 var animation_player = $Pivot/RatModelDraft1Brown/AnimationPlayer
 var target_velocity = Vector3.ZERO
+var ledge = false # flag for when player is holding on a ledge
 
 """
 	_physics_process is called every frame while the node is in the active
@@ -51,6 +52,19 @@ var target_velocity = Vector3.ZERO
 					relative time between frames
 """
 func _physics_process(delta):	
+	# if on a ledge, stop all movement until a jump has been input
+	if ledge:
+		velocity = Vector3.ZERO
+		animation_player.stop()
+		move_and_slide()
+		if Input.is_action_just_pressed("jump"):
+			max_jumps += jumped
+			jumped = 0
+			ledge = false
+			print(str(jumped) + " " + str(max_jumps))
+			$Timers/LedgeCooldown.start()
+		else:
+			return
 	# ---------------- MOVEMENT INPUT
 	if Input.is_action_just_pressed("roll"):
 		roll()
@@ -88,7 +102,7 @@ func _physics_process(delta):
 	else: # player is rolling
 		# roll has adjusted gravity, first capture y vector and then update velocity
 		var y_val = velocity.y
-		velocity = roll_direction * roll_strength * $RollCooldown.time_left
+		velocity = roll_direction * roll_strength * $Timers/RollCooldown.time_left
 		velocity.y = -abs(y_val)
 	
 	"""
@@ -108,9 +122,16 @@ func _physics_process(delta):
 		jumped += 1
 		max_jumps -= 1
 	
+	# collision detection
+	var touching_wall = false
+	for i in range(get_slide_collision_count()):
+		var normal = get_slide_collision(i).get_normal()
+		
+		if abs(normal.y) < 0.1 and normal.length() > 0.9:
+			touching_wall = true
 	
 	# update global variables
-	if is_on_floor():
+	if is_on_floor() or touching_wall:
 		max_jumps += jumped
 		jumped = 0
 		
@@ -159,12 +180,12 @@ func _on_roll_cooldown_timeout():
 	TODO: change roll cancellation to jump input and not roll input
 """
 func roll():
-	if $RollCooldown.time_left != 0:
-		$RollCooldown.stop()
+	if $Timers/RollCooldown.time_left != 0:
+		$Timers/RollCooldown.stop()
 		_on_roll_cooldown_timeout()
 		print("roll cancelled")
 		return
-	$RollCooldown.start(roll_duration)
+	$Timers/RollCooldown.start(roll_duration)
 	rolling = true
 	roll_direction = -$Pivot.transform.basis.z.normalized()
 
@@ -192,3 +213,11 @@ func get_cheese_count():
 	return cheese_count
 	if get_node("Hud/CheeseLabel") != null:
 		get_node("Hud/CheeseLabel").text = "Cheese: " + str(cheese_count)
+
+# rat has entered a ledge object, @body is the rat
+func ledge_entered(body):
+	if $Timers/LedgeCooldown.time_left > 0:
+		print("ON COOLDOWN")
+		return
+	ledge = true
+	print("ledge entered")
