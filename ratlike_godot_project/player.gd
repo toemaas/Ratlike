@@ -21,7 +21,7 @@ extends CharacterBody3D
 """
 
 # ---------------- EXPORTED GLOBAL VARIABLES (DEFAULTS)
-@export var speed = 14
+@export var speed = 12
 @export var fall_acceleration = 75
 @export var jump_impulse = 20
 @export var max_jumps = 2
@@ -42,6 +42,7 @@ var knockback = Vector3.ZERO # If there is knockback
 var animation_player = $Pivot/RatModelDraft1Brown/AnimationPlayer
 var target_velocity = Vector3.ZERO
 var ledge = false # flag for when player is holding on a ledge
+var has_jumped_off_wall = false # wall jumping flag, default false
 
 """
 	_physics_process is called every frame while the node is in the active
@@ -131,9 +132,15 @@ func _physics_process(delta):
 			touching_wall = true
 	
 	# update global variables
-	if is_on_floor() or touching_wall:
-		max_jumps += jumped
-		jumped = 0
+	if is_on_floor() or touching_wall and not has_jumped_off_wall:
+		if touching_wall:
+			has_jumped_off_wall = true
+			jumped -= 1
+			max_jumps += 1
+		else:
+			max_jumps += jumped
+			jumped = 0
+			has_jumped_off_wall = false
 		
 	for index in range(get_slide_collision_count()):
 		var collision = get_slide_collision(index)
