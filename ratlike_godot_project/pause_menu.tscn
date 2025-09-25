@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://uud775qrqjh1"]
+
+[ext_resource type="Script" uid="uid://cxabxlh3axfqv" path="res://pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="Shader" uid="uid://xv8oilw7ns6n" path="res://pause_menu.gdshader" id="2_nwcfo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05uyy"]
+shader = ExtResource("2_nwcfo")
+shader_parameter/amount = 0.0
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_hdmo1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_05uyy")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.8, 16.2)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(-500, -250)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Paused"
+
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

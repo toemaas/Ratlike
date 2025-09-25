@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://diog71fvn2qmr"]
 
-[ext_resource type="Script" uid="uid://br11m68paxd07" path="res://hamster.gd" id="1_s70uv"]
+[ext_resource type="Script" uid="uid://b4hd2vgoqu6nd" path="res://hamster.gd" id="1_s70uv"]
 [ext_resource type="PackedScene" uid="uid://c0e080ge2t8ho" path="res://RatModelDraft1Brown.fbx" id="1_ts32c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s70uv"]

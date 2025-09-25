@@ -36,7 +36,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.0718, 2.91104, -12.6354)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_javah")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.012, 0)
-collision_mask = 3
 
 [node name="Hud" parent="Player" instance=ExtResource("3_javah")]
 
