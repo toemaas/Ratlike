@@ -3,22 +3,30 @@ extends Area3D
 """
 	Generic Teleporter script
 	
-	This script in its default state is non-usable. When using this script on
-	an object, you must set the parameters.
+	Makes use of a Singleton, SceneManager, which is scripted in scene_manager.gd
 	
-	@parma next_scene	Takes a .tscn file for the next scene to teleport to
-	@param needed_cheese	Takes an integer for the minimum number of cheese
-						required to teleport to the next level (scene)
+	IMPORTANT:
+		Whenever a teleporter scene is instantiated, the scene must have an @onready
+		loading script in the main node.
+		
+		Example:
+			SceneManger.next_scene = preload("<valid .tscn path>")
+		
+		inside _ready of the script.
+	
+	@param needed_cheese	custom amount of cheese which can be set in Inspector
 """
 
-@export var next_scene: PackedScene = null
-@export var needed_cheese = 0
+@export var needed_cheese: int = 0
+@onready var scene_manager = SceneManager
 
 func _on_body_entered(body):
 	if body.get_cheese_count() < needed_cheese:
 		print("DEBUG: Not enough cheese")
 		return
-	if next_scene:
-		get_tree().change_scene_to_packed(next_scene)
+	
+	if scene_manager.next_scene:
+		scene_manager.transition_to_scene(scene_manager.next_scene)
+		print("DEBUG: Transitioned to next scene")
 	else:
-		print("DEBUG: teleport scene is null")
+		print("DEBUG: next_scene is null")

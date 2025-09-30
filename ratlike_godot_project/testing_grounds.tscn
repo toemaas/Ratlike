@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvo3daelf1atx"]
+[gd_scene load_steps=8 format=3 uid="uid://cvo3daelf1atx"]
 
+[ext_resource type="Script" uid="uid://b6r743v8sbklw" path="res://testing_grounds.gd" id="1_lqjdl"]
 [ext_resource type="PackedScene" uid="uid://c5sulhcjpw1ms" path="res://cheese.tscn" id="1_uiouw"]
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="2_javah"]
 [ext_resource type="PackedScene" uid="uid://c14c4ncsogmd8" path="res://hud.tscn" id="3_javah"]
+[ext_resource type="PackedScene" uid="uid://driilhpt113id" path="res://teleporter.tscn" id="5_oxyw6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lqjdl"]
 size = Vector3(100, 1, 100)
@@ -11,6 +13,7 @@ size = Vector3(100, 1, 100)
 size = Vector3(100, 1, 100)
 
 [node name="TestingGrounds" type="Node3D"]
+script = ExtResource("1_lqjdl")
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
@@ -38,6 +41,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.0718, 2.91104, -12.6354)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.012, 0)
 
 [node name="Hud" parent="Player" instance=ExtResource("3_javah")]
+
+[node name="Rathole" parent="." instance=ExtResource("5_oxyw6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.8298)
+needed_cheese = 3
 
 [connection signal="cheese_collected" from="Cheese/RigidBody3D2" to="Player" method="collect_cheese"]
 [connection signal="cheese_collected" from="Cheese/RigidBody3D" to="Player" method="collect_cheese"]
