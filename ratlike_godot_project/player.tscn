@@ -32,6 +32,10 @@ one_shot = true
 [node name="LedgeCooldown" type="Timer" parent="Timers"]
 one_shot = true
 
+[node name="JumpCharge" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
 [node name="CamRoot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.35383, 0)
 script = ExtResource("3_hqtel")

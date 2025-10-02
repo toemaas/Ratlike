@@ -18,6 +18,7 @@ extends CharacterBody3D
 		Cancel Roll: R
 		Jump: SPACE
 			Can be done multiple times if var max_jumps is changed
+		Charged Jump: SPACE (Held)
 """
 
 # ---------------- EXPORTED GLOBAL VARIABLES (DEFAULTS)
@@ -29,6 +30,7 @@ extends CharacterBody3D
 @export var roll_duration = 0.5
 @export var bounce_impulse = 16
 @export var hit_impulse = 50
+@export var charge_jump_incremental = 1 # additive to jump impulse when charging
 # ---------------- GLOBAL VARIABLES
 var cheese_count = 0 # cheese...
 var cam_rotation : float = 0 # camera yaw rotation amount
@@ -38,11 +40,14 @@ var jumped = 0 # counts how many times player has jumped
 var rolling = false # flag for when player is actively rolling
 var roll_direction = Vector3.ZERO # maintain direction when rolling
 var knockback = Vector3.ZERO # If there is knockback
-@onready # animation_player must be set when Player is first created
-var animation_player = $Pivot/RatModelDraft1Brown/AnimationPlayer
+# animation_player must be set when Player is first created
+@onready var animation_player = $Pivot/RatModelDraft1Brown/AnimationPlayer
 var target_velocity = Vector3.ZERO
 var ledge = false # flag for when player is holding on a ledge
-var has_jumped_off_wall = false # wall jumping flag, default false
+var jump_charge_impulse = jump_impulse # value for charged jump
+var jump_charge_happened = false # flag for charging jump
+var jump_hold_time = 0.0 # time, in seconds, while holding space
+var jump_time_threshold = 0.5 # time, in seconds, needed to hold jump in order to charge
 
 """
 	_physics_process is called every frame while the node is in the active
@@ -63,7 +68,7 @@ func _physics_process(delta):
 			jumped = 0
 			ledge = false
 			print(str(jumped) + " " + str(max_jumps))
-			$Timers/LedgeCooldown.start()
+			startTimer("LedgeCooldown")
 		else:
 			return
 	# ---------------- MOVEMENT INPUT
@@ -123,25 +128,48 @@ func _physics_process(delta):
 		jumped += 1
 		max_jumps -= 1
 	
-	# collision detection
-	var touching_wall = false
-	for i in range(get_slide_collision_count()):
-		var normal = get_slide_collision(i).get_normal()
-		
-		if abs(normal.y) < 0.1 and normal.length() > 0.9:
-			touching_wall = true
+	# charged jump
+	if Input.is_action_pressed("jump") and is_on_floor():		
+		if jump_hold_time < jump_time_threshold:
+			jump_hold_time += delta
+		else:
+			# if flag is not raised, raise it and start timer
+			if not jump_charge_happened:
+				jump_charge_happened = true
+				startTimer("JumpCharge")
+			
+			# only add to the charge if timer is > 0
+			if getTimeLeft("JumpCharge") > 0:
+				jump_charge_impulse += charge_jump_incremental
+			
+			# set jump velocity
+			target_velocity.y = jump_charge_impulse
+			
+			# remove available jumps (no additional jumps after charged jump)
+			var temp = max_jumps
+			jumped += max_jumps
+			max_jumps -= temp
+			
+			print(str(jump_charge_impulse))
+			print(str(getTimeLeft("JumpCharge")))
+			return
+	
+	# reset jump charge
+	if Input.is_action_just_released("jump"):
+		print("jump released")
+		jump_hold_time = 0.0
+		jump_charge_impulse = jump_impulse
+		print(max_jumps)
+		print(jumped)
 	
 	# update global variables
-	if is_on_floor() or touching_wall and not has_jumped_off_wall:
-		if touching_wall:
-			has_jumped_off_wall = true
-			jumped -= 1
-			max_jumps += 1
+	if is_on_floor():
+		if jump_charge_happened:
+			jump_charge_happened = false
 		else:
 			max_jumps += jumped
 			jumped = 0
-			has_jumped_off_wall = false
-		
+	
 	for index in range(get_slide_collision_count()):
 		var collision = get_slide_collision(index)
 		
@@ -166,6 +194,7 @@ func _physics_process(delta):
 	knockback = lerp(knockback, Vector3.ZERO, 0.2)
 	# finish process and move player node
 	move_and_slide()
+
 """
 	When RollCooldown times out, the timeout signal is sent to this
 	function and lowers the flag for rolling and resets the velocity
@@ -187,12 +216,13 @@ func _on_roll_cooldown_timeout():
 	TODO: change roll cancellation to jump input and not roll input
 """
 func roll():
-	if $Timers/RollCooldown.time_left != 0:
-		$Timers/RollCooldown.stop()
+	if getTimeLeft("RollCooldown") != 0:
+		stopTimer("RollCooldown")
 		_on_roll_cooldown_timeout()
 		print("roll cancelled")
 		return
-	$Timers/RollCooldown.start(roll_duration)
+	startTimer("RollCooldown", roll_duration)
+	#$Timers/RollCooldown.start(roll_duration)
 	rolling = true
 	roll_direction = -$Pivot.transform.basis.z.normalized()
 
@@ -215,7 +245,6 @@ func update_ui():
 	if get_node("Hud/Label") != null:
 		get_node("Hud/Label").text = "Cheese: " + str(cheese_count)
 
-
 func get_cheese_count():
 	return cheese_count
 	if get_node("Hud/CheeseLabel") != null:
@@ -223,8 +252,36 @@ func get_cheese_count():
 
 # rat has entered a ledge object, @body is the rat
 func ledge_entered(body):
-	if $Timers/LedgeCooldown.time_left > 0:
+	if getTimeLeft("LedgeCooldown") > 0:
 		print("ON COOLDOWN")
 		return
 	ledge = true
 	print("ledge entered")
+
+
+# ---------------- HELPER FUNCTIONS
+
+# str is name of timer, get the remaining time of timer
+func getTimeLeft(str: String) -> float:
+	var path = "Timers/" + str
+	var timer = get_node(path) as Timer
+	return timer.time_left
+
+# str is name of timer, start the timer
+# @amount	optional parameter
+func startTimer(str: String, amount: float = -1):
+	var path = "Timers/" + str
+	var timer = get_node(path) as Timer
+	if amount == -1:
+		timer.start()
+		print("DEBUG: Timer " + str + " has been started.")
+	else:
+		timer.start(amount)
+		print("DEBUG: Timer " + str + " has been started with a time of " + str(amount) + ".")
+
+# str is name of timer, stops the timer
+func stopTimer(str: String):
+	var path = "Timers/" + str
+	var timer = get_node(path) as Timer
+	timer.stop()
+	print("DEBUG: Timer " + str + " has been stopped.")
