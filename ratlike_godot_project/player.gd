@@ -74,7 +74,11 @@ func _physics_process(delta):
 		else:
 			return
 	# ---------------- MOVEMENT INPUT
-	if Input.is_action_just_pressed("roll"):
+	# roll if not rolling
+	if Input.is_action_just_pressed("roll") and not rolling:
+		roll()
+	# cancel roll if jump pressed
+	if Input.is_action_just_pressed("jump") and rolling:
 		roll()
 	
 	var input_dir = Vector2(
