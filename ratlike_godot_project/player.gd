@@ -208,6 +208,10 @@ func _physics_process(delta):
 				# Prevent further duplicate calls.
 				break
 			else:
+				if cheese_count > 0 and not collision.get_collider().getCheese():
+					cheese_count -= 1
+					update_ui()
+					collision.get_collider().steal_cheese()
 				var bounce_direction = collision.get_normal().slide(Vector3.UP).normalized()
 				knockback.x = bounce_direction.x * hit_impulse
 				knockback.z = bounce_direction.z * hit_impulse
@@ -257,8 +261,13 @@ func collect_cheese():
 	update_ui()
 
 # This function is called when a mob is squashed
-func squashed():
-	print("squashed called")
+func squashed(cheese):
+	if cheese:
+		print("squashed called with cheese")
+		cheese_count += 1
+		update_ui()
+	else:
+		print("squashed called with no cheese")
 
 # This function updates the text on the UI label
 func update_ui():

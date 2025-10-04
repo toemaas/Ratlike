@@ -1,11 +1,13 @@
 extends CharacterBody3D
 
-signal squashed
+signal squashed(cheese)
 
 @export var patrol_points: Array[Vector3]
 @export var movement_speed: float = 25.0
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
+
+var cheese = false # cheese flag, true if cheese is stolen
 
 # This will keep track of which point we are moving towards.
 var current_patrol_index: int = 0
@@ -50,6 +52,14 @@ func _physics_process(delta):
 	move_and_slide()
 
 func squash():
-	squashed.emit()
+	squashed.emit(cheese)
 	print("HAMSTER SQUASHED")
 	queue_free()
+
+func steal_cheese():
+	cheese = true
+	$Cheese.visible = true
+
+#HELPER
+func getCheese():
+	return cheese
