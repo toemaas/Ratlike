@@ -41,7 +41,7 @@ var rolling = false # flag for when player is actively rolling
 var roll_direction = Vector3.ZERO # maintain direction when rolling
 var knockback = Vector3.ZERO # If there is knockback
 # animation_player must be set when Player is first created
-@onready var animation_player = $Pivot/RatModelDraft1Brown/AnimationPlayer
+@onready var animation_player = $Pivot/'Rat All Animations'/AnimationPlayer
 @onready var health_bar = $Hud/HealthLabel
 var target_velocity = Vector3.ZERO
 var ledge = false # flag for when player is holding on a ledge
@@ -96,7 +96,7 @@ func _physics_process(delta):
 		
 		# Rotate the player model to face the direction of movement
 		$Pivot.look_at(global_position + direction, Vector3.UP)
-		animation_player.play("WalkCycle")
+		animation_player.play("Walk")
 	else: # player is idle
 		animation_player.stop()
 	
@@ -246,10 +246,12 @@ func roll():
 		stopTimer("RollCooldown")
 		_on_roll_cooldown_timeout()
 		print("roll cancelled")
+		animation_player.stop()
 		return
 	startTimer("RollCooldown", roll_duration)
 	rolling = true
 	roll_direction = -$Pivot.transform.basis.z.normalized()
+	animation_player.play("Roll")
 
 func _on_cam_root_set_cam_rotation(_cam_rotation: float):
 	cam_rotation = _cam_rotation

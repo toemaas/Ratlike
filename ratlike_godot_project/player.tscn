@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgu756bp8feam" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://sg1d2g6d6jk3" path="res://camera_controller.gd" id="3_hqtel"]
-[ext_resource type="PackedScene" uid="uid://c0e080ge2t8ho" path="res://RatModelDraft1Brown.fbx" id="3_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://c2r3qyybog85s" path="res://Rat All Animations.fbx" id="3_sweqy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
 size = Vector3(1, 1.07617, 1.14148)
@@ -17,8 +17,8 @@ script = ExtResource("1_onrkg")
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="RatModelDraft1Brown" parent="Pivot" instance=ExtResource("3_i3pqv")]
-transform = Transform3D(-23, 0, -2.01072e-06, 0, 23, 0, 2.01072e-06, 0, -23, 0, 0, 0)
+[node name="Rat All Animations" parent="Pivot" instance=ExtResource("3_sweqy")]
+transform = Transform3D(-1.00536e-06, 0, -23, 0, 23, 0, 23, 0, -1.00536e-06, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000841349, 0.512474, -0.0553795)
