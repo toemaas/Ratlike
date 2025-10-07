@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://driilhpt113id"]
+[gd_scene load_steps=5 format=3 uid="uid://driilhpt113id"]
 
 [ext_resource type="Script" uid="uid://c8viv6fsxj1o6" path="res://teleporter.gd" id="1_eumkw"]
 [ext_resource type="PackedScene" uid="uid://qsrwr7mxbuuy" path="res://BasicRatHole.fbx" id="2_tuehi"]
+[ext_resource type="PackedScene" uid="uid://gv8lu2mhn42n" path="res://Dialogue/dialogue_box.tscn" id="3_kk6yu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvxmr"]
 size = Vector3(5, 5, 0.5)
@@ -19,5 +20,7 @@ shape = SubResource("BoxShape3D_mvxmr")
 transform = Transform3D(32, 0, 0, 0, 32, 0, 0, 0, 32, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="DialogueBox" parent="." instance=ExtResource("3_kk6yu")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -23,6 +23,7 @@ extends Area3D
 func _on_body_entered(body):
 	if body.get_cheese_count() < needed_cheese:
 		print("DEBUG: Not enough cheese")
+		$DialogueBox.start()
 		return
 	
 	if scene_manager.next_scene:

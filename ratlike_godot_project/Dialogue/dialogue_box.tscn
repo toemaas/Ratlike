@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://gv8lu2mhn42n"]
+
+[ext_resource type="Script" uid="uid://bevuecppbtimg" path="res://Dialogue/dialogue_boxPlayer.gd" id="1_e3xam"]
+[ext_resource type="Texture2D" uid="uid://bjdaxp3mvedqp" path="res://Dialogue/Art/DialogueDraft.png" id="1_lovb2"]
+
+[node name="DialogueBox" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_e3xam")
+d_file = "res://Dialogue/json/RatHole1NoCheese.json"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = 74.0
+offset_top = 19.0
+offset_right = 1084.0
+offset_bottom = 191.0
+texture = ExtResource("1_lovb2")
+region_rect = Rect2(0, 0, 500, 500)
+patch_margin_left = 26
+patch_margin_top = 28
+patch_margin_right = 29
+patch_margin_bottom = 30
+
+[node name="Name" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 19.0
+offset_right = 495.0
+offset_bottom = 54.0
+theme_override_font_sizes/normal_font_size = 24
+text = "Name"
+
+[node name="Chat" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 56.0
+offset_right = 757.0
+offset_bottom = 143.0
+theme_override_font_sizes/normal_font_size = 19
+text = "blah blah blah "
+text_direction = 1
