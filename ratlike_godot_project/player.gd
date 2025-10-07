@@ -46,6 +46,7 @@ var target_velocity = Vector3.ZERO
 var ledge = false # flag for when player is holding on a ledge
 var jump_charge_impulse = jump_impulse # value for charged jump
 var jump_charge_happened = false # flag for charging jump
+var jump_ready = false # flag for jumping
 var jump_hold_time = 0.0 # time, in seconds, while holding space
 var jump_time_threshold = 0.5 # time, in seconds, needed to hold jump in order to charge
 
@@ -119,20 +120,29 @@ func _physics_process(delta):
 		Whenever we jump we add 1 to jumped and then remove 1 from max_jumps.
 		These counters get updated every frame in the last if function of
 		_physics_process(...).
+		
+		Charged jump logic is in here as well. First we need to detect the input
+		of jump is being held. If it is, then we charge. If not, we do a normal
+		jump. This is done by using jump_hold_time and jump_time_threshold.
+		
+		This will skip frames for jumping and might appear as though there is
+		input latency with jumping for our player; however, this latency is
+		extremely small and hardly noticeable, if at all, when playing.
 	"""
-	if max_jumps > 1 and Input.is_action_just_pressed("jump") and not rolling:
-		if jumped == 0:
-			target_velocity.y = jump_impulse
-		else:
-			target_velocity.y = consec_jump_impulse
-		jumped += 1
-		max_jumps -= 1
+	# Start jump detection
+	if Input.is_action_just_pressed("jump"):
+		print("DEBUG: Jump input detected")
+		jump_hold_time = 0.0
+		jump_ready = true # raise flag as jump input has been detected
 	
-	# charged jump
-	if Input.is_action_pressed("jump") and is_on_floor():		
-		if jump_hold_time < jump_time_threshold:
-			jump_hold_time += delta
-		else:
+	# Charged jump logic
+	if jump_ready and Input.is_action_pressed("jump"):
+		print("DEBUG: Held jump input detected")
+		jump_hold_time += delta
+		
+		# if enough time has passed to hold jump input, then start charge logic
+		if jump_hold_time >= jump_time_threshold:
+			print("DEBUG: Charged jump detected")
 			# if flag is not raised, raise it and start timer
 			if not jump_charge_happened:
 				jump_charge_happened = true
@@ -141,6 +151,9 @@ func _physics_process(delta):
 			# only add to the charge if timer is > 0
 			if getTimeLeft("JumpCharge") > 0:
 				jump_charge_impulse += charge_jump_incremental
+			else:
+				# lower jump ready flag as we are at maximum charge and force the jump
+				jump_ready = false
 			
 			# set jump velocity
 			target_velocity.y = jump_charge_impulse
@@ -150,25 +163,29 @@ func _physics_process(delta):
 			jumped += max_jumps
 			max_jumps -= temp
 			
-			print(str(jump_charge_impulse))
-			print(str(getTimeLeft("JumpCharge")))
+			print("DEBUG: Charged impulse is at " + str(jump_charge_impulse))
+			print("DEBUG: JumpCharge timer is at " + str(getTimeLeft("JumpCharge")))
 			return
 	
-	# reset jump charge
-	if Input.is_action_just_released("jump"):
-		print("jump released")
-		jump_hold_time = 0.0
-		jump_charge_impulse = jump_impulse
-		print(max_jumps)
-		print(jumped)
+	# If jump_ready is still true at this point, then we did not do a charged jump-do a normal jump
+	if jump_ready and Input.is_action_just_released("jump") and max_jumps > 1:
+		print("DEBUG: Normal jump detected")
+		jump_ready = false
+		if jumped == 0:
+			target_velocity.y = jump_impulse
+		else:
+			target_velocity.y = consec_jump_impulse
+		jumped += 1
+		max_jumps -= 1
+		print("DEBUG: Normal jump completed with total jumps of " + str(jumped) + " and max jumps left of " + str(max_jumps))
 	
-	# update global variables
+	# When back on the floor, reset all jump variables/flags
 	if is_on_floor():
 		if jump_charge_happened:
 			jump_charge_happened = false
-		else:
-			max_jumps += jumped
-			jumped = 0
+			jump_charge_impulse = jump_impulse
+		max_jumps += jumped
+		jumped = 0
 	
 	for index in range(get_slide_collision_count()):
 		var collision = get_slide_collision(index)
@@ -222,7 +239,6 @@ func roll():
 		print("roll cancelled")
 		return
 	startTimer("RollCooldown", roll_duration)
-	#$Timers/RollCooldown.start(roll_duration)
 	rolling = true
 	roll_direction = -$Pivot.transform.basis.z.normalized()
 
@@ -257,7 +273,6 @@ func ledge_entered(body):
 		return
 	ledge = true
 	print("ledge entered")
-
 
 # ---------------- HELPER FUNCTIONS
 
