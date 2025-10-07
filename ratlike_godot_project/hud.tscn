@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c14c4ncsogmd8"]
+[gd_scene load_steps=2 format=3 uid="uid://c14c4ncsogmd8"]
+
+[ext_resource type="Script" uid="uid://dih34d03ynhw8" path="res://health_label.gd" id="1_37p78"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -12,9 +14,18 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="CheeseLabel" type="Label" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Cheese: 0
 "
+
+[node name="HealthLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 530.0
+offset_top = 620.0
+offset_right = 605.0
+offset_bottom = 640.0
+text = "❤️❤️❤️"
+script = ExtResource("1_37p78")

@@ -10,6 +10,7 @@ height = 1.85951
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_s70uv")
+patrol_points = Array[Vector3]([Vector3(0, 0, 0), Vector3(13, 0, 13), Vector3(25, 0, 0), Vector3(7, 0, 13), Vector3(19, 0, 13)])
 
 [node name="Pivot" type="Node3D" parent="."]
 
@@ -22,3 +23,5 @@ shape = SubResource("CapsuleShape3D_s70uv")
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 aabb = AABB(-0.474948, -0.0613092, -0.878085, 0.949895, 0.915587, 2.30598)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

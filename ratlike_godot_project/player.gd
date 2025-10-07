@@ -42,6 +42,7 @@ var roll_direction = Vector3.ZERO # maintain direction when rolling
 var knockback = Vector3.ZERO # If there is knockback
 # animation_player must be set when Player is first created
 @onready var animation_player = $Pivot/RatModelDraft1Brown/AnimationPlayer
+@onready var health_bar = $Hud/HealthLabel
 var target_velocity = Vector3.ZERO
 var ledge = false # flag for when player is holding on a ledge
 var jump_charge_impulse = jump_impulse # value for charged jump
@@ -206,6 +207,8 @@ func _physics_process(delta):
 				var bounce_direction = collision.get_normal().slide(Vector3.UP).normalized()
 				knockback.x = bounce_direction.x * hit_impulse
 				knockback.z = bounce_direction.z * hit_impulse
+				if health_bar != null:
+					health_bar.take_damage(1)
 				break
 	velocity += knockback
 	knockback = lerp(knockback, Vector3.ZERO, 0.2)
@@ -260,6 +263,7 @@ func update_ui():
 	print("update ui called")
 	if get_node("Hud/Label") != null:
 		get_node("Hud/Label").text = "Cheese: " + str(cheese_count)
+
 
 func get_cheese_count():
 	return cheese_count

@@ -23,12 +23,8 @@ script = ExtResource("1_0l1we")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 navigation_mesh = SubResource("NavigationMesh_466b2")
 
-[node name="NavigationRegion3D2" type="NavigationRegion3D" parent="Environment"]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -10.2151, 24.5, -4.53875)
-navigation_mesh = SubResource("NavigationMesh_466b2")
-
 [node name="Player" parent="." instance=ExtResource("2_foyw7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.86054, 28.3752, -8.07339)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7395, -4.76837e-07, 24.3113)
 collision_mask = 19
 
 [node name="Hud" parent="Player" instance=ExtResource("3_l6eyr")]
@@ -69,22 +65,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.8846, 21.1587, 0)
 [node name="Hamster" parent="Node3D" instance=ExtResource("9_evv1w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.372, 5.4, 6.291)
 patrol_points = Array[Vector3]([Vector3(25, 5.4, 12.5), Vector3(25, 5.4, 4.7)])
-movement_speed = 15.0
+movement_speed = null
 
 [node name="Hamster2" parent="Node3D" instance=ExtResource("9_evv1w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 25, -15)
-patrol_points = Array[Vector3]([Vector3(-15, 0, -15), Vector3(3, 0, 3), Vector3(3, 0, -15), Vector3(-15, 0, 3)])
-movement_speed = 15.0
-
-[node name="Hamster3" parent="Node3D" instance=ExtResource("9_evv1w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 25, 3)
-patrol_points = Array[Vector3]([Vector3(-15, 0, 3), Vector3(-15, 0, -15), Vector3(3, 0, -15), Vector3(3, 0, 3)])
-movement_speed = 15.0
-
-[node name="Hamster4" parent="Node3D" instance=ExtResource("9_evv1w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 25, -15)
-patrol_points = Array[Vector3]([Vector3(3, 0, -15), Vector3(3, 0, 3), Vector3(-15, 0, 3), Vector3(-15, 0, -15)])
-movement_speed = 15.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3139, 10.9258, 0)
+movement_speed = null
 
 [connection signal="cheese_collected" from="Cheese/Cheese 1" to="Player" method="collect_cheese"]
 [connection signal="body_entered" from="Ledges/Area3D" to="Player" method="ledge_entered"]

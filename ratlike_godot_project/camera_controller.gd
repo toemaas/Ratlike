@@ -37,6 +37,6 @@ func _physics_process(delta):
 	
 	# Fast camera rotation
 	yaw_node.rotation_degrees.y = yaw
-	pitch_node.rotation_degrees.x = pitch
+	pitch_node.rotation_degrees.x = -pitch
 	
 	set_cam_rotation.emit(yaw_node.rotation.y)

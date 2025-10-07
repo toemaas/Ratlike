@@ -10,7 +10,7 @@ func _ready() -> void:
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_pause"):
 		get_tree().root.set_input_as_handled()
-		toggle_pause() # Call the new function
+		toggle_pause()
 
 func toggle_pause():
 	get_tree().paused = not get_tree().paused
