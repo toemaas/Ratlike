@@ -59,7 +59,7 @@ var jump_time_threshold = 0.5 # time, in seconds, needed to hold jump in order t
 	@param delta	used to synchronize physics frames by maintaining the 
 					relative time between frames
 """
-func _physics_process(delta):	
+func _physics_process(delta):
 	# if on a ledge, stop all movement until a jump has been input
 	if ledge:
 		velocity = Vector3.ZERO
@@ -234,10 +234,8 @@ func _on_roll_cooldown_timeout():
 	The logic here is using a Timer node to create a smooth roll and
 	temporarily lock movement in place.
 	
-	Extra feature—roll cancellation. If roll is activated while roll
+	Extra feature—roll cancellation. If jump is activated while roll
 	is already active, it will stop rolling instantly.
-	
-	TODO: change roll cancellation to jump input and not roll input
 """
 func roll():
 	if getTimeLeft("RollCooldown") != 0:
@@ -265,8 +263,8 @@ func squashed():
 # This function updates the text on the UI label
 func update_ui():
 	print("update ui called")
-	if get_node("Hud/Label") != null:
-		get_node("Hud/Label").text = "Cheese: " + str(cheese_count)
+	if get_node("Hud/CheeseLabel") != null:
+		get_node("Hud/CheeseLabel").text = "Cheese: " + str(cheese_count)
 
 
 func get_cheese_count():
