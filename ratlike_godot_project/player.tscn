@@ -33,7 +33,7 @@ one_shot = true
 one_shot = true
 
 [node name="JumpCharge" type="Timer" parent="Timers"]
-wait_time = 0.2
+wait_time = 0.5
 one_shot = true
 
 [node name="JumpCD" type="Timer" parent="Timers"]
@@ -56,6 +56,14 @@ margin = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.935684, 0.352838, 0, -0.352838, 0.935684, 0, 6.09558, 6.75458)
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15282, 0)
+visible = false
+billboard = 2
+text = "##########"
+font_size = 64
+outline_size = 24
 
 [connection signal="timeout" from="Timers/RollCooldown" to="." method="_on_roll_cooldown_timeout"]
 [connection signal="set_cam_rotation" from="CamRoot" to="." method="_on_cam_root_set_cam_rotation"]

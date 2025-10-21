@@ -30,3 +30,11 @@ aabb = AABB(-0.474948, -0.0613092, -0.878085, 0.949895, 0.915587, 2.30598)
 [node name="Cheese" parent="." instance=ExtResource("3_uto4n")]
 transform = Transform3D(7.5, 0, 0, 0, 7.5, 0, 0, 0, 7.5, 0, 1, 0)
 visible = false
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59934, 0)
+visible = false
+billboard = 2
+text = "My cheese hehe haha"
+font_size = 112
+outline_size = 40

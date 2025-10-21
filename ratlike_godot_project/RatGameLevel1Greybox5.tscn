@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://bt7i0emrwybnt"]
+[gd_scene load_steps=101 format=3 uid="uid://c7gqlddj3jahc"]
 
 [ext_resource type="PackedScene" uid="uid://c20pa8r7170c" path="res://Assets/Washing Machine.fbx" id="1_gimg4"]
 [ext_resource type="PackedScene" uid="uid://ct2lu5qil3m6e" path="res://Assets/Magazine Pile.fbx" id="2_6os77"]

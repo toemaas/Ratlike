@@ -30,7 +30,7 @@ extends CharacterBody3D
 @export var roll_duration = 0.5
 @export var bounce_impulse = 16
 @export var hit_impulse = 50
-@export var charge_jump_incremental = 1 # additive to jump impulse when charging
+@export var charge_jump_incremental = .5 # additive to jump impulse when charging
 # ---------------- GLOBAL VARIABLES
 var cheese_count = 0 # cheese...
 var cam_rotation : float = 0 # camera yaw rotation amount
@@ -51,6 +51,7 @@ var jump_ready = false # flag for jumping
 var jump_hold_time = 0.0 # time, in seconds, while holding space
 var jump_time_threshold = 0.1 # time, in seconds, needed to hold jump in order to charge
 
+signal jump_charge_changed(charge_value: int)
 """
 	_physics_process is called every frame while the node is in the active
 	scene tree. If the node is not in the scene tree, this function will
@@ -155,13 +156,18 @@ func _physics_process(delta):
 				jump_charge_happened = true
 				startTimer("JumpCharge")
 			
+			
 			# only add to the charge if timer is > 0
 			if getTimeLeft("JumpCharge") > 0:
 				jump_charge_impulse += charge_jump_incremental
+				# emit the impulse for the charge bar
+				jump_charge_changed.emit(jump_charge_impulse)
+				
 			else:
 				# lower jump ready flag as we are at maximum charge and force the jump
+				jump_charge_changed.emit(0.0)
 				jump_ready = false
-				
+			
 				# set jump velocity
 				target_velocity.y = jump_charge_impulse
 				
@@ -169,7 +175,7 @@ func _physics_process(delta):
 				var temp = max_jumps
 				jumped += max_jumps
 				max_jumps -= temp
-				
+					
 				startTimer("JumpCD")
 			
 			print("DEBUG: Charged impulse is at " + str(jump_charge_impulse))
@@ -179,13 +185,20 @@ func _physics_process(delta):
 	# If jump_ready is still true at this point, then we did not do a charged jump-do a normal jump
 	if jump_ready and Input.is_action_just_released("jump") and max_jumps >= 1:
 		print("DEBUG: Normal jump detected")
-		jump_ready = false
-		if jumped == 0:
-			target_velocity.y = jump_impulse
+		if jump_charge_happened:
+			target_velocity.y = jump_charge_impulse
+			jump_charge_changed.emit(0.0)
+			var temp = max_jumps
+			jumped += max_jumps
+			max_jumps -= temp
 		else:
-			target_velocity.y = consec_jump_impulse
-		jumped += 1
-		max_jumps -= 1
+			jump_ready = false
+			if jumped == 0:
+				target_velocity.y = jump_impulse
+			else:
+				target_velocity.y = consec_jump_impulse
+			jumped += 1
+			max_jumps -= 1
 		
 		startTimer("JumpCD")
 		print("DEBUG: Normal jump completed with total jumps of " + str(jumped) + " and max jumps left of " + str(max_jumps))
@@ -221,11 +234,14 @@ func _physics_process(delta):
 					cheese_count -= 1
 					update_ui()
 					collision.get_collider().steal_cheese()
+					$Label3D.visible = true
+					await get_tree().create_timer(2.0).timeout
+					$Label3D.visible = false
 				var bounce_direction = collision.get_normal().slide(Vector3.UP).normalized()
 				knockback.x = bounce_direction.x * hit_impulse
 				knockback.z = bounce_direction.z * hit_impulse
-				if health_bar != null:
-					health_bar.take_damage(1)
+				#if health_bar != null:
+					#health_bar.take_damage(1)
 				break
 	velocity += knockback
 	knockback = lerp(knockback, Vector3.ZERO, 0.2)
@@ -283,14 +299,12 @@ func squashed(cheese):
 # This function updates the text on the UI label
 func update_ui():
 	print("update ui called")
+	health_bar.update_dis(cheese_count)
 	if get_node("Hud/CheeseLabel") != null:
 		get_node("Hud/CheeseLabel").text = "Cheese: " + str(cheese_count)
-
 
 func get_cheese_count():
 	return cheese_count
-	if get_node("Hud/CheeseLabel") != null:
-		get_node("Hud/CheeseLabel").text = "Cheese: " + str(cheese_count)
 
 # rat has entered a ledge object, @body is the rat
 func ledge_entered(body):

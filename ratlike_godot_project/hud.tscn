@@ -1,6 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://c14c4ncsogmd8"]
+[gd_scene load_steps=10 format=3 uid="uid://c14c4ncsogmd8"]
 
+[ext_resource type="Script" path="res://hud.gd" id="1_8sq4i"]
 [ext_resource type="Script" uid="uid://dih34d03ynhw8" path="res://health_label.gd" id="1_37p78"]
+
+[sub_resource type="Gradient" id="Gradient_64ctp"]
+offsets = PackedFloat32Array(0.0140845, 1)
+colors = PackedColorArray(0.545098, 0, 0, 1, 0.835294, 0.847059, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8sq4i"]
+gradient = SubResource("Gradient_64ctp")
+width = 20
+height = 200
+fill_from = Vector2(0.514563, 1)
+fill_to = Vector2(0.509709, 0)
+
+[sub_resource type="Gradient" id="Gradient_640wx"]
+colors = PackedColorArray(0.545098, 0, 0, 1, 0.835294, 0.847059, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a2258"]
+gradient = SubResource("Gradient_640wx")
+width = 20
+height = 200
+fill_from = Vector2(0.555556, 1)
+fill_to = Vector2(0.34188, 0)
+
+[sub_resource type="Gradient" id="Gradient_1xsix"]
+offsets = PackedFloat32Array(0, 0.639344, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.526924, 0.623377, 0.931748, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rftc2"]
+gradient = SubResource("Gradient_1xsix")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_64ctp"]
+diffuse_texture = SubResource("GradientTexture2D_a2258")
+normal_texture = SubResource("GradientTexture2D_rftc2")
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -13,8 +46,10 @@ offset_right = 12.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8sq4i")
 
 [node name="CheeseLabel" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
@@ -23,9 +58,24 @@ text = "Cheese: 0
 
 [node name="HealthLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 530.0
-offset_top = 620.0
-offset_right = 605.0
+offset_left = 520.0
+offset_top = 616.0
+offset_right = 616.0
 offset_bottom = 640.0
-text = "❤️❤️❤️"
 script = ExtResource("1_37p78")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ChargeBar" type="TextureProgressBar" parent="CanvasLayer"]
+visible = false
+offset_left = 675.0
+offset_top = 214.0
+offset_right = 702.0
+offset_bottom = 431.0
+min_value = 20.0
+max_value = 35.5
+value = 20.0
+fill_mode = 3
+texture_under = SubResource("GradientTexture2D_8sq4i")
+texture_progress = SubResource("CanvasTexture_64ctp")
+tint_under = Color(0.250638, 0.182932, 0.393611, 1)

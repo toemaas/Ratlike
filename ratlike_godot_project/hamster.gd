@@ -59,6 +59,9 @@ func squash():
 func steal_cheese():
 	cheese = true
 	$Cheese.visible = true
+	$Label3D.visible = true
+	await get_tree().create_timer(2.0).timeout
+	$Label3D.visible = false
 
 #HELPER
 func getCheese():

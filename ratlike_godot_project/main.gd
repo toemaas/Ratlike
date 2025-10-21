@@ -2,6 +2,7 @@
 extends Node3D
 
 @onready var pause_menu = $PauseMenu
+@onready var charge_bar = $TextureProgressBar
 
 func _ready() -> void:
 	pause_menu.hide()
@@ -19,3 +20,6 @@ func toggle_pause():
 	else:
 		pause_menu.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func update_jump_charge(charge_value):
+	charge_bar.value = charge_value	
