@@ -49,7 +49,7 @@ var jump_charge_impulse = jump_impulse # value for charged jump
 var jump_charge_happened = false # flag for charging jump
 var jump_ready = false # flag for jumping
 var jump_hold_time = 0.0 # time, in seconds, while holding space
-var jump_time_threshold = 0.5 # time, in seconds, needed to hold jump in order to charge
+var jump_time_threshold = 0.1 # time, in seconds, needed to hold jump in order to charge
 
 """
 	_physics_process is called every frame while the node is in the active
@@ -136,17 +136,19 @@ func _physics_process(delta):
 	"""
 	# Start jump detection
 	if Input.is_action_just_pressed("jump"):
-		print("DEBUG: Jump input detected")
+		#print("DEBUG: Jump input detected")
 		jump_hold_time = 0.0
 		jump_ready = true # raise flag as jump input has been detected
 	
 	# Charged jump logic
-	if jump_ready and Input.is_action_pressed("jump"):
+	if jump_ready and Input.is_action_pressed("jump") and max_jumps > 0:
+		print("Max jumps: " + str(max_jumps))
+		print("Jumped: " + str(jumped))
 		print("DEBUG: Held jump input detected")
 		jump_hold_time += delta
 		
 		# if enough time has passed to hold jump input, then start charge logic
-		if jump_hold_time >= jump_time_threshold:
+		if jump_hold_time >= jump_time_threshold and is_on_floor():
 			print("DEBUG: Charged jump detected")
 			# if flag is not raised, raise it and start timer
 			if not jump_charge_happened:
@@ -159,21 +161,23 @@ func _physics_process(delta):
 			else:
 				# lower jump ready flag as we are at maximum charge and force the jump
 				jump_ready = false
-			
-			# set jump velocity
-			target_velocity.y = jump_charge_impulse
-			
-			# remove available jumps (no additional jumps after charged jump)
-			var temp = max_jumps
-			jumped += max_jumps
-			max_jumps -= temp
+				
+				# set jump velocity
+				target_velocity.y = jump_charge_impulse
+				
+				# remove available jumps (no additional jumps after charged jump)
+				var temp = max_jumps
+				jumped += max_jumps
+				max_jumps -= temp
+				
+				startTimer("JumpCD")
 			
 			print("DEBUG: Charged impulse is at " + str(jump_charge_impulse))
 			print("DEBUG: JumpCharge timer is at " + str(getTimeLeft("JumpCharge")))
 			return
 	
 	# If jump_ready is still true at this point, then we did not do a charged jump-do a normal jump
-	if jump_ready and Input.is_action_just_released("jump") and max_jumps > 1:
+	if jump_ready and Input.is_action_just_released("jump") and max_jumps >= 1:
 		print("DEBUG: Normal jump detected")
 		jump_ready = false
 		if jumped == 0:
@@ -182,13 +186,18 @@ func _physics_process(delta):
 			target_velocity.y = consec_jump_impulse
 		jumped += 1
 		max_jumps -= 1
+		
+		startTimer("JumpCD")
 		print("DEBUG: Normal jump completed with total jumps of " + str(jumped) + " and max jumps left of " + str(max_jumps))
 	
 	# When back on the floor, reset all jump variables/flags
-	if is_on_floor():
+	if is_on_floor() and getTimeLeft("JumpCD") <= 0:
 		if jump_charge_happened:
 			jump_charge_happened = false
 			jump_charge_impulse = jump_impulse
+			print("DEBUG: jump charge flag lowered")
+			return
+		#print("DEBUG: jumps reset")
 		max_jumps += jumped
 		jumped = 0
 	
