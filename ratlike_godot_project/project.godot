@@ -12,12 +12,13 @@ config_version=5
 
 config/name="Ratlike_godot_project"
 run/main_scene="uid://7jnbwc11bfyd"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SceneManager="*res://scene_manager.gd"
+PowerupLogic="*res://powerup_logic.gd"
 
 [display]
 

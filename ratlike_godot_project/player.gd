@@ -51,6 +51,12 @@ var jump_hold_time = 0.0 # time, in seconds, while holding space
 var jump_time_threshold = 0.2 # time, in seconds, needed to hold jump in order to charge
 
 signal jump_charge_changed(charge_value: int)
+
+# on initialization, player checks for any powers acquired
+func _ready():
+	update_powers()
+	return
+
 """
 	_physics_process is called every frame while the node is in the active
 	scene tree. If the node is not in the scene tree, this function will
@@ -346,3 +352,18 @@ func stopTimer(str: String):
 	var timer = get_node(path) as Timer
 	timer.stop()
 	print("DEBUG: Timer " + str + " has been stopped.")
+
+
+func update_powers() -> void:
+	var power1 = PowerupLogic.power
+	if power1:
+		# scale rat by factor of 2
+		$"Pivot/Rat All Animations".basis = $"Pivot/Rat All Animations".basis * 2
+		$CollisionShape3D.basis = $CollisionShape3D.basis * 2
+		
+		# add additional consecutive jump
+		max_jumps += 1
+		
+		# increase charge jump strength
+		charge_jump_incremental += 0.25
+	pass # Replace with function body.
