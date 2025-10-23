@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bq1oxoqhnrbww"]
 
-[ext_resource type="Script" uid="uid://b4hd2vgoqu6nd" path="res://mouse.gd" id="1_n0k2l"]
+[ext_resource type="Script" uid="uid://dohgwrgykldjf" path="res://hamster_boss.gd" id="1_vgf4c"]
 [ext_resource type="PackedScene" uid="uid://c0e080ge2t8ho" path="res://RatModelDraft1Brown.fbx" id="2_gqndt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s70uv"]
@@ -9,8 +9,7 @@ height = 1.85951
 [node name="HamsterBoss" type="CharacterBody3D" groups=["mob"]]
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("1_n0k2l")
-patrol_points = Array[Vector3]([Vector3(0, 0, 0), Vector3(13, 0, 13), Vector3(25, 0, 0), Vector3(7, 0, 13), Vector3(19, 0, 13)])
+script = ExtResource("1_vgf4c")
 
 [node name="Pivot" type="Node3D" parent="."]
 

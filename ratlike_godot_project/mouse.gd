@@ -6,6 +6,7 @@ signal squashed(cheese)
 @export var movement_speed: float = 25.0
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var skeleton: PhysicalBoneSimulator3D = $Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D
 
 var cheese = false # cheese flag, true if cheese is stolen
 
@@ -54,7 +55,10 @@ func _physics_process(delta):
 func squash():
 	squashed.emit(cheese)
 	print("HAMSTER SQUASHED")
-	queue_free()
+	set_physics_process(false)
+	$CollisionShape3D.disabled = true
+	skeleton.physical_bones_start_simulation()
+	$Cheese.visible = false
 
 func steal_cheese():
 	cheese = true
