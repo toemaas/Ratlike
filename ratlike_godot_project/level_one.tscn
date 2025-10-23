@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c14c4ncsogmd8" path="res://hud.tscn" id="3_l6eyr"]
 [ext_resource type="PackedScene" uid="uid://c5sulhcjpw1ms" path="res://cheese.tscn" id="5_xsnk2"]
 [ext_resource type="PackedScene" uid="uid://uud775qrqjh1" path="res://pause_menu.tscn" id="7_c00e3"]
-[ext_resource type="PackedScene" uid="uid://diog71fvn2qmr" path="res://hamster.tscn" id="9_evv1w"]
+[ext_resource type="PackedScene" uid="uid://diog71fvn2qmr" path="res://mouse.tscn" id="9_evv1w"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_466b2"]
 vertices = PackedVector3Array(-74.5, 0.5, -74.5, -74.5, 0.5, 74.5, 74.5, 0.5, 74.5, 74.5, 0.5, -74.5)

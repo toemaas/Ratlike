@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://diog71fvn2qmr"]
 
-[ext_resource type="Script" uid="uid://b4hd2vgoqu6nd" path="res://hamster.gd" id="1_s70uv"]
+[ext_resource type="Script" uid="uid://b4hd2vgoqu6nd" path="res://mouse.gd" id="1_s70uv"]
 [ext_resource type="PackedScene" uid="uid://c0e080ge2t8ho" path="res://RatModelDraft1Brown.fbx" id="1_ts32c"]
 [ext_resource type="PackedScene" uid="uid://ds512fl7oyvxw" path="res://Cheese Wheel.fbx" id="3_uto4n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s70uv"]
 height = 1.85951
 
-[node name="Hamster" type="CharacterBody3D" groups=["mob"]]
+[node name="Mouse" type="CharacterBody3D" groups=["mob"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_s70uv")

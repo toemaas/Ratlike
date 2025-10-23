@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c14c4ncsogmd8"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_8sq4i"]
+[ext_resource type="Script" uid="uid://crhpt1x4xtao" path="res://hud.gd" id="1_8sq4i"]
 [ext_resource type="Script" uid="uid://dih34d03ynhw8" path="res://health_label.gd" id="1_37p78"]
 
 [sub_resource type="Gradient" id="Gradient_64ctp"]

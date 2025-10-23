@@ -34,7 +34,6 @@ extends CharacterBody3D
 # ---------------- GLOBAL VARIABLES
 var cheese_count = 0 # cheese...
 var cam_rotation : float = 0 # camera yaw rotation amount
-var consec_jump_impulse = jump_impulse / 2 # lowers jump intensity after initial jump
 var roll_gravity = fall_acceleration * 0.3 # lowers gravity during roll
 var jumped = 0 # counts how many times player has jumped
 var rolling = false # flag for when player is actively rolling
@@ -49,7 +48,7 @@ var jump_charge_impulse = jump_impulse # value for charged jump
 var jump_charge_happened = false # flag for charging jump
 var jump_ready = false # flag for jumping
 var jump_hold_time = 0.0 # time, in seconds, while holding space
-var jump_time_threshold = 0.1 # time, in seconds, needed to hold jump in order to charge
+var jump_time_threshold = 0.2 # time, in seconds, needed to hold jump in order to charge
 
 signal jump_charge_changed(charge_value: int)
 """
@@ -65,7 +64,8 @@ func _physics_process(delta):
 	if ledge:
 		velocity = Vector3.ZERO
 		animation_player.stop()
-		move_and_slide()
+		move_and_slide() # Apply the zero velocity
+		
 		if Input.is_action_just_pressed("jump"):
 			max_jumps += jumped
 			jumped = 0
@@ -73,50 +73,59 @@ func _physics_process(delta):
 			print(str(jumped) + " " + str(max_jumps))
 			startTimer("LedgeCooldown")
 		else:
-			return
-	# ---------------- MOVEMENT INPUT
+			return # Stop all other logic this frame
+	
 	# roll if not rolling
 	if Input.is_action_just_pressed("roll") and not rolling:
 		roll()
 	# cancel roll if jump pressed
 	if Input.is_action_just_pressed("jump") and rolling:
 		roll()
-	
-	var input_dir = Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
-	)
-	
-	var direction = Vector3.ZERO
-	# ---------------- APPLYING MOVEMENT
-	if input_dir.length_squared() > 0: # player is moving
-		input_dir = input_dir.normalized()
-		
-		# Rotate the input vector by the camera's horizontal rotation
-		direction = Vector3(input_dir.x, 0.0, input_dir.y).rotated(Vector3.UP, cam_rotation)
-		
-		# Rotate the player model to face the direction of movement
-		$Pivot.look_at(global_position + direction, Vector3.UP)
 		animation_player.play("Walk")
-	else: # player is idle
-		animation_player.stop()
 	
-	# apply gravity if in air
-	if not is_on_floor() and not rolling:
-		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
-	elif not is_on_floor() and rolling:
-		velocity.y -= roll_gravity * delta
-
-	# set player movement (node velocity vector)
-	if not rolling: # player is walking
-		target_velocity.x = (direction.x * speed)
-		target_velocity.z = (direction.z * speed)
-		velocity = target_velocity
-	else: # player is rolling
-		# roll has adjusted gravity, first capture y vector and then update velocity
+	if rolling:
+		# --- ROLLING STATE ---
+		
+		# Apply rolling gravity
+		if not is_on_floor():
+			velocity.y -= roll_gravity * delta
+		
+		# Set rolling velocity
 		var y_val = velocity.y
 		velocity = roll_direction * roll_strength * $Timers/RollCooldown.time_left
 		velocity.y = -abs(y_val)
+	else:
+		# --- NORMAL STATE (WALK / IDLE) ---
+		# Get movement input
+		var input_dir = Vector2(
+			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+			Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
+		)
+		
+		var direction = Vector3.ZERO
+		
+		# Apply movement & animation
+		if input_dir.length_squared() > 0: # Player is moving
+			input_dir = input_dir.normalized()
+			
+			# Rotate the input vector by the camera's horizontal rotation
+			direction = Vector3(input_dir.x, 0.0, input_dir.y).rotated(Vector3.UP, cam_rotation)
+			
+			# Rotate the player model to face the direction of movement
+			$Pivot.look_at(global_position + direction, Vector3.UP)
+			
+			animation_player.play("Walk")
+		else: # Player is idle
+			animation_player.stop()
+		
+		# Apply normal gravity if in air
+		if not is_on_floor():
+			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+
+		# Set normal player movement
+		target_velocity.x = (direction.x * speed)
+		target_velocity.z = (direction.z * speed)
+		velocity = target_velocity
 	
 	"""
 		Jump logic is a little weird. The variables max_jumps and jumped are
@@ -193,10 +202,7 @@ func _physics_process(delta):
 			max_jumps -= temp
 		else:
 			jump_ready = false
-			if jumped == 0:
-				target_velocity.y = jump_impulse
-			else:
-				target_velocity.y = consec_jump_impulse
+			target_velocity.y = jump_impulse
 			jumped += 1
 			max_jumps -= 1
 		

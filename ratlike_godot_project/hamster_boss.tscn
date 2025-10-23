@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq1oxoqhnrbww"]
+
+[ext_resource type="Script" uid="uid://b4hd2vgoqu6nd" path="res://mouse.gd" id="1_n0k2l"]
+[ext_resource type="PackedScene" uid="uid://c0e080ge2t8ho" path="res://RatModelDraft1Brown.fbx" id="2_gqndt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s70uv"]
+height = 1.85951
+
+[node name="HamsterBoss" type="CharacterBody3D" groups=["mob"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_n0k2l")
+patrol_points = Array[Vector3]([Vector3(0, 0, 0), Vector3(13, 0, 13), Vector3(25, 0, 0), Vector3(7, 0, 13), Vector3(19, 0, 13)])
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="RatModelDraft1Brown" parent="Pivot" instance=ExtResource("2_gqndt")]
+transform = Transform3D(-23, 0, -2.01072e-06, 0, 23, 0, 2.01072e-06, 0, -23, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.512, -0.0116041)
+shape = SubResource("CapsuleShape3D_s70uv")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-0.474948, -0.0613092, -0.878085, 0.949895, 0.915587, 2.30598)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59934, 0)
+visible = false
+billboard = 2
+text = "My cheese hehe haha"
+font_size = 112
+outline_size = 40
