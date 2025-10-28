@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://5vjitlxlr6gq"]
 
 [ext_resource type="Script" uid="uid://cq1lio4ksep8g" path="res://main.gd" id="1_0l1we"]
-[ext_resource type="PackedScene" uid="uid://bt7i0emrwybnt" path="res://RatGameLevel1Greybox5.tscn" id="2_0l1we"]
+[ext_resource type="PackedScene" uid="uid://ddaxxgxgsnshu" path="res://RatGameLevel1Greybox6.tscn" id="2_6t2mo"]
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="2_foyw7"]
 [ext_resource type="PackedScene" uid="uid://driilhpt113id" path="res://teleporter.tscn" id="3_foyw7"]
 [ext_resource type="PackedScene" uid="uid://c14c4ncsogmd8" path="res://hud.tscn" id="3_l6eyr"]
@@ -18,7 +18,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 [node name="LevelOne" type="Node3D"]
 script = ExtResource("1_0l1we")
 
-[node name="Environment" parent="." instance=ExtResource("2_0l1we")]
+[node name="Environment" parent="." instance=ExtResource("2_6t2mo")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
