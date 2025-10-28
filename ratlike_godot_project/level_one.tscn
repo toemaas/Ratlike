@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://5vjitlxlr6gq"]
 
 [ext_resource type="Script" uid="uid://cq1lio4ksep8g" path="res://main.gd" id="1_0l1we"]
-[ext_resource type="PackedScene" uid="uid://bt7i0emrwybnt" path="res://RatGameLevel1Greybox5.tscn" id="2_0l1we"]
+[ext_resource type="PackedScene" uid="uid://c7gqlddj3jahc" path="res://RatGameLevel1Greybox5.tscn" id="2_0l1we"]
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="2_foyw7"]
 [ext_resource type="PackedScene" uid="uid://driilhpt113id" path="res://teleporter.tscn" id="3_foyw7"]
 [ext_resource type="PackedScene" uid="uid://c14c4ncsogmd8" path="res://hud.tscn" id="3_l6eyr"]
@@ -76,7 +76,7 @@ movement_speed = 15.0
 [node name="Powerups" type="Node3D" parent="."]
 
 [node name="Powerup" parent="Powerups" instance=ExtResource("9_466b2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.905358, 11.761887, -27.533726)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9054, 11.7619, -27.5337)
 script = ExtResource("10_evv1w")
 
 [connection signal="jump_charge_changed" from="Player" to="Player/Hud" method="_on_player_jump_charge_changed"]

@@ -1,7 +1,7 @@
 extends Button
 
 # Path to the scene you want to load
-@export var next_scene_path: String = "res://level_one.tscn"
+@export var next_scene_path: String = "res://TutorialScreen/TutorialScreen.tscn"
 
 func _ready() -> void:
 	# Connect the "pressed" signal to the _on_button_pressed function
