@@ -40,7 +40,7 @@ var rolling = false # flag for when player is actively rolling
 var roll_direction = Vector3.ZERO # maintain direction when rolling
 var knockback = Vector3.ZERO # If there is knockback
 # animation_player must be set when Player is first created
-@onready var animation_player = $Pivot/'Rat All Animations'/AnimationPlayer
+@onready var animation_player = $Pivot/'Rat Player All Animations'/AnimationPlayer
 @onready var health_bar = $Hud/HealthLabel
 var target_velocity = Vector3.ZERO
 var jump_charge_impulse = jump_impulse # value for charged jump
@@ -54,6 +54,7 @@ signal jump_charge_changed(charge_value: int)
 # on initialization, player checks for any powers acquired
 func _ready():
 	update_powers()
+	animation_player.play("Idle")
 	return
 
 """
@@ -105,9 +106,9 @@ func _physics_process(delta):
 			# Rotate the player model to face the direction of movement
 			$Pivot.look_at(global_position + direction, Vector3.UP)
 			
-			animation_player.play("Walk")
+			playJumpAnimation()
 		else: # Player is idle
-			animation_player.stop()
+			playJumpAnimation()
 		
 		# Apply normal gravity if in air
 		if not is_on_floor():
@@ -335,7 +336,7 @@ func update_powers() -> void:
 	var power1 = PowerupLogic.power
 	if power1:
 		# scale rat by factor of 2
-		$"Pivot/Rat All Animations".basis = $"Pivot/Rat All Animations".basis * 2
+		$"Pivot/Rat Player All Animations".basis = $"Pivot/Rat Player All Animations".basis * 2
 		$CollisionShape3D.basis.x = $CollisionShape3D.basis.x * 2
 		$CollisionShape3D.basis.z = $CollisionShape3D.basis.z * 2
 		
@@ -346,3 +347,18 @@ func update_powers() -> void:
 		# increase charge jump strength
 		charge_jump_incremental += 0.25
 	pass # Replace with function body.
+
+func playJumpAnimation():
+	
+	# default case, idle
+	if is_on_floor():
+		if (velocity.x != 0 or velocity.z != 0):
+			animation_player.play("Walk")
+		else:
+			animation_player.play("Idle")
+	else:
+		# jump animations
+		if velocity.y > 0:
+			animation_player.play("Going Up")
+		else:
+			animation_player.play("Going Down")
