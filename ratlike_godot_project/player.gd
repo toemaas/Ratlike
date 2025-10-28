@@ -43,7 +43,6 @@ var knockback = Vector3.ZERO # If there is knockback
 @onready var animation_player = $Pivot/'Rat All Animations'/AnimationPlayer
 @onready var health_bar = $Hud/HealthLabel
 var target_velocity = Vector3.ZERO
-var ledge = false # flag for when player is holding on a ledge
 var jump_charge_impulse = jump_impulse # value for charged jump
 var jump_charge_happened = false # flag for charging jump
 var jump_ready = false # flag for jumping
@@ -66,20 +65,6 @@ func _ready():
 					relative time between frames
 """
 func _physics_process(delta):
-	# if on a ledge, stop all movement until a jump has been input
-	if ledge:
-		velocity = Vector3.ZERO
-		animation_player.stop()
-		move_and_slide() # Apply the zero velocity
-		
-		if Input.is_action_just_pressed("jump"):
-			max_jumps += jumped
-			jumped = 0
-			ledge = false
-			print(str(jumped) + " " + str(max_jumps))
-			startTimer("LedgeCooldown")
-		else:
-			return # Stop all other logic this frame
 	
 	# roll if not rolling
 	if Input.is_action_just_pressed("roll") and not rolling:
@@ -318,40 +303,32 @@ func update_ui():
 func get_cheese_count():
 	return cheese_count
 
-# rat has entered a ledge object, @body is the rat
-func ledge_entered(body):
-	if getTimeLeft("LedgeCooldown") > 0:
-		print("ON COOLDOWN")
-		return
-	ledge = true
-	print("ledge entered")
-
 # ---------------- HELPER FUNCTIONS
 
 # str is name of timer, get the remaining time of timer
-func getTimeLeft(str: String) -> float:
-	var path = "Timers/" + str
+func getTimeLeft(input: String) -> float:
+	var path = "Timers/" + input
 	var timer = get_node(path) as Timer
 	return timer.time_left
 
 # str is name of timer, start the timer
 # @amount	optional parameter
-func startTimer(str: String, amount: float = -1):
-	var path = "Timers/" + str
+func startTimer(input: String, amount: float = -1):
+	var path = "Timers/" + input
 	var timer = get_node(path) as Timer
 	if amount == -1:
 		timer.start()
-		print("DEBUG: Timer " + str + " has been started.")
+		print("DEBUG: Timer " + input + " has been started.")
 	else:
 		timer.start(amount)
-		print("DEBUG: Timer " + str + " has been started with a time of " + str(amount) + ".")
+		print("DEBUG: Timer " + input + " has been started with a time of " + str(amount) + ".")
 
 # str is name of timer, stops the timer
-func stopTimer(str: String):
-	var path = "Timers/" + str
+func stopTimer(input: String):
+	var path = "Timers/" + input
 	var timer = get_node(path) as Timer
 	timer.stop()
-	print("DEBUG: Timer " + str + " has been stopped.")
+	print("DEBUG: Timer " + input + " has been stopped.")
 
 
 func update_powers() -> void:
@@ -359,7 +336,9 @@ func update_powers() -> void:
 	if power1:
 		# scale rat by factor of 2
 		$"Pivot/Rat All Animations".basis = $"Pivot/Rat All Animations".basis * 2
-		$CollisionShape3D.basis = $CollisionShape3D.basis * 2
+		$CollisionShape3D.basis.x = $CollisionShape3D.basis.x * 2
+		$CollisionShape3D.basis.z = $CollisionShape3D.basis.z * 2
+		
 		
 		# add additional consecutive jump
 		max_jumps += 1
