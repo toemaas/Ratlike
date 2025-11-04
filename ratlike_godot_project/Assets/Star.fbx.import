@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dleumth5w2ovg"
-path="res://.godot/imported/Star Cheese.fbx-b4ca52faa54b24da908a464b3eafe6ef.scn"
+uid="uid://c6b44vldubhv8"
+path="res://.godot/imported/Star.fbx-caeee0f809e6678a84802d2fc3ba872a.scn"
 
 [deps]
 
-source_file="res://Assets/Star Cheese.fbx"
-dest_files=["res://.godot/imported/Star Cheese.fbx-b4ca52faa54b24da908a464b3eafe6ef.scn"]
+source_file="res://Assets/Star.fbx"
+dest_files=["res://.godot/imported/Star.fbx-caeee0f809e6678a84802d2fc3ba872a.scn"]
 
 [params]
 

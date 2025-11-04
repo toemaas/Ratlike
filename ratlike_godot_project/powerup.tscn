@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhucqd6yr306w"]
 
-[ext_resource type="PackedScene" uid="uid://ds512fl7oyvxw" path="res://Cheese Wheel.fbx" id="1_vcqqu"]
-[ext_resource type="AudioStream" uid="uid://b772v3quedem8" path="res://ding-101492.mp3" id="2_wh0le"]
+[ext_resource type="PackedScene" uid="uid://c6b44vldubhv8" path="res://Assets/Star.fbx" id="1_wh0le"]
+[ext_resource type="AudioStream" uid="uid://d2d83bfr1rqmk" path="res://ding-101492.mp3" id="2_wh0le"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wh0le"]
 
@@ -9,8 +9,8 @@
 collision_layer = 16
 collision_mask = 8
 
-[node name="Skin" parent="." instance=ExtResource("1_vcqqu")]
-transform = Transform3D(23, 0, 0, 0, 23, 0, 0, 0, 23, 0, 0, 0)
+[node name="Skin" parent="." instance=ExtResource("1_wh0le")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33527, 0)
