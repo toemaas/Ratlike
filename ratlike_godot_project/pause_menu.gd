@@ -8,6 +8,10 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 func _unhandled_input(event):
+	print("DEBUG: NO DIALOGUE")
+	if GlobalVars.d_active:
+		print("DEBUG: DIALOGUE ACTIVE")
+		return
 	if event.is_action_pressed("ui_pause"):
 		get_tree().root.set_input_as_handled()
 		get_parent().toggle_pause()

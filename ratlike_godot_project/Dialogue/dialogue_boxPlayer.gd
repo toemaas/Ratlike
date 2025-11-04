@@ -5,7 +5,6 @@ extends CanvasLayer
 
 var dialogue = []
 var current_dialogue_id = 0
-var d_active = false
 
 func _ready():
 	$NinePatchRect.visible = false
@@ -13,9 +12,9 @@ func _ready():
 	
 
 func start():
-	if d_active:
+	if GlobalVars.d_active:
 		return
-	d_active = true
+	GlobalVars.d_active = true
 	$NinePatchRect.visible = true
 	get_tree().paused = true
 	
@@ -29,7 +28,7 @@ func load_dialogue():
 	return content
 	
 func _input(event):
-	if not d_active:
+	if not GlobalVars.d_active:
 		return
 	if event.is_action_pressed("ui_accept"):
 		
@@ -46,6 +45,6 @@ func next_script():
 	$NinePatchRect/Chat.text = dialogue[current_dialogue_id]["text"]
 	
 func done_text():
-	d_active = false
+	GlobalVars.d_active = false
 	$NinePatchRect.visible = false
 	get_tree().paused = false
