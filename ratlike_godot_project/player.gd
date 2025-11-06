@@ -106,9 +106,9 @@ func _physics_process(delta):
 			# Rotate the player model to face the direction of movement
 			$Pivot.look_at(global_position + direction, Vector3.UP)
 			
-			playJumpAnimation()
+			playAnimation()
 		else: # Player is idle
-			playJumpAnimation()
+			playAnimation()
 		
 		# Apply normal gravity if in air
 		if not is_on_floor():
@@ -167,6 +167,7 @@ func _physics_process(delta):
 			else:
 				# lower jump ready flag as we are at maximum charge and force the jump
 				jump_charge_changed.emit(0.0)
+				jump_hold_time = 0.0
 				jump_ready = false
 			
 				# set jump velocity
@@ -185,6 +186,7 @@ func _physics_process(delta):
 	
 	# If jump_ready is still true at this point, then we did not do a charged jump-do a normal jump
 	if jump_ready and Input.is_action_just_released("jump") and max_jumps >= 1:
+		jump_hold_time = 0.0
 		print("DEBUG: Normal jump detected")
 		if jump_charge_happened:
 			target_velocity.y = jump_charge_impulse
@@ -304,6 +306,7 @@ func update_ui():
 func get_cheese_count():
 	return cheese_count
 
+
 # ---------------- HELPER FUNCTIONS
 
 # str is name of timer, get the remaining time of timer
@@ -331,31 +334,55 @@ func stopTimer(input: String):
 	timer.stop()
 	print("DEBUG: Timer " + input + " has been stopped.")
 
-
 func update_powers() -> void:
-	var power1 = PowerupLogic.power
-	if power1:
-		# scale rat by factor of 2
+	if PowerupLogic.size:
 		$"Pivot/Rat Player All Animations".basis = $"Pivot/Rat Player All Animations".basis * 2
 		$CollisionShape3D.basis.x = $CollisionShape3D.basis.x * 2
 		$CollisionShape3D.basis.z = $CollisionShape3D.basis.z * 2
-		
-		
-		# add additional consecutive jump
+	
+	if PowerupLogic.speed:
+		speed = 18
+	
+	if PowerupLogic.rollSpeed:
+		roll_strength = 225
+	
+	if PowerupLogic.extraJump:
 		max_jumps += 1
-		
-		# increase charge jump strength
-		charge_jump_incremental += 0.25
-	pass # Replace with function body.
+	
+	#var power1 = PowerupLogic.power
+	#if power1:
+		## scale rat by factor of 2
+		#$"Pivot/Rat Player All Animations".basis = $"Pivot/Rat Player All Animations".basis * 2
+		#$CollisionShape3D.basis.x = $CollisionShape3D.basis.x * 2
+		#$CollisionShape3D.basis.z = $CollisionShape3D.basis.z * 2
+		#
+		#
+		## add additional consecutive jump
+		#max_jumps += 1
+		#
+		## increase charge jump strength
+		#charge_jump_incremental += 0.25
+	
 
-func playJumpAnimation():
+func playAnimation():
 	
 	# default case, idle
 	if is_on_floor():
-		if (velocity.x != 0 or velocity.z != 0):
+		var charge = false
+		if jump_hold_time > jump_time_threshold:
+			charge = true
+		
+		if (velocity.x != 0 or velocity.z != 0) and not charge:
 			animation_player.play("Walk")
 		else:
-			animation_player.play("Idle")
+			if charge:
+				print("DEBUG: charge is active")
+				animation_player.play("Charge Jump")
+			else:
+				print("DBEUG: charge is NOT active")
+				animation_player.play("Idle")
+			#animation_player.play("Idle")
+		
 	else:
 		# jump animations
 		if velocity.y > 0:

@@ -9,3 +9,8 @@ extends Node
 """
 
 @export var power: bool = false
+
+@export var speed: bool = false
+@export var size: bool = false
+@export var rollSpeed: bool = false
+@export var extraJump: bool = false

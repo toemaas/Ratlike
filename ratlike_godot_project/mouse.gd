@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 signal squashed(cheese)
 
+var physicsDisabled = false
+
 @export var patrol_points: Array[Vector3]
 @export var movement_speed: float = 25.0
 
@@ -31,7 +33,14 @@ func actor_setup():
 func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)
 
-func _physics_process(delta):
+func _physics_process(_delta):	
+	if physicsDisabled:
+		$"Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Mid/Death Stars/Star".rotate_y(0.1)
+		$"Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Mid/Death Stars/Star2".rotate_y(0.1)
+		$"Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Mid/Death Stars/Star3".rotate_y(0.1)
+		$"Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Mid/Death Stars".rotate_y(0.01)
+		return
+	
 	if patrol_points.is_empty():
 		return
 
@@ -55,10 +64,12 @@ func _physics_process(delta):
 func squash():
 	squashed.emit(cheese)
 	print("HAMSTER SQUASHED")
-	set_physics_process(false)
+	#set_physics_process(false)
+	physicsDisabled = true
 	$CollisionShape3D.disabled = true
 	skeleton.physical_bones_start_simulation()
 	$Cheese.visible = false
+	$"Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Mid/Death Stars".visible = true
 
 func steal_cheese():
 	cheese = true
