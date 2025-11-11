@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c6b44vldubhv8"
-path="res://.godot/imported/Star.fbx-caeee0f809e6678a84802d2fc3ba872a.scn"
+uid="uid://blwsns1wa2teq"
+path="res://.godot/imported/Rat Mafia.fbx-4f3749e99ab94555d8caf1e5587450c9.scn"
 
 [deps]
 
-source_file="res://Assets/Star.fbx"
-dest_files=["res://.godot/imported/Star.fbx-caeee0f809e6678a84802d2fc3ba872a.scn"]
+source_file="res://Rat Mafia.fbx"
+dest_files=["res://.godot/imported/Rat Mafia.fbx-4f3749e99ab94555d8caf1e5587450c9.scn"]
 
 [params]
 

@@ -18,10 +18,10 @@ script = ExtResource("1_onrkg")
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="Rat Player All Animations" parent="Pivot" instance=ExtResource("2_i3pqv")]
-transform = Transform3D(-1.0053619e-06, 0, -23, 0, 23, 0, 23, 0, -1.0053619e-06, 0, 0, 0)
+transform = Transform3D(-1.00536e-06, 0, -23, 0, 23, 0, 23, 0, -1.00536e-06, 0, 0, 0)
 
 [node name="old" parent="Pivot" instance=ExtResource("2_i3pqv")]
-transform = Transform3D(-1.0053619e-06, 0, -23, 0, 23, 0, 23, 0, -1.0053619e-06, 0, 0, 0)
+transform = Transform3D(-1.00536e-06, 0, -23, 0, 23, 0, 23, 0, -1.00536e-06, 0, 0, 0)
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

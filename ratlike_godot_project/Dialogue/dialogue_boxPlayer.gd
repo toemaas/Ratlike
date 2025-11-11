@@ -11,33 +11,43 @@ func _ready():
 	#start()
 	
 
-func start():
+func start(cheese: bool):
+	set_process_input(true)
 	if GlobalVars.d_active:
 		return
 	GlobalVars.d_active = true
-	$NinePatchRect.visible = true
-	get_tree().paused = true
 	
-	dialogue = load_dialogue()
+	await get_tree().create_timer(1.6).timeout
+	
+	$NinePatchRect.visible = true
+	#get_tree().paused = true
+	
+	dialogue = load_dialogue(cheese)
 	current_dialogue_id = -1
 	next_script()
 	
-func load_dialogue():
-	var file = FileAccess.open(d_file, FileAccess.READ)
-	var content = JSON.parse_string(file.get_as_text())
-	return content
+func load_dialogue(cheese: bool):
+	if cheese:
+		var file = FileAccess.open(d_file, FileAccess.READ)
+		var content = JSON.parse_string(file.get_as_text())
+		return content
+	else:
+		var file = FileAccess.open("res://Dialogue/json/RatHole1YesCheese.json", FileAccess.READ)
+		var content = JSON.parse_string(file.get_as_text())
+		return content
 	
 func _input(event):
 	if not GlobalVars.d_active:
 		return
-	if event.is_action_pressed("ui_accept"):
+	if Input.is_action_pressed("ui_accept"):
 		
 		next_script()
 
 func next_script():
 	current_dialogue_id += 1
-	
+
 	if current_dialogue_id >= len(dialogue):
+		print("DONEDONEDONE DONE DONE DONE DONE DONEDONEDONE")
 		done_text()
 		return
 	
@@ -47,4 +57,3 @@ func next_script():
 func done_text():
 	GlobalVars.d_active = false
 	$NinePatchRect.visible = false
-	get_tree().paused = false

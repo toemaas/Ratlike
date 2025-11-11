@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bjdaxp3mvedqp" path="res://Dialogue/Art/DialogueDraft.png" id="1_lovb2"]
 
 [node name="DialogueBox" type="CanvasLayer"]
-process_mode = 2
 script = ExtResource("1_e3xam")
 d_file = "res://Dialogue/json/RatHole1NoCheese.json"
 

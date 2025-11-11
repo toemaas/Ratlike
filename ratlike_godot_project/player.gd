@@ -66,187 +66,191 @@ func _ready():
 					relative time between frames
 """
 func _physics_process(delta):
-	
-	# roll if not rolling
-	if Input.is_action_just_pressed("roll") and not rolling:
-		roll()
-	# cancel roll if jump pressed
-	if Input.is_action_just_pressed("jump") and rolling:
-		roll()
-		animation_player.play("Walk")
-	
-	if rolling:
-		# --- ROLLING STATE ---
+	if !GlobalVars.d_active:
+		$CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D.current = true
+		# roll if not rolling
+		if Input.is_action_just_pressed("roll") and not rolling:
+			roll()
+		# cancel roll if jump pressed
+		if Input.is_action_just_pressed("jump") and rolling:
+			roll()
+			animation_player.play("Walk")
 		
-		# Apply rolling gravity
-		if not is_on_floor():
-			velocity.y -= roll_gravity * delta
-		
-		# Set rolling velocity
-		var y_val = velocity.y
-		velocity = roll_direction * roll_strength * $Timers/RollCooldown.time_left
-		velocity.y = -abs(y_val)
-	else:
-		# --- NORMAL STATE (WALK / IDLE) ---
-		# Get movement input
-		var input_dir = Vector2(
-			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-			Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
-		)
-		
-		var direction = Vector3.ZERO
-		
-		# Apply movement & animation
-		if input_dir.length_squared() > 0: # Player is moving
-			input_dir = input_dir.normalized()
+		if rolling:
+			# --- ROLLING STATE ---
 			
-			# Rotate the input vector by the camera's horizontal rotation
-			direction = Vector3(input_dir.x, 0.0, input_dir.y).rotated(Vector3.UP, cam_rotation)
+			# Apply rolling gravity
+			if not is_on_floor():
+				velocity.y -= roll_gravity * delta
 			
-			# Rotate the player model to face the direction of movement
-			$Pivot.look_at(global_position + direction, Vector3.UP)
+			# Set rolling velocity
+			var y_val = velocity.y
+			velocity = roll_direction * roll_strength * $Timers/RollCooldown.time_left
+			velocity.y = -abs(y_val)
+		else:
+			# --- NORMAL STATE (WALK / IDLE) ---
+			# Get movement input
+			var input_dir = Vector2(
+				Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+				Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
+			)
 			
-			playAnimation()
-		else: # Player is idle
-			playAnimation()
-		
-		# Apply normal gravity if in air
-		if not is_on_floor():
-			target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+			var direction = Vector3.ZERO
+			
+			# Apply movement & animation
+			if input_dir.length_squared() > 0: # Player is moving
+				input_dir = input_dir.normalized()
+				
+				# Rotate the input vector by the camera's horizontal rotation
+				direction = Vector3(input_dir.x, 0.0, input_dir.y).rotated(Vector3.UP, cam_rotation)
+				
+				# Rotate the player model to face the direction of movement
+				$Pivot.look_at(global_position + direction, Vector3.UP)
+				
+				playAnimation()
+			else: # Player is idle
+				playAnimation()
+			
+			# Apply normal gravity if in air
+			if not is_on_floor():
+				target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 
-		# Set normal player movement
-		target_velocity.x = (direction.x * speed)
-		target_velocity.z = (direction.z * speed)
-		velocity = target_velocity
-	
-	"""
-		Jump logic is a little weird. The variables max_jumps and jumped are
-		acting as counters and the jump impulse is different depending on their
-		states.
+			# Set normal player movement
+			target_velocity.x = (direction.x * speed)
+			target_velocity.z = (direction.z * speed)
+			velocity = target_velocity
 		
-		Whenever we jump we add 1 to jumped and then remove 1 from max_jumps.
-		These counters get updated every frame in the last if function of
-		_physics_process(...).
-		
-		Charged jump logic is in here as well. First we need to detect the input
-		of jump is being held. If it is, then we charge. If not, we do a normal
-		jump. This is done by using jump_hold_time and jump_time_threshold.
-		
-		This will skip frames for jumping and might appear as though there is
-		input latency with jumping for our player; however, this latency is
-		extremely small and hardly noticeable, if at all, when playing.
-	"""
-	# Start jump detection
-	if Input.is_action_just_pressed("jump"):
-		#print("DEBUG: Jump input detected")
-		jump_hold_time = 0.0
-		jump_ready = true # raise flag as jump input has been detected
-	
-	# Charged jump logic
-	if jump_ready and Input.is_action_pressed("jump") and max_jumps > 0:
-		print("Max jumps: " + str(max_jumps))
-		print("Jumped: " + str(jumped))
-		print("DEBUG: Held jump input detected")
-		jump_hold_time += delta
-		
-		# if enough time has passed to hold jump input, then start charge logic
-		if jump_hold_time >= jump_time_threshold and is_on_floor():
-			print("DEBUG: Charged jump detected")
-			# if flag is not raised, raise it and start timer
-			if not jump_charge_happened:
-				jump_charge_happened = true
-				startTimer("JumpCharge")
+		"""
+			Jump logic is a little weird. The variables max_jumps and jumped are
+			acting as counters and the jump impulse is different depending on their
+			states.
 			
+			Whenever we jump we add 1 to jumped and then remove 1 from max_jumps.
+			These counters get updated every frame in the last if function of
+			_physics_process(...).
 			
-			# only add to the charge if timer is > 0
-			if getTimeLeft("JumpCharge") > 0:
-				jump_charge_impulse += charge_jump_incremental
-				# emit the impulse for the charge bar
-				jump_charge_changed.emit(jump_charge_impulse)
+			Charged jump logic is in here as well. First we need to detect the input
+			of jump is being held. If it is, then we charge. If not, we do a normal
+			jump. This is done by using jump_hold_time and jump_time_threshold.
+			
+			This will skip frames for jumping and might appear as though there is
+			input latency with jumping for our player; however, this latency is
+			extremely small and hardly noticeable, if at all, when playing.
+		"""
+		# Start jump detection
+		if Input.is_action_just_pressed("jump"):
+			#print("DEBUG: Jump input detected")
+			jump_hold_time = 0.0
+			jump_ready = true # raise flag as jump input has been detected
+		
+		# Charged jump logic
+		if jump_ready and Input.is_action_pressed("jump") and max_jumps > 0:
+			print("Max jumps: " + str(max_jumps))
+			print("Jumped: " + str(jumped))
+			print("DEBUG: Held jump input detected")
+			jump_hold_time += delta
+			
+			# if enough time has passed to hold jump input, then start charge logic
+			if jump_hold_time >= jump_time_threshold and is_on_floor():
+				print("DEBUG: Charged jump detected")
+				# if flag is not raised, raise it and start timer
+				if not jump_charge_happened:
+					jump_charge_happened = true
+					startTimer("JumpCharge")
 				
-			else:
-				# lower jump ready flag as we are at maximum charge and force the jump
-				jump_charge_changed.emit(0.0)
-				jump_hold_time = 0.0
-				jump_ready = false
-			
-				# set jump velocity
+				
+				# only add to the charge if timer is > 0
+				if getTimeLeft("JumpCharge") > 0:
+					jump_charge_impulse += charge_jump_incremental
+					# emit the impulse for the charge bar
+					jump_charge_changed.emit(jump_charge_impulse)
+					
+				else:
+					# lower jump ready flag as we are at maximum charge and force the jump
+					jump_charge_changed.emit(0.0)
+					jump_hold_time = 0.0
+					jump_ready = false
+				
+					# set jump velocity
+					target_velocity.y = jump_charge_impulse
+					
+					# remove available jumps (no additional jumps after charged jump)
+					var temp = max_jumps
+					jumped += max_jumps
+					max_jumps -= temp
+						
+					startTimer("JumpCD")
+				
+				print("DEBUG: Charged impulse is at " + str(jump_charge_impulse))
+				print("DEBUG: JumpCharge timer is at " + str(getTimeLeft("JumpCharge")))
+				return
+		
+		# If jump_ready is still true at this point, then we did not do a charged jump-do a normal jump
+		if jump_ready and Input.is_action_just_released("jump") and max_jumps >= 1:
+			jump_hold_time = 0.0
+			print("DEBUG: Normal jump detected")
+			if jump_charge_happened:
 				target_velocity.y = jump_charge_impulse
-				
-				# remove available jumps (no additional jumps after charged jump)
+				jump_charge_changed.emit(0.0)
 				var temp = max_jumps
 				jumped += max_jumps
 				max_jumps -= temp
-					
-				startTimer("JumpCD")
-			
-			print("DEBUG: Charged impulse is at " + str(jump_charge_impulse))
-			print("DEBUG: JumpCharge timer is at " + str(getTimeLeft("JumpCharge")))
-			return
-	
-	# If jump_ready is still true at this point, then we did not do a charged jump-do a normal jump
-	if jump_ready and Input.is_action_just_released("jump") and max_jumps >= 1:
-		jump_hold_time = 0.0
-		print("DEBUG: Normal jump detected")
-		if jump_charge_happened:
-			target_velocity.y = jump_charge_impulse
-			jump_charge_changed.emit(0.0)
-			var temp = max_jumps
-			jumped += max_jumps
-			max_jumps -= temp
-		else:
-			jump_ready = false
-			target_velocity.y = jump_impulse
-			jumped += 1
-			max_jumps -= 1
-		
-		startTimer("JumpCD")
-		print("DEBUG: Normal jump completed with total jumps of " + str(jumped) + " and max jumps left of " + str(max_jumps))
-	
-	# When back on the floor, reset all jump variables/flags
-	if is_on_floor() and getTimeLeft("JumpCD") <= 0:
-		if jump_charge_happened:
-			jump_charge_happened = false
-			jump_charge_impulse = jump_impulse
-			print("DEBUG: jump charge flag lowered")
-			return
-		#print("DEBUG: jumps reset")
-		max_jumps += jumped
-		jumped = 0
-	
-	for index in range(get_slide_collision_count()):
-		var collision = get_slide_collision(index)
-		
-		if collision.get_collider() == null:
-			continue
-		
-		if collision.get_collider().is_in_group("mob"):
-			var mob = collision.get_collider()
-			# we check that we are hitting it from above.
-			if Vector3.UP.dot(collision.get_normal()) > 0.1:
-				# If so, we squash it and bounce.
-				mob.squash()
-				target_velocity.y = bounce_impulse
-				# Prevent further duplicate calls.
-				break
 			else:
-				if cheese_count > 0 and not collision.get_collider().getCheese():
-					cheese_count -= 1
-					update_ui()
-					collision.get_collider().steal_cheese()
-					$Label3D.visible = true
-					await get_tree().create_timer(2.0).timeout
-					$Label3D.visible = false
-				var bounce_direction = collision.get_normal().slide(Vector3.UP).normalized()
-				knockback.x = bounce_direction.x * hit_impulse
-				knockback.z = bounce_direction.z * hit_impulse
-				#if health_bar != null:
-					#health_bar.take_damage(1)
-				break
-	velocity += knockback
-	knockback = lerp(knockback, Vector3.ZERO, 0.2)
-	# finish process and move player node
-	move_and_slide()
+				jump_ready = false
+				target_velocity.y = jump_impulse
+				jumped += 1
+				max_jumps -= 1
+			
+			startTimer("JumpCD")
+			print("DEBUG: Normal jump completed with total jumps of " + str(jumped) + " and max jumps left of " + str(max_jumps))
+		
+		# When back on the floor, reset all jump variables/flags
+		if is_on_floor() and getTimeLeft("JumpCD") <= 0:
+			if jump_charge_happened:
+				jump_charge_happened = false
+				jump_charge_impulse = jump_impulse
+				print("DEBUG: jump charge flag lowered")
+				return
+			#print("DEBUG: jumps reset")
+			max_jumps += jumped
+			jumped = 0
+		
+		for index in range(get_slide_collision_count()):
+			var collision = get_slide_collision(index)
+			
+			if collision.get_collider() == null:
+				continue
+			
+			if collision.get_collider().is_in_group("mob"):
+				var mob = collision.get_collider()
+				# we check that we are hitting it from above.
+				if Vector3.UP.dot(collision.get_normal()) > 0.1:
+					# If so, we squash it and bounce.
+					mob.squash()
+					target_velocity.y = bounce_impulse
+					# Prevent further duplicate calls.
+					break
+				else:
+					if cheese_count > 0 and not collision.get_collider().getCheese():
+						cheese_count -= 1
+						update_ui()
+						collision.get_collider().steal_cheese()
+						$Label3D.visible = true
+						await get_tree().create_timer(2.0).timeout
+						$Label3D.visible = false
+					var bounce_direction = collision.get_normal().slide(Vector3.UP).normalized()
+					knockback.x = bounce_direction.x * hit_impulse
+					knockback.z = bounce_direction.z * hit_impulse
+					#if health_bar != null:
+						#health_bar.take_damage(1)
+					break
+		velocity += knockback
+		knockback = lerp(knockback, Vector3.ZERO, 0.2)
+		# finish process and move player node
+		move_and_slide()
+	else:
+		#set playeer cam current to false
+		$CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D.current = false
 
 """
 	When RollCooldown times out, the timeout signal is sent to this
