@@ -15,14 +15,14 @@ func _on_body_entered(_body):
 	#if not PowerupLogic.size:
 		#PowerupLogic.size = true
 	
-	if not PowerupLogic.speed:
-		PowerupLogic.speed = true
-	
-	if not PowerupLogic.rollSpeed:
-		PowerupLogic.rollSpeed = true
-	
-	if not PowerupLogic.extraJump:
-		PowerupLogic.extraJump = true
+	#if not PowerupLogic.speed:
+		#PowerupLogic.speed = true
+	#
+	#if not PowerupLogic.rollSpeed:
+		#PowerupLogic.rollSpeed = true
+	#
+	#if not PowerupLogic.extraJump:
+		#PowerupLogic.extraJump = true
 	
 	emit_signal("powerup_obtained")
 	sound.play()

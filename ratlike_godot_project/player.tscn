@@ -20,10 +20,6 @@ script = ExtResource("1_onrkg")
 [node name="Rat Player All Animations" parent="Pivot" instance=ExtResource("2_i3pqv")]
 transform = Transform3D(-1.00536e-06, 0, -23, 0, 23, 0, 23, 0, -1.00536e-06, 0, 0, 0)
 
-[node name="old" parent="Pivot" instance=ExtResource("2_i3pqv")]
-transform = Transform3D(-1.00536e-06, 0, -23, 0, 23, 0, 23, 0, -1.00536e-06, 0, 0, 0)
-visible = false
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000841349, 0.512474, -0.0553795)
 shape = SubResource("BoxShape3D_onrkg")
@@ -31,9 +27,6 @@ shape = SubResource("BoxShape3D_onrkg")
 [node name="Timers" type="Node3D" parent="."]
 
 [node name="RollCooldown" type="Timer" parent="Timers"]
-one_shot = true
-
-[node name="LedgeCooldown" type="Timer" parent="Timers"]
 one_shot = true
 
 [node name="JumpCharge" type="Timer" parent="Timers"]

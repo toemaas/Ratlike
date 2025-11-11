@@ -9,11 +9,13 @@ signal set_cam_rotation(_cam_rotation : float)
 var yaw : float = 0
 var pitch : float = 0
 
-var yaw_sensitivity : float = 0.07
-var pitch_sensitivity : float = 0.07
+var modifier = 4
 
-var yaw_acceleration : float = 15
-var pitch_acceleration : float = 15
+var yaw_sensitivity : float = 0.07 * modifier
+var pitch_sensitivity : float = 0.07 * modifier
+
+var yaw_acceleration : float = 15 * modifier
+var pitch_acceleration : float = 15 * modifier
 
 var pitch_max : float = 75
 var pitch_min : float = -55

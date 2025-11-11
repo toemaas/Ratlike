@@ -14,3 +14,4 @@ extends Node
 @export var size: bool = false
 @export var rollSpeed: bool = false
 @export var extraJump: bool = false
+@export var height: bool = false

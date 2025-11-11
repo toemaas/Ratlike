@@ -353,20 +353,9 @@ func update_powers() -> void:
 	if PowerupLogic.extraJump:
 		max_jumps += 1
 	
-	#var power1 = PowerupLogic.power
-	#if power1:
-		## scale rat by factor of 2
-		#$"Pivot/Rat Player All Animations".basis = $"Pivot/Rat Player All Animations".basis * 2
-		#$CollisionShape3D.basis.x = $CollisionShape3D.basis.x * 2
-		#$CollisionShape3D.basis.z = $CollisionShape3D.basis.z * 2
-		#
-		#
-		## add additional consecutive jump
-		#max_jumps += 1
-		#
-		## increase charge jump strength
-		#charge_jump_incremental += 0.25
-	
+	if PowerupLogic.height:
+		charge_jump_incremental += 0.25
+		
 
 func playAnimation():
 	
@@ -380,10 +369,8 @@ func playAnimation():
 			animation_player.play("Walk")
 		else:
 			if charge:
-				print("DEBUG: charge is active")
 				animation_player.play("Charge Jump")
 			else:
-				print("DBEUG: charge is NOT active")
 				animation_player.play("Idle")
 			#animation_player.play("Idle")
 		
