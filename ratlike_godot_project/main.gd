@@ -9,7 +9,7 @@ var choice = false
 
 func _ready() -> void:
 	pause_menu.hide()
-	SceneManager.next_scene = preload("res://testing_grounds.tscn")
+	SceneManager.next_scene = preload("res://level2.tscn")
 
 func _unhandled_input(event):
 	print("choice flag is " + str(choice))

@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://rc73x8o5r8l7"]
+
+[ext_resource type="PackedScene" uid="uid://cspymtx4viuq2" path="res://Level2/GreyboxModels/GreyboxDesk/Desk.fbx" id="1_exht6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_brnvd"]
+
+[node name="DeskGreyboxColission" type="StaticBody3D"]
+
+[node name="Desk" parent="." instance=ExtResource("1_exht6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126638, 0, 0.0321115)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.68459, 0, 0, 0, 0.0995872, 0, 0, 0, 4.5026, -0.534477, 0.834039, 0)
+shape = SubResource("BoxShape3D_brnvd")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(3.45605, 0, 0, 0, 0.0995872, 0, 0, 0, 4.5026, 0.00893438, -0.0965611, 0)
+shape = SubResource("BoxShape3D_brnvd")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.15351, 0, 0, 0, 0.0995872, 0, 0, 0, 4.5026, -0.824934, 1.72327, 0)
+shape = SubResource("BoxShape3D_brnvd")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.06299, 0, 0, 0, 0.0995872, 0, 0, 0, 4.5026, 0.326617, 2.93333, 0.0321081)
+shape = SubResource("BoxShape3D_brnvd")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(3.45605, 0, 0, 0, 0.0995872, 0, 0, 0, 4.78297, 0.00893438, 3.52545, 0.0320121)
+shape = SubResource("BoxShape3D_brnvd")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(3.77861, 0, 0, 0, 3.7066, 0, 0, 0, 0.142248, -0.145561, 1.69185, -2.29501)
+shape = SubResource("BoxShape3D_brnvd")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(3.77861, 0, 0, 0, 3.7066, 0, 0, 0, 0.142248, -0.145561, 1.69185, 2.24358)
+shape = SubResource("BoxShape3D_brnvd")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.132434, 0, 0, 0, 2.85204, 0, 0, 0, 2.28817, 1.7681, 1.34156, 1.17504)
+shape = SubResource("BoxShape3D_brnvd")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.126239, 0, 0.691646, 0, 2.85204, 0, -0.0400309, 0, 2.18114, 2.1161, 1.34156, -1.18991)
+shape = SubResource("BoxShape3D_brnvd")

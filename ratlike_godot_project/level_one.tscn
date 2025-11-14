@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://5vjitlxlr6gq"]
 
 [ext_resource type="Script" uid="uid://cq1lio4ksep8g" path="res://main.gd" id="1_0l1we"]
-[ext_resource type="PackedScene" uid="uid://ddaxxgxgsnshu" path="res://RatGameLevel1Greybox6.tscn" id="2_6t2mo"]
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="2_foyw7"]
+[ext_resource type="PackedScene" uid="uid://c3q4oacop5lk4" path="res://RatGameLevel1Final.tscn" id="2_xq862"]
 [ext_resource type="PackedScene" uid="uid://driilhpt113id" path="res://teleporter.tscn" id="3_foyw7"]
 [ext_resource type="PackedScene" uid="uid://c14c4ncsogmd8" path="res://hud.tscn" id="3_l6eyr"]
 [ext_resource type="PackedScene" uid="uid://c5sulhcjpw1ms" path="res://cheese.tscn" id="5_xsnk2"]
@@ -19,7 +19,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 [node name="LevelOne" type="Node3D"]
 script = ExtResource("1_0l1we")
 
-[node name="Environment" parent="." instance=ExtResource("2_6t2mo")]
+[node name="Environment" parent="." instance=ExtResource("2_xq862")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
@@ -39,7 +39,7 @@ collision_mask = 19
 transform = Transform3D(1, 0, 0, 0, 0.270432, 0.962739, 0, -0.962739, 0.270432, 0, 52.5451, 0)
 
 [node name="Rathole" parent="." instance=ExtResource("3_foyw7")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 36.9045, 40.9057, 11.4936)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 37.15085, 40.9057, 11.577588)
 needed_cheese = 2
 
 [node name="Cheese" type="Node3D" parent="."]

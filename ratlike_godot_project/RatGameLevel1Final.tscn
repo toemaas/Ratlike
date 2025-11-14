@@ -1,0 +1,614 @@
+[gd_scene load_steps=65 format=3 uid="uid://c3q4oacop5lk4"]
+
+[ext_resource type="PackedScene" uid="uid://c5reh20srvl6r" path="res://Level 1 Assets/TexturedFloorReal.fbx" id="1_yxbqi"]
+[ext_resource type="PackedScene" uid="uid://obc6a0m0a13h" path="res://Level 1 Assets/TexturedRatHoleReal.fbx" id="2_xwssj"]
+[ext_resource type="PackedScene" uid="uid://byguws2peawto" path="res://Level 1 Assets/TexturedWashingMachine.fbx" id="3_5b07s"]
+[ext_resource type="PackedScene" uid="uid://xyn4fpcvn13e" path="res://Level 1 Assets/TexturedWashingMachinePipe.fbx" id="4_1hqvg"]
+[ext_resource type="PackedScene" uid="uid://4odgsgglug2x" path="res://Level 1 Assets/TexturedMagazinePile.fbx" id="5_q0u0x"]
+[ext_resource type="PackedScene" uid="uid://bskgcjaqbyxdb" path="res://Level 1 Assets/TexturedBoxTest2.fbx" id="6_b3dek"]
+[ext_resource type="PackedScene" uid="uid://t3hrq2udmnnx" path="res://Level 1 Assets/TexturedCan1Real.fbx" id="7_adupc"]
+[ext_resource type="PackedScene" uid="uid://b66iw2qni6w4b" path="res://Level 1 Assets/TexturedCan2Real.fbx" id="8_c1jxu"]
+[ext_resource type="PackedScene" uid="uid://csdfrvo4bkfs4" path="res://Level 1 Assets/TexturedCan3Real.fbx" id="9_61mhv"]
+[ext_resource type="PackedScene" uid="uid://jq23oyyixwkn" path="res://Level 1 Assets/TexturedRuler.fbx" id="10_srmus"]
+[ext_resource type="PackedScene" uid="uid://bicd4pdbe6n0e" path="res://Level 1 Assets/TexturedShelf.fbx" id="11_6d240"]
+[ext_resource type="PackedScene" uid="uid://bevm12ded0o12" path="res://Level 1 Assets/TexturedBook.fbx" id="12_4bajp"]
+[ext_resource type="PackedScene" uid="uid://cv7545jc2e5k6" path="res://Level 1 Assets/TexturedBroom.fbx" id="13_j3pqq"]
+[ext_resource type="PackedScene" uid="uid://mol387tq6lfe" path="res://Level 1 Assets/TexturedBucketReal.fbx" id="14_r58ng"]
+[ext_resource type="PackedScene" uid="uid://d1rjl0s2cm8ri" path="res://Level 1 Assets/TexturedWall.fbx" id="15_4lqi5"]
+[ext_resource type="PackedScene" uid="uid://bsk7hlpyuehjt" path="res://Level 1 Assets/TexturedWallTrim.fbx" id="16_lu6ys"]
+[ext_resource type="PackedScene" uid="uid://c2bqihbpwik31" path="res://Level 1 Assets/TexturedLight.fbx" id="17_qs1ys"]
+[ext_resource type="PackedScene" uid="uid://3hx3j1t4xbmv" path="res://Level 1 Assets/TexturedDoor.fbx" id="18_bc0pb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ip441"]
+size = Vector3(75, 1, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_san6q"]
+size = Vector3(2.5, 2.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r401p"]
+size = Vector3(2.4, 2.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fyici"]
+size = Vector3(30, 25, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ylqk"]
+size = Vector3(30, 5, 3)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lyvp1"]
+height = 6.0
+radius = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nyhrv"]
+size = Vector3(5, 2, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4sebl"]
+size = Vector3(7, 6, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jx27b"]
+size = Vector3(3, 4, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ehdyl"]
+size = Vector3(10, 30, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fka0b"]
+size = Vector3(15, 12, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_56bje"]
+size = Vector3(8, 16, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1svmm"]
+size = Vector3(8, 16, 9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bqopo"]
+size = Vector3(3, 2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eg7i2"]
+size = Vector3(3, 28, 6)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_orleo"]
+height = 2.5
+radius = 1.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8duse"]
+height = 3.5
+radius = 1.3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kqyue"]
+height = 2.2
+radius = 1.8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c8ql2"]
+size = Vector3(13, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ku2v"]
+size = Vector3(13, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_befw4"]
+size = Vector3(5, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rq4pd"]
+size = Vector3(2, 3.7, 5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_al41u"]
+height = 28.9985
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1xyag"]
+size = Vector3(8, 5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qk462"]
+size = Vector3(7, 6, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oqjuv"]
+size = Vector3(9, 9, 3.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2sip0"]
+size = Vector3(55, 1, 6)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pxasc"]
+height = 7.0
+radius = 4.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_12voa"]
+height = 4.0
+radius = 1.3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bdbuw"]
+height = 2.5
+radius = 1.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qiqcf"]
+height = 1.6
+radius = 1.4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kjdvp"]
+size = Vector3(4, 1, 42)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jfmjo"]
+size = Vector3(5, 5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gawm1"]
+size = Vector3(4, 2.5, 3)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_24id2"]
+height = 3.5
+radius = 1.6
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yr8fj"]
+size = Vector3(6, 1.8, 4)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8fntm"]
+height = 7.0
+radius = 1.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bkgmt"]
+height = 6.0
+radius = 1.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5dew4"]
+height = 5.0
+radius = 1.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3vtex"]
+size = Vector3(75, 60, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pmoml"]
+size = Vector3(1.4, 60, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fbea1"]
+size = Vector3(75, 60, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l3rbn"]
+size = Vector3(1.4, 60, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dphh4"]
+size = Vector3(34.95, 49.5, 3.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gnu2a"]
+size = Vector3(6.3, 1.55, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgdf7"]
+size = Vector3(75, 1, 60)
+
+[node name="Environment" type="Node3D"]
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="TexturedFloorReal" parent="Map/Floor" instance=ExtResource("1_yxbqi")]
+transform = Transform3D(7500, 0, 0, 0, 100, 0, 0, 0, 6000, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Floor"]
+shape = SubResource("BoxShape3D_ip441")
+
+[node name="Rat Hole Entrance" type="StaticBody3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.1722, 0.670786, 29.7015)
+
+[node name="TexturedRatHoleReal" parent="Map/Rat Hole Entrance" instance=ExtResource("2_xwssj")]
+transform = Transform3D(27, 0, 0, 0, 30, 0, 0, 0, 40, 0.00237846, -1.21648, -0.141436)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Rat Hole Entrance"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0133438, 0, -0.0285721)
+shape = SubResource("BoxShape3D_san6q")
+
+[node name="Rat Hole Exit" type="StaticBody3D" parent="Map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 37.3717, 42.1954, 11.5597)
+
+[node name="TexturedRatHoleReal" parent="Map/Rat Hole Exit" instance=ExtResource("2_xwssj")]
+transform = Transform3D(27, 0, 0, 0, 30, 0, 0, 0, 40, 0.0045681, -1.20744, 0.176285)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Rat Hole Exit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0657539)
+shape = SubResource("BoxShape3D_r401p")
+
+[node name="Washing Machine" type="Node3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.89867)
+
+[node name="WM Body" type="StaticBody3D" parent="Map/Washing Machine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7796, 12.0411, -7.84415)
+
+[node name="TexturedWashingMachine" parent="Map/Washing Machine/WM Body" instance=ExtResource("3_5b07s")]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Washing Machine/WM Body"]
+shape = SubResource("BoxShape3D_fyici")
+
+[node name="WM Head" type="StaticBody3D" parent="Map/Washing Machine"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.78, 26.8346, -21.0093)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Washing Machine/WM Head"]
+shape = SubResource("BoxShape3D_2ylqk")
+
+[node name="WM WaterTube" type="StaticBody3D" parent="Map/Washing Machine"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -10.78, 9.74828, -25.7868)
+
+[node name="TexturedWashingMachinePipe" parent="Map/Washing Machine/WM WaterTube" instance=ExtResource("4_1hqvg")]
+transform = Transform3D(200, 0, 0, 0, 320, 0, 0, 0, 200, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Washing Machine/WM WaterTube"]
+shape = SubResource("CylinderShape3D_lyvp1")
+
+[node name="Lower Box Section" type="Node3D" parent="Map"]
+
+[node name="Magazine Pile" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(0.957868, 0, 0.28721, 0, 1, 0, -0.28721, 0, 0.957868, 18.5885, 0.389994, 13.245)
+
+[node name="TexturedMagazinePile" parent="Map/Lower Box Section/Magazine Pile" instance=ExtResource("5_q0u0x")]
+transform = Transform3D(-2.96645, 0, -84.9482, 0, 50, 0, 84.9482, 0, -2.96645, 0.164, -0.587, 0.133)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Magazine Pile"]
+shape = SubResource("BoxShape3D_nyhrv")
+
+[node name="Box 1" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(0.986498, 0, 0.163774, 0, 1, 0, -0.163774, 0, 0.986498, 24.3424, 2.39454, 8.29474)
+
+[node name="TexturedBoxTest2" parent="Map/Lower Box Section/Box 1" instance=ExtResource("6_b3dek")]
+transform = Transform3D(-1.45559e-05, 0, -233, 0, 150, 0, 333, 0, -1.01848e-05, 0, -0.013, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Box 1"]
+shape = SubResource("BoxShape3D_4sebl")
+
+[node name="Box 2" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(0.988319, 0, -0.152399, 0, 1, 0, 0.152399, 0, 0.988319, 23.5867, 1.36819, 16.2893)
+
+[node name="TexturedBoxTest2" parent="Map/Lower Box Section/Box 2" instance=ExtResource("6_b3dek")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Box 2"]
+shape = SubResource("BoxShape3D_jx27b")
+
+[node name="Box 3" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(0.973135, 0, -0.230237, 0, 1, 0, 0.230237, 0, 0.973135, 19.3739, 13.9769, -17.7156)
+
+[node name="TexturedBoxTest2" parent="Map/Lower Box Section/Box 3" instance=ExtResource("6_b3dek")]
+transform = Transform3D(-2.18557e-05, 0, 333, 0, 750, 0, -500, 0, -1.45559e-05, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Box 3"]
+shape = SubResource("BoxShape3D_ehdyl")
+
+[node name="Box 4" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(0.936489, 0, 0.350698, 0, 1, 0, -0.350698, 0, 0.936489, 14.4536, 4.85986, 0.0766296)
+
+[node name="TexturedBoxTest2" parent="Map/Lower Box Section/Box 4" instance=ExtResource("6_b3dek")]
+transform = Transform3D(500, 0, 0, 0, 300, 0, 0, 0, 330, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Box 4"]
+shape = SubResource("BoxShape3D_fka0b")
+
+[node name="Box 5" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(0.950358, 0, 0.311157, 0, 1, 0, -0.311157, 0, 0.950358, 29.5886, 7.45149, -4.87536)
+
+[node name="TexturedBoxTest2" parent="Map/Lower Box Section/Box 5" instance=ExtResource("6_b3dek")]
+transform = Transform3D(265, 0, 0, 0, 400, 0, 0, 0, 265, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Box 5"]
+shape = SubResource("BoxShape3D_56bje")
+
+[node name="Box 6" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(0.976975, 0, -0.213354, 0, 1, 0, 0.213354, 0, 0.976975, 31.3487, 7.35088, -21.5751)
+
+[node name="TexturedBoxTest2" parent="Map/Lower Box Section/Box 6" instance=ExtResource("6_b3dek")]
+transform = Transform3D(265, 0, 0, 0, 400, 0, 0, 0, 300, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Box 6"]
+shape = SubResource("BoxShape3D_1svmm")
+
+[node name="Box 7" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.6385, 16.3272, -20.291)
+
+[node name="TexturedMagazinePile" parent="Map/Lower Box Section/Box 7" instance=ExtResource("5_q0u0x")]
+transform = Transform3D(34.9552, 0, -2.78261, 0, 60, 0, 1.77075, 0, 54.9296, 0, -0.925, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Box 7"]
+shape = SubResource("BoxShape3D_bqopo")
+
+[node name="Box 8" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(0.972006, 0, -0.234956, 0, 1, 0, 0.234956, 0, 0.972006, 25.5322, 13.0528, -13.7825)
+
+[node name="TexturedBoxTest2" parent="Map/Lower Box Section/Box 8" instance=ExtResource("6_b3dek")]
+transform = Transform3D(100, 0, 0, 0, 700, 0, 0, 0, 200, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Box 8"]
+shape = SubResource("BoxShape3D_eg7i2")
+
+[node name="Can 1" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6962, 6.63179, 5.06754)
+
+[node name="TexturedCan1Real" parent="Map/Lower Box Section/Can 1" instance=ExtResource("7_adupc")]
+transform = Transform3D(102.53, 0, 102.53, 0, 60, 0, -102.53, 0, 102.53, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Can 1"]
+shape = SubResource("CylinderShape3D_orleo")
+
+[node name="Can 2" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.9055, 16.9747, -23.367)
+
+[node name="TexturedCan2Real" parent="Map/Lower Box Section/Can 2" instance=ExtResource("8_c1jxu")]
+transform = Transform3D(123.261, 0, 20.7751, 0, 80, 0, -20.7751, 0, 123.261, 0, 0.0699997, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Can 2"]
+shape = SubResource("CylinderShape3D_8duse")
+
+[node name="Can 3" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.1015, 22.3424, -9.08993)
+
+[node name="TexturedCan3Real" parent="Map/Lower Box Section/Can 3" instance=ExtResource("9_61mhv")]
+transform = Transform3D(153.377, 0, 84.2641, 0, 53, 0, -84.2641, 0, 153.377, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Can 3"]
+shape = SubResource("CylinderShape3D_kqyue")
+
+[node name="Ruler 1" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(0.899336, -0.343652, 0.270366, 0.359539, 0.933077, -0.00996, -0.248849, 0.106164, 0.962706, 19.2841, 13.2424, -4.64323)
+
+[node name="TexturedRuler" parent="Map/Lower Box Section/Ruler 1" instance=ExtResource("10_srmus")]
+transform = Transform3D(0.20956, 0.0347233, -84.9987, 0.069813, 19.9999, 0.148353, 39.9994, -0.0350889, 0.445056, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Ruler 1"]
+transform = Transform3D(1, -3.72529e-08, -1.49012e-08, -1.86265e-08, 1, 0, -4.47035e-08, 1.49012e-08, 1, -0.0393963, -0.102244, 0.00109148)
+shape = SubResource("BoxShape3D_c8ql2")
+
+[node name="Ruler 2" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(0.945497, 0.308214, -0.105067, -0.30993, 0.95076, 0, 0.099893, 0.0325633, 0.994465, 31.0523, 26.225, -14.9439)
+
+[node name="TexturedRuler" parent="Map/Lower Box Section/Ruler 2" instance=ExtResource("10_srmus")]
+transform = Transform3D(0.0655649, -1.98997, -83.9333, -0.422623, 49.9572, -3.34456, 37.9976, 0.559076, 0.107627, 0.0296917, -0.0917511, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Ruler 2"]
+transform = Transform3D(0.999199, -0.0399764, 0.00138941, 0.0399818, 0.999192, -0.00398969, -0.00122878, 0.00404204, 0.99999, 0.0283394, -0.0869293, 0)
+shape = SubResource("BoxShape3D_4ku2v")
+
+[node name="Shelf 1" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.0819, 20.7586, -8.3319)
+
+[node name="TexturedShelf" parent="Map/Lower Box Section/Shelf 1" instance=ExtResource("11_6d240")]
+transform = Transform3D(-4.10887e-06, 0, -115, 0, 200, 0, 94, 0, -5.02681e-06, -0.27, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Shelf 1"]
+shape = SubResource("BoxShape3D_befw4")
+
+[node name="Book 1" type="StaticBody3D" parent="Map/Lower Box Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.7444, 23.0893, -13.9077)
+
+[node name="TexturedBook" parent="Map/Lower Box Section/Book 1" instance=ExtResource("12_4bajp")]
+transform = Transform3D(-80, 0, 6.38186e-06, 0, 38, 0, -6.99382e-06, 0, -73, 0, 0, 0.0500002)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Lower Box Section/Book 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.160904)
+shape = SubResource("BoxShape3D_rq4pd")
+
+[node name="Upper Shelf Section" type="Node3D" parent="Map"]
+
+[node name="Broom" type="Node3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(0.670038, 0.243649, -0.701202, 1.91578e-08, 0.9446, 0.328224, 0.742327, -0.219922, 0.632918, -32.5925, 0, -14.068)
+
+[node name="TexturedBroom" parent="Map/Upper Shelf Section/Broom" instance=ExtResource("13_j3pqq")]
+transform = Transform3D(200, 7.62939e-06, 2.28882e-05, 1.90735e-05, 200, 3.8147e-06, 7.62939e-06, -1.33514e-05, 200, 0.000221252, 2.02263, -0.00109673)
+
+[node name="B Handle" type="StaticBody3D" parent="Map/Upper Shelf Section/Broom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.236, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Broom/B Handle"]
+transform = Transform3D(1, 2.98023e-08, 0, 0, 1, -1.49012e-08, 0, -1.63913e-07, 1, 0, -0.500733, 0)
+shape = SubResource("CylinderShape3D_al41u")
+
+[node name="B Head" type="StaticBody3D" parent="Map/Upper Shelf Section/Broom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Broom/B Head"]
+shape = SubResource("BoxShape3D_1xyag")
+
+[node name="Box 9" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(0.991114, 0, -0.133018, 0, 1, 0, 0.133018, 0, 0.991114, -31.501, 2.4081, -21.8681)
+
+[node name="TexturedBoxTest2" parent="Map/Upper Shelf Section/Box 9" instance=ExtResource("6_b3dek")]
+transform = Transform3D(233, 0, 0, 0, 150, 0, 0, 0, 200, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Box 9"]
+shape = SubResource("BoxShape3D_qk462")
+
+[node name="Box 10" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(0.999319, 0, 0.0368879, 0, 1, 0, -0.0368879, 0, 0.999319, -31.8185, 3.93942, -27.5056)
+
+[node name="TexturedBoxTest2" parent="Map/Upper Shelf Section/Box 10" instance=ExtResource("6_b3dek")]
+transform = Transform3D(300, 0, 0, 0, 226, 0, 0, 0, 115, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Box 10"]
+shape = SubResource("BoxShape3D_oqjuv")
+
+[node name="Shelf 2" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14427, 34.8554, -26.8899)
+
+[node name="TexturedShelf" parent="Map/Upper Shelf Section/Shelf 2" instance=ExtResource("11_6d240")]
+transform = Transform3D(259, 0, 0, 0, 220, 0, 0, 0, 135, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Shelf 2"]
+shape = SubResource("BoxShape3D_2sip0")
+
+[node name="Bucket 1" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.0264, 27.3558, -24.9296)
+
+[node name="TexturedBucketReal" parent="Map/Upper Shelf Section/Bucket 1" instance=ExtResource("14_r58ng")]
+transform = Transform3D(93, 0, 0, 0, 93, 0, 0, 0, 93, 0, 0, 0)
+
+[node name="TexturedWashingMachinePipe" parent="Map/Upper Shelf Section/Bucket 1" instance=ExtResource("4_1hqvg")]
+transform = Transform3D(30, 0, 0, 0, -7.64949e-06, -30, 0, 175, -1.31134e-06, 0, 9.23676, -3.16702)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Bucket 1"]
+shape = SubResource("CylinderShape3D_pxasc")
+
+[node name="Can 4" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.981, 32.8218, -26.5102)
+
+[node name="TexturedCan3Real" parent="Map/Upper Shelf Section/Can 4" instance=ExtResource("9_61mhv")]
+transform = Transform3D(-66.0894, 0, 111.947, 0, 105, 0, -111.947, 0, -66.0894, 0, -0.201, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Can 4"]
+shape = SubResource("CylinderShape3D_12voa")
+
+[node name="Can 5" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7184, 32.0329, -25.9035)
+
+[node name="TexturedCan2Real" parent="Map/Upper Shelf Section/Can 5" instance=ExtResource("8_c1jxu")]
+transform = Transform3D(120, 0, 0, 0, 68, 0, 0, 0, 120, 0, -0.168, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Can 5"]
+shape = SubResource("CylinderShape3D_bdbuw")
+
+[node name="Can 6" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5806, 31.4921, -23.3927)
+
+[node name="TexturedCan1Real" parent="Map/Upper Shelf Section/Can 6" instance=ExtResource("7_adupc")]
+transform = Transform3D(135, 0, 0, 0, 44, 0, 0, 0, 135, 0, -0.11, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Can 6"]
+shape = SubResource("CylinderShape3D_qiqcf")
+
+[node name="Shelf 3" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6847, 40.4892, -4.85435)
+
+[node name="TexturedShelf" parent="Map/Upper Shelf Section/Shelf 3" instance=ExtResource("11_6d240")]
+transform = Transform3D(-8.65486e-06, 0, -90, 0, 220, 0, 198, 0, -3.93402e-06, -0.3, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Shelf 3"]
+shape = SubResource("BoxShape3D_kjdvp")
+
+[node name="Box 11" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(0.992062, 0, -0.125749, 0, 1, 0, 0.125749, 0, 0.992062, 24.4137, 37.8604, -27.707)
+
+[node name="TexturedBook" parent="Map/Upper Shelf Section/Box 11" instance=ExtResource("12_4bajp")]
+transform = Transform3D(-5.24537e-06, 0, -75, 0, 51, 0, 120, 0, -3.27835e-06, 0.166, 0, 0.013)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Box 11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.299887, 0, 0.0172825)
+shape = SubResource("BoxShape3D_jfmjo")
+
+[node name="Box 12" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(0.946908, 0, 0.321506, 0, 1, 0, -0.321506, 0, 0.946908, -21.7254, 25.7707, -18.8216)
+
+[node name="TexturedMagazinePile" parent="Map/Upper Shelf Section/Box 12" instance=ExtResource("5_q0u0x")]
+transform = Transform3D(50, 0, 0, 0, 77, 0, 0, 0, 50, 0, -1.223, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Box 12"]
+shape = SubResource("BoxShape3D_gawm1")
+
+[node name="Can 7" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.6581, 37.0819, -26.9696)
+
+[node name="TexturedCan3Real" parent="Map/Upper Shelf Section/Can 7" instance=ExtResource("9_61mhv")]
+transform = Transform3D(-6.34477, 0, 154.87, 0, 82, 0, -154.87, 0, -6.34477, 0, 0.0270004, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Can 7"]
+shape = SubResource("CylinderShape3D_24id2")
+
+[node name="Magazine on Washer" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(0.931964, 0, 0.362552, 0, 1, 0, -0.362552, 0, 0.931964, 14.6702, 35.873, -26.7107)
+
+[node name="TexturedMagazinePile" parent="Map/Upper Shelf Section/Magazine on Washer" instance=ExtResource("5_q0u0x")]
+transform = Transform3D(73, 0, 0, 0, 45, 0, 0, 0, 70, 0, -0.536, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Magazine on Washer"]
+shape = SubResource("BoxShape3D_yr8fj")
+
+[node name="Can 8" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7144, 38.8687, -25.1004)
+
+[node name="TexturedCan1Real" parent="Map/Upper Shelf Section/Can 8" instance=ExtResource("7_adupc")]
+transform = Transform3D(-62.4923, 0, 101.271, 0, 167, 0, -101.271, 0, -62.4923, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Can 8"]
+shape = SubResource("CylinderShape3D_8fntm")
+
+[node name="Can 9" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.684, 38.3869, -28.0676)
+
+[node name="TexturedCan2Real" parent="Map/Upper Shelf Section/Can 9" instance=ExtResource("8_c1jxu")]
+transform = Transform3D(38.2235, 0, 113.75, 0, 144, 0, -113.75, 0, 38.2235, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Can 9"]
+shape = SubResource("CylinderShape3D_bkgmt")
+
+[node name="Can 10" type="StaticBody3D" parent="Map/Upper Shelf Section"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3118, 37.7935, -28.265)
+
+[node name="TexturedCan2Real" parent="Map/Upper Shelf Section/Can 10" instance=ExtResource("8_c1jxu")]
+transform = Transform3D(119, 0, 0, 0, 117, 0, 0, 0, 119, 0, 0.046, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Upper Shelf Section/Can 10"]
+shape = SubResource("CylinderShape3D_5dew4")
+
+[node name="Walls" type="Node3D" parent="Map"]
+
+[node name="Wall 1" type="StaticBody3D" parent="Map/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.4, -30.3)
+
+[node name="TexturedWall" parent="Map/Walls/Wall 1" instance=ExtResource("15_4lqi5")]
+transform = Transform3D(7500, 0, 0, 0, 6000, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Walls/Wall 1"]
+shape = SubResource("BoxShape3D_3vtex")
+
+[node name="Wall 2" type="StaticBody3D" parent="Map/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.8456, 29.3258, 0.145847)
+
+[node name="TexturedWall" parent="Map/Walls/Wall 2" instance=ExtResource("15_4lqi5")]
+transform = Transform3D(100, 0, 0, 0, 6000, 0, 0, 0, 6000, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Walls/Wall 2"]
+shape = SubResource("BoxShape3D_pmoml")
+
+[node name="Wall 3" type="StaticBody3D" parent="Map/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.4, 30.3)
+
+[node name="TexturedWall" parent="Map/Walls/Wall 3" instance=ExtResource("15_4lqi5")]
+transform = Transform3D(7500, 0, 0, 0, 6000, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Walls/Wall 3"]
+shape = SubResource("BoxShape3D_fbea1")
+
+[node name="Wall 4" type="StaticBody3D" parent="Map/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.8, 29.4, 0)
+
+[node name="TexturedWall" parent="Map/Walls/Wall 4" instance=ExtResource("15_4lqi5")]
+transform = Transform3D(100, 0, 0, 0, 6000, 0, 0, 0, 6000, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Walls/Wall 4"]
+shape = SubResource("BoxShape3D_l3rbn")
+
+[node name="TexturedWallTrim" parent="Map" instance=ExtResource("16_lu6ys")]
+transform = Transform3D(-1475, 0, 1.20797e-05, 0, 100, 0, -0.000222719, 0, -80, 0, 0.5, 29.8)
+
+[node name="TexturedWallTrim2" parent="Map" instance=ExtResource("16_lu6ys")]
+transform = Transform3D(1475, 0, 0, 0, 100, 0, 0, 0, 80, 0, 0.5, -29.8)
+
+[node name="TexturedWallTrim3" parent="Map" instance=ExtResource("16_lu6ys")]
+transform = Transform3D(-5.15794e-05, 0, 80, 0, 100, 0, -1180, 0, -3.49691e-06, -37.3, 0.5, 0)
+
+[node name="TexturedWallTrim4" parent="Map" instance=ExtResource("16_lu6ys")]
+transform = Transform3D(-5.15794e-05, 0, -80, 0, 100, 0, 1180, 0, -3.49691e-06, 37.3, 0.5, 0)
+
+[node name="TexturedLight" parent="Map" instance=ExtResource("17_qs1ys")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 53.632, 0)
+
+[node name="Door" type="StaticBody3D" parent="Map"]
+
+[node name="TexturedDoor" parent="Map/Door" instance=ExtResource("18_bc0pb")]
+transform = Transform3D(-8.74228e-06, 0, 300, 0, 250, 0, -200, 0, -1.31134e-05, 0, 4.38414, 31.2108)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.2557, 31.2)
+shape = SubResource("BoxShape3D_dphh4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Map/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4857, 23.5167, 28.9774)
+shape = SubResource("BoxShape3D_gnu2a")
+
+[node name="Roof" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 59.7377, 0)
+
+[node name="TexturedWall" parent="Roof" instance=ExtResource("15_4lqi5")]
+transform = Transform3D(7500, 0, 0, 0, 100, 0, 0, 0, 6000, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Roof"]
+shape = SubResource("BoxShape3D_lgdf7")

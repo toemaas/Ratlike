@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://driilhpt113id"]
+[gd_scene load_steps=5 format=3 uid="uid://driilhpt113id"]
 
 [ext_resource type="Script" uid="uid://c8viv6fsxj1o6" path="res://teleporter.gd" id="1_eumkw"]
-[ext_resource type="PackedScene" uid="uid://qsrwr7mxbuuy" path="res://BasicRatHole.fbx" id="2_tuehi"]
 [ext_resource type="PackedScene" uid="uid://gv8lu2mhn42n" path="res://Dialogue/dialogue_box.tscn" id="3_kk6yu"]
 [ext_resource type="PackedScene" uid="uid://blwsns1wa2teq" path="res://Rat Mafia.fbx" id="4_ahrse"]
 
@@ -19,9 +18,6 @@ transform = Transform3D(0.919456, -0.086073, 0.383657, -0.0274358, 0.959323, 0.2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.365117, 0, 0, 0, 1.23457, 0, 0, 0, 5.65784, 0, 2.72324, 1.46479)
 shape = SubResource("BoxShape3D_mvxmr")
-
-[node name="BasicRatHole" parent="." instance=ExtResource("2_tuehi")]
-transform = Transform3D(32, 0, 0, 0, 32, 0, 0, 0, 32, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 

@@ -8,22 +8,6 @@ func _on_body_entered(_body):
 	if not $Skin.visible:
 		return
 	
-	# set power to be true if it isnt already
-	#if not PowerupLogic.power:
-		#PowerupLogic.power = true
-	
-	#if not PowerupLogic.size:
-		#PowerupLogic.size = true
-	
-	#if not PowerupLogic.speed:
-		#PowerupLogic.speed = true
-	#
-	#if not PowerupLogic.rollSpeed:
-		#PowerupLogic.rollSpeed = true
-	#
-	#if not PowerupLogic.extraJump:
-		#PowerupLogic.extraJump = true
-	
 	emit_signal("powerup_obtained")
 	sound.play()
 	$Skin.visible = false
