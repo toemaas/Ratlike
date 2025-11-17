@@ -1,17 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://do5rh0ij5r6tr"]
+[gd_scene load_steps=15 format=3 uid="uid://g1u0hqc2jr2"]
 
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="1_7be1j"]
-[ext_resource type="Script" uid="uid://cdjql83hlw1dt" path="res://level2.gd" id="1_wwdpc"]
+[ext_resource type="Script" path="res://level2.gd" id="1_wwdpc"]
 [ext_resource type="PackedScene" uid="uid://bcyjnyknuw5se" path="res://Level 2 Assets/GreyboxTable/TableDraftCollission.tscn" id="2_v74eq"]
 [ext_resource type="PackedScene" uid="uid://c14c4ncsogmd8" path="res://hud.tscn" id="3_nc7oo"]
 [ext_resource type="PackedScene" uid="uid://rc73x8o5r8l7" path="res://Level 2 Assets/GreyboxDesk/DeskGreyboxColission.tscn" id="3_t4ii8"]
 [ext_resource type="PackedScene" uid="uid://d053idmtyp03o" path="res://Level 2 Assets/GreyboxShelf/ShelvesGreyboxColission.tscn" id="4_64jee"]
 [ext_resource type="PackedScene" uid="uid://uud775qrqjh1" path="res://pause_menu.tscn" id="6_6faey"]
 [ext_resource type="PackedScene" uid="uid://baurs0gde82o3" path="res://power_up_choice.tscn" id="7_6faey"]
+[ext_resource type="PackedScene" uid="uid://bq1oxoqhnrbww" path="res://hamster_boss.tscn" id="9_6x3wt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7be1j"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7be1j"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_nc7oo"]
+vertices = PackedVector3Array(-74.5, 0.5, -74.5, -74.5, 0.5, 74.5, 74.5, 0.5, 74.5, 74.5, 0.5, -74.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_v74eq"]
 
@@ -29,6 +34,7 @@ transform = Transform3D(0.999992, -0.00389094, 0.000596775, 0.00389253, 0.999989
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room"]
 transform = Transform3D(25.3517, 0, 0, 0, 2.95845, 0, 0, 0, 26.3868, 0, 0, 0)
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D"]
 transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
@@ -39,6 +45,7 @@ mesh = SubResource("PlaneMesh_7be1j")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="Room"]
 transform = Transform3D(38.5493, 0, 0, 0, 2.95845, 0, 0, 0, 26.3868, -13.0512, 0, -28.4485)
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D2"]
 transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
@@ -49,6 +56,7 @@ mesh = SubResource("PlaneMesh_7be1j")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="Room"]
 transform = Transform3D(13.0868, 0, -13.5635, 0, 2.95845, 0, 14.2035, 0, 12.4972, -24.9603, 0, -0.207024)
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D3"]
 transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
@@ -59,6 +67,7 @@ mesh = SubResource("PlaneMesh_7be1j")
 
 [node name="StaticBody3D4" type="StaticBody3D" parent="Room"]
 transform = Transform3D(17.0339, 0, 0, 0, 2.95845, 0, 0, 0, 15.2575, -34.5855, -1.90735e-06, -68.7734)
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D4"]
 transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
@@ -138,8 +147,12 @@ shape = SubResource("BoxShape3D_7be1j")
 mesh = SubResource("PlaneMesh_7be1j")
 skeleton = NodePath("../../StaticBody3D11")
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+navigation_mesh = SubResource("NavigationMesh_nc7oo")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.901667, 0.271062, -0.336931, -0.412193, 0.774314, -0.48014, 0.130743, 0.571807, 0.809903, 0, 0, 0)
+transform = Transform3D(0.90166694, 0.27106142, -0.336931, -0.41219297, 0.7743142, -0.48014006, 0.130743, 0.57180697, 0.8099031, 0, 25.569859, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="DirectionalLight3D"]
 transform = Transform3D(-0.987595, -0.000698298, 0.157018, -0.000549307, 0.999999, 0.000992377, -0.157018, 0.000893772, -0.987595, 0, 0, 0)
@@ -329,5 +342,10 @@ transform = Transform3D(-2.68927, 0, 0.0519901, 0, 2.45799, 0, -0.0469416, 0, -2
 
 [node name="PowerUpChoice" parent="." instance=ExtResource("7_6faey")]
 visible = false
+
+[node name="HamsterBoss" parent="." instance=ExtResource("9_6x3wt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.860127, 5.57376, 0)
+collision_mask = 0
+patrol_points = Array[Vector3]([Vector3(-20, 0, 0), Vector3(20, 0, 0)])
 
 [connection signal="jump_charge_changed" from="Player" to="Player/Hud" method="_on_player_jump_charge_changed"]

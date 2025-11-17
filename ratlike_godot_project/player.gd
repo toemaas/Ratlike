@@ -217,34 +217,18 @@ func _physics_process(delta):
 		
 		for index in range(get_slide_collision_count()):
 			var collision = get_slide_collision(index)
+			var enemy = collision.get_collider()
 			
-			if collision.get_collider() == null:
+			if enemy == null:
 				continue
 			
-			if collision.get_collider().is_in_group("mob"):
-				var mob = collision.get_collider()
-				# we check that we are hitting it from above.
-				if Vector3.UP.dot(collision.get_normal()) > 0.1:
-					# If so, we squash it and bounce.
-					mob.squash()
-					target_velocity.y = bounce_impulse
-					# Prevent further duplicate calls.
-					break
-				else:
-					if cheese_count > 0 and not collision.get_collider().getCheese():
-						cheese_count -= 1
-						update_ui()
-						collision.get_collider().steal_cheese()
-						$Label3D.visible = true
-						await get_tree().create_timer(2.0).timeout
-						$Label3D.visible = false
-					var bounce_direction = collision.get_normal().slide(Vector3.UP).normalized()
-					knockback.x = bounce_direction.x * hit_impulse
-					knockback.z = bounce_direction.z * hit_impulse
-					#if health_bar != null:
-						#health_bar.take_damage(1)
-					break
-		velocity += knockback
+			if enemy.is_in_group("mob"):
+				get_mob_knockback(enemy, collision)
+			elif enemy.is_in_group("boss"):
+				get_boss_knockback(enemy, collision, hit_impulse)
+				
+		velocity.x += knockback.x
+		velocity.z += knockback.z
 		knockback = lerp(knockback, Vector3.ZERO, 0.2)
 		# finish process and move player node
 		move_and_slide()
@@ -259,7 +243,6 @@ func _physics_process(delta):
 """
 func _on_roll_cooldown_timeout():
 	rolling = false
-	velocity = Vector3.ZERO
 
 """
 	roll() handles the logic for rolling and raises the rolling flag.
@@ -299,6 +282,40 @@ func squashed(cheese):
 		update_ui()
 	else:
 		print("squashed called with no cheese")
+
+func get_mob_knockback(mob, collision):
+	# we check that we are hitting it from above.
+	if Vector3.UP.dot(collision.get_normal()) > 0.1:
+		# If so, we squash it and bounce.
+		mob.squash()
+		target_velocity.y = bounce_impulse
+	else:
+		if cheese_count > 0 and not collision.get_collider().getCheese():
+			cheese_count -= 1
+			update_ui()
+			collision.get_collider().steal_cheese()
+			$Label3D.visible = true
+			await get_tree().create_timer(2.0).timeout
+			$Label3D.visible = false
+		var bounce_direction = collision.get_normal().slide(Vector3.UP).normalized()
+		knockback.x = bounce_direction.x * hit_impulse
+		knockback.z = bounce_direction.z * hit_impulse
+		#if health_bar != null:
+			#health_bar.take_damage(1)
+
+func get_boss_knockback(boss, collision, impulse):
+	if Vector3.UP.dot(collision.get_normal()) > 0.1:
+		# If so, we squash it and bounce.
+		
+		boss.squished()
+		target_velocity.y = bounce_impulse
+	else:
+		var bounce_direction = collision.get_normal().slide(Vector3.UP).normalized()
+		knockback.x = bounce_direction.x * impulse
+		knockback.y = 0.005 * impulse
+		knockback.z = bounce_direction.z * impulse
+			#if health_bar != null:
+				#health_bar.take_damage(1)
 
 # This function updates the text on the UI label
 func update_ui():

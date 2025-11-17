@@ -63,7 +63,7 @@ func _physics_process(_delta):
 
 func squash():
 	squashed.emit(cheese)
-	print("HAMSTER SQUASHED")
+	print("MOUSE SQUASHED")
 	#set_physics_process(false)
 	physicsDisabled = true
 	$CollisionShape3D.disabled = true

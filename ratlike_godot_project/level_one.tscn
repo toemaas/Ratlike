@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cq1lio4ksep8g" path="res://main.gd" id="1_0l1we"]
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="2_foyw7"]
-[ext_resource type="PackedScene" uid="uid://c3q4oacop5lk4" path="res://RatGameLevel1Final.tscn" id="2_xq862"]
+[ext_resource type="PackedScene" path="res://RatGameLevel1Final.tscn" id="2_xq862"]
 [ext_resource type="PackedScene" uid="uid://driilhpt113id" path="res://teleporter.tscn" id="3_foyw7"]
 [ext_resource type="PackedScene" uid="uid://c14c4ncsogmd8" path="res://hud.tscn" id="3_l6eyr"]
 [ext_resource type="PackedScene" uid="uid://c5sulhcjpw1ms" path="res://cheese.tscn" id="5_xsnk2"]
