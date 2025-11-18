@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://0nd7lniffuj4"]
+[gd_scene load_steps=7 format=3 uid="uid://0nd7lniffuj4"]
 
 [ext_resource type="Script" uid="uid://dgu756bp8feam" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://blb6ek8bkt20j" path="res://Rat Player All Animations.fbx" id="2_i3pqv"]
 [ext_resource type="Script" uid="uid://sg1d2g6d6jk3" path="res://camera_controller.gd" id="3_hqtel"]
+[ext_resource type="AudioStream" uid="uid://022h6dmbu8hl" path="res://mousegame.wav" id="4_hqtel"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
 size = Vector3(1, 1.07617, 1.14148)
@@ -62,5 +63,10 @@ text = "##########"
 font_size = 64
 outline_size = 24
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_hqtel")
+autoplay = true
+
 [connection signal="timeout" from="Timers/RollCooldown" to="." method="_on_roll_cooldown_timeout"]
 [connection signal="set_cam_rotation" from="CamRoot" to="." method="_on_cam_root_set_cam_rotation"]
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

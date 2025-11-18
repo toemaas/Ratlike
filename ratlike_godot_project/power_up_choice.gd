@@ -15,15 +15,7 @@ func _on_speed_button_pressed() -> void:
 	 
 	get_parent().toggle_choice()
 	emit_signal("powerup_chosen")
-
-
-func _on_additional_jump_button_pressed() -> void:
-	print("jump pressed")
-	if not PowerupLogic.extraJump:
-		PowerupLogic.extraJump = true
-	
-	get_parent().toggle_choice()
-	emit_signal("powerup_chosen")
+	$BoxContainer/SpeedButton.visible = false
 
 
 func _on_charge_height_button_pressed() -> void:
@@ -33,3 +25,4 @@ func _on_charge_height_button_pressed() -> void:
 	
 	get_parent().toggle_choice()
 	emit_signal("powerup_chosen")
+	$BoxContainer2/ChargeHeightButton.visible = false

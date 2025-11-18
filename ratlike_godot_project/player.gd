@@ -139,7 +139,6 @@ func _physics_process(delta):
 		"""
 		# Start jump detection
 		if Input.is_action_just_pressed("jump"):
-			#print("DEBUG: Jump input detected")
 			jump_hold_time = 0.0
 			jump_ready = true # raise flag as jump input has been detected
 		
@@ -211,7 +210,6 @@ func _physics_process(delta):
 				jump_charge_impulse = jump_impulse
 				print("DEBUG: jump charge flag lowered")
 				return
-			#print("DEBUG: jumps reset")
 			max_jumps += jumped
 			jumped = 0
 		
@@ -300,8 +298,6 @@ func get_mob_knockback(mob, collision):
 		var bounce_direction = collision.get_normal().slide(Vector3.UP).normalized()
 		knockback.x = bounce_direction.x * hit_impulse
 		knockback.z = bounce_direction.z * hit_impulse
-		#if health_bar != null:
-			#health_bar.take_damage(1)
 
 func get_boss_knockback(boss, collision, impulse):
 	if Vector3.UP.dot(collision.get_normal()) > 0.1:
@@ -314,8 +310,6 @@ func get_boss_knockback(boss, collision, impulse):
 		knockback.x = bounce_direction.x * impulse
 		knockback.y = 0.005 * impulse
 		knockback.z = bounce_direction.z * impulse
-			#if health_bar != null:
-				#health_bar.take_damage(1)
 
 # This function updates the text on the UI label
 func update_ui():
@@ -367,15 +361,11 @@ func update_powers() -> void:
 	if PowerupLogic.rollSpeed:
 		roll_strength = 225
 	
-	if PowerupLogic.extraJump:
-		max_jumps += 1
-	
 	if PowerupLogic.height:
-		charge_jump_incremental += 0.25
-		
+		if charge_jump_incremental == 0.5:
+			charge_jump_incremental = 0.75
 
 func playAnimation():
-	
 	# default case, idle
 	if is_on_floor():
 		var charge = false
@@ -389,7 +379,6 @@ func playAnimation():
 				animation_player.play("Charge Jump")
 			else:
 				animation_player.play("Idle")
-			#animation_player.play("Idle")
 		
 	else:
 		# jump animations
@@ -397,3 +386,7 @@ func playAnimation():
 			animation_player.play("Going Up")
 		else:
 			animation_player.play("Going Down")
+
+
+func _on_audio_stream_player_3d_finished() -> void:
+	$AudioStreamPlayer3D.play()

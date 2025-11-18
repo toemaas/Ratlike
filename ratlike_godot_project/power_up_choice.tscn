@@ -23,17 +23,6 @@ offset_bottom = 310.0
 layout_mode = 2
 text = "Speed"
 
-[node name="BoxContainer3" type="BoxContainer" parent="."]
-layout_mode = 0
-offset_left = 610.0
-offset_top = 208.0
-offset_right = 742.0
-offset_bottom = 310.0
-
-[node name="AdditionalJumpButton" type="Button" parent="BoxContainer3"]
-layout_mode = 2
-text = "Additional Jump"
-
 [node name="BoxContainer2" type="BoxContainer" parent="."]
 layout_mode = 0
 offset_left = 486.0
@@ -46,5 +35,4 @@ layout_mode = 2
 text = "Charge Height"
 
 [connection signal="pressed" from="BoxContainer/SpeedButton" to="." method="_on_speed_button_pressed"]
-[connection signal="pressed" from="BoxContainer3/AdditionalJumpButton" to="." method="_on_additional_jump_button_pressed"]
 [connection signal="pressed" from="BoxContainer2/ChargeHeightButton" to="." method="_on_charge_height_button_pressed"]
