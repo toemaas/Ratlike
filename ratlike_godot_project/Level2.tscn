@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://g1u0hqc2jr2"]
 
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="1_7be1j"]
-[ext_resource type="Script" path="res://level2.gd" id="1_wwdpc"]
+[ext_resource type="Script" uid="uid://cdjql83hlw1dt" path="res://level2.gd" id="1_wwdpc"]
 [ext_resource type="PackedScene" uid="uid://bcyjnyknuw5se" path="res://Level 2 Assets/GreyboxTable/TableDraftCollission.tscn" id="2_v74eq"]
 [ext_resource type="PackedScene" uid="uid://c14c4ncsogmd8" path="res://hud.tscn" id="3_nc7oo"]
 [ext_resource type="PackedScene" uid="uid://rc73x8o5r8l7" path="res://Level 2 Assets/GreyboxDesk/DeskGreyboxColission.tscn" id="3_t4ii8"]

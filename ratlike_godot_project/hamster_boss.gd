@@ -104,7 +104,7 @@ func _windup_state(delta):
 		
 	state_timer -= delta
 	if state_timer <= 0:
-		if attack_type > 0.5: # randf() 0.0 - 1.0
+		if attack_type > 1.0: # randf() 0.0 - 1.0
 			current_state = State.LUNGE
 			state_timer = lunge_duration
 			
@@ -159,7 +159,7 @@ func _lunge_state(delta):
 		state_timer = cooldown_duration
 		velocity = Vector3.ZERO 
 
-func _jump_attack_state(delta):
+func _jump_attack_state(delta):	
 	velocity.y -= gravity * gravity_multiplier * delta
 	
 	move_and_slide()
@@ -169,11 +169,12 @@ func _jump_attack_state(delta):
 	else:
 		_play_anim_safe("Ball Stun")
 	
-	if is_on_floor():
-		print("joefiajoiejfoiajeofi")
-		current_state = State.COOLDOWN
-		state_timer = cooldown_duration
-		velocity = Vector3.ZERO
+	await get_tree().create_timer(1.59).timeout
+	
+	print("joefiajoiejfoiajeofi")
+	current_state = State.COOLDOWN
+	state_timer = cooldown_duration
+	velocity = Vector3.ZERO
 
 func _cooldown_state(delta):
 	velocity = Vector3.ZERO
