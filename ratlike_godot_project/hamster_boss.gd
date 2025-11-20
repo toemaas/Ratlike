@@ -85,7 +85,11 @@ func _idle_state():
 
 	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 	
-	_play_anim_safe("Ball Walk") 
+	if has_ball:
+		_play_anim_safe("Ball Walk") 
+	else:
+		_play_anim_safe("No Ball Walk") 
+
 	
 	$Pivot.look_at(global_position + velocity, Vector3.UP)
 	move_and_slide()
@@ -95,9 +99,16 @@ func _windup_state(delta):
 	move_and_slide()
 	
 	if attack_type > 0.5:
-		_play_anim_safe("Ball Charging Up")
+		if has_ball:
+			_play_anim_safe("Ball Charging Up")
+		else:
+			_play_anim_safe("No Ball Charging Up")
 	else:
-		_play_anim_safe("Ball Charging Jump")
+		if has_ball:
+			_play_anim_safe("Ball Charging Jump")
+		else:
+			_play_anim_safe("No Ball Charging Jump")
+
 	
 	if player_target:
 		$Pivot.look_at(player_target.global_position, Vector3.UP)
@@ -151,7 +162,10 @@ func _lunge_state(delta):
 	velocity = lunge_speed * attack_direction
 	move_and_slide()
 	
-	_play_anim_safe("Ball Charge")
+	if has_ball:
+		_play_anim_safe("Ball Charge")
+	else:
+		_play_anim_safe("No Ball Charge")
 	
 	state_timer -= delta
 	if state_timer <= 0:
@@ -160,6 +174,7 @@ func _lunge_state(delta):
 		velocity = Vector3.ZERO 
 
 func _jump_attack_state(delta):	
+	print("CALLING JUMP ATTACK")
 	velocity.y -= gravity * gravity_multiplier * delta
 	
 	move_and_slide()
@@ -167,11 +182,13 @@ func _jump_attack_state(delta):
 	if velocity.y > 0:
 		_play_anim_safe("Ball Jump")
 	else:
-		_play_anim_safe("Ball Stun")
+		if has_ball:
+			_play_anim_safe("Ball Stun")
+		else:
+			_play_anim_safe("No Ball Stun")
 	
 	await get_tree().create_timer(1.59).timeout
 	
-	print("joefiajoiejfoiajeofi")
 	current_state = State.COOLDOWN
 	state_timer = cooldown_duration
 	velocity = Vector3.ZERO
@@ -180,7 +197,10 @@ func _cooldown_state(delta):
 	velocity = Vector3.ZERO
 	move_and_slide()
 	
-	_play_anim_safe("Ball Stun")
+	if has_ball:
+		_play_anim_safe("Ball Stun")
+	else:
+		_play_anim_safe("No Ball Stun")
 	
 	state_timer -= delta
 	if state_timer <= 0:

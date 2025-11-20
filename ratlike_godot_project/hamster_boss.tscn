@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dohgwrgykldjf" path="res://hamster_boss.gd" id="1_vgf4c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vgf4c"]
-size = Vector3(4.7147064, 5.5665627, 3.5498009)
+size = Vector3(3.101406, 3.189524, 5.614318)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vdvm"]
 resource_name = "Pink"
@@ -2352,7 +2352,7 @@ script = ExtResource("1_vgf4c")
 cooldown_duration = 2.0
 
 [node name="HamsterCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.07717648, 0.6151364, -1.1097336)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.030379683, -0.285406, -0.07747507)
 shape = SubResource("BoxShape3D_vgf4c")
 
 [node name="Pivot" type="Node3D" parent="."]
