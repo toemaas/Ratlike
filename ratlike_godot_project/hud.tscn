@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c14c4ncsogmd8"]
 
-[ext_resource type="Script" uid="uid://crhpt1x4xtao" path="res://hud.gd" id="1_8sq4i"]
+[ext_resource type="Script" path="res://hud.gd" id="1_8sq4i"]
 [ext_resource type="Script" uid="uid://dih34d03ynhw8" path="res://health_label.gd" id="1_37p78"]
 
 [sub_resource type="Gradient" id="Gradient_64ctp"]
@@ -57,11 +57,15 @@ text = "Cheese: 0
 "
 
 [node name="HealthLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 520.0
-offset_top = 616.0
-offset_right = 616.0
-offset_bottom = 640.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -39.0
+offset_right = 234.0
+offset_bottom = -15.0
+grow_vertical = 0
 script = ExtResource("1_37p78")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

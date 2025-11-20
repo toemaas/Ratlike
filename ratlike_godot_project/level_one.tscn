@@ -40,7 +40,7 @@ transform = Transform3D(1, 0, 0, 0, 0.270432, 0.962739, 0, -0.962739, 0.270432, 
 
 [node name="Rathole" parent="." instance=ExtResource("3_foyw7")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 37.15085, 40.9057, 11.577588)
-needed_cheese = 2
+needed_cheese = 5
 
 [node name="Cheese" type="Node3D" parent="."]
 
@@ -49,6 +49,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.991721, 24.9392, -0.814863
 
 [node name="Cheese 2" parent="Cheese" instance=ExtResource("5_xsnk2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4581, 8.44798, -27.7142)
+
+[node name="Cheese 3" parent="Cheese" instance=ExtResource("5_xsnk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.191149, 24.671343, 28.579233)
+
+[node name="Cheese 4" parent="Cheese" instance=ExtResource("5_xsnk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.763428, 33.42312, -25.836172)
+
+[node name="Cheese 5" parent="Cheese" instance=ExtResource("5_xsnk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.56969, -23.152779)
+
+[node name="Cheese 6" parent="Cheese" instance=ExtResource("5_xsnk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.10005, -0.33848846, -14.010427)
+
+[node name="Cheese 7" parent="Cheese" instance=ExtResource("5_xsnk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.281655, 48.224598, 29.011124)
 
 [node name="PowerUpChoice" parent="." instance=ExtResource("7_6t2mo")]
 visible = false
@@ -79,10 +94,6 @@ movement_speed = 15.0
 
 [node name="Powerups" type="Node3D" parent="."]
 
-[node name="Powerup2" parent="Powerups" instance=ExtResource("9_466b2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8108, 2.1333323, 11.532436)
-script = ExtResource("10_evv1w")
-
 [node name="Powerup" parent="Powerups" instance=ExtResource("9_466b2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9054, 11.7619, -27.5337)
 script = ExtResource("10_evv1w")
@@ -90,12 +101,15 @@ script = ExtResource("10_evv1w")
 [connection signal="jump_charge_changed" from="Player" to="Player/Hud" method="_on_player_jump_charge_changed"]
 [connection signal="cheese_collected" from="Cheese/Cheese 1" to="Player" method="collect_cheese"]
 [connection signal="cheese_collected" from="Cheese/Cheese 2" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese 3" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese 4" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese 5" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese 6" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese 7" to="Player" method="collect_cheese"]
 [connection signal="powerup_chosen" from="PowerUpChoice" to="Player" method="update_powers"]
 [connection signal="squashed" from="Node3D/Hamster" to="Player" method="squashed"]
 [connection signal="squashed" from="Node3D/Hamster2" to="Player" method="squashed"]
 [connection signal="squashed" from="Node3D/Hamster3" to="Player" method="squashed"]
 [connection signal="squashed" from="Node3D/Hamster4" to="Player" method="squashed"]
-[connection signal="body_entered" from="Powerups/Powerup2" to="Powerups/Powerup2" method="_on_body_entered"]
-[connection signal="powerup_obtained" from="Powerups/Powerup2" to="PowerUpChoice" method="_on_powerup_powerup_obtained"]
 [connection signal="body_entered" from="Powerups/Powerup" to="Powerups/Powerup" method="_on_body_entered"]
 [connection signal="powerup_obtained" from="Powerups/Powerup" to="PowerUpChoice" method="_on_powerup_powerup_obtained"]

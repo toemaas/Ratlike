@@ -388,5 +388,5 @@ func playAnimation():
 			animation_player.play("Going Down")
 
 
-func _on_audio_stream_player_3d_finished() -> void:
-	$AudioStreamPlayer3D.play()
+func _on_cheese_4_cheese_collected() -> void:
+	pass # Replace with function body.

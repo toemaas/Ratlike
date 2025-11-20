@@ -62,7 +62,11 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func squash():
-	squashed.emit(cheese)
+	if cheese:
+		squashed.emit(true)
+	else:
+		squashed.emit(false)
+	cheese = false
 	print("MOUSE SQUASHED")
 	#set_physics_process(false)
 	physicsDisabled = true

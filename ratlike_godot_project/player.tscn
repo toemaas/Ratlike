@@ -47,13 +47,13 @@ script = ExtResource("3_hqtel")
 [node name="CamPitch" type="Node3D" parent="CamRoot/CamYaw"]
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CamRoot/CamYaw/CamPitch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.655491, 0.859596)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.8461022, -0.14583457)
 shape = SubResource("SphereShape3D_sweqy")
 spring_length = 7.0
 margin = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="CamRoot/CamYaw/CamPitch/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 0.935684, 0.352838, 0, -0.352838, 0.935684, 0, 6.09558, 6.75458)
+transform = Transform3D(1, 0, 0, 0, 0.95156753, -0.30743948, 0, 0.30743948, 0.95156753, 0, 6.09558, 6.7545795)
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15282, 0)
