@@ -155,7 +155,7 @@ size = Vector3(75, 60, 1.4)
 size = Vector3(1.4, 60, 60)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fbea1"]
-size = Vector3(75, 60, 1.4)
+size = Vector3(75, 60, 1.2801147)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l3rbn"]
 size = Vector3(1.4, 60, 60)
@@ -565,6 +565,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.4, 30.3)
 transform = Transform3D(7500, 0, 0, 0, 6000, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Walls/Wall 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.059940338)
 shape = SubResource("BoxShape3D_fbea1")
 
 [node name="Wall 4" type="StaticBody3D" parent="Map/Walls"]

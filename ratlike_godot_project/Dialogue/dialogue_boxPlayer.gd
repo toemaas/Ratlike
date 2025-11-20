@@ -17,8 +17,6 @@ func start(cheese: bool):
 		return
 	GlobalVars.d_active = true
 	
-	await get_tree().create_timer(1.6).timeout
-	
 	$NinePatchRect.visible = true
 	#get_tree().paused = true
 	
