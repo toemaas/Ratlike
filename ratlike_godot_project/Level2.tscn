@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://g1u0hqc2jr2"]
+[gd_scene load_steps=18 format=3 uid="uid://g1u0hqc2jr2"]
 
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="1_7be1j"]
-[ext_resource type="Script" path="res://level2.gd" id="1_wwdpc"]
+[ext_resource type="Script" uid="uid://cdjql83hlw1dt" path="res://level2.gd" id="1_wwdpc"]
 [ext_resource type="PackedScene" uid="uid://bcyjnyknuw5se" path="res://Level 2 Assets/GreyboxTable/TableDraftCollission.tscn" id="2_v74eq"]
 [ext_resource type="PackedScene" uid="uid://c14c4ncsogmd8" path="res://hud.tscn" id="3_nc7oo"]
 [ext_resource type="PackedScene" uid="uid://rc73x8o5r8l7" path="res://Level 2 Assets/GreyboxDesk/DeskGreyboxColission.tscn" id="3_t4ii8"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://uud775qrqjh1" path="res://pause_menu.tscn" id="6_6faey"]
 [ext_resource type="PackedScene" uid="uid://baurs0gde82o3" path="res://power_up_choice.tscn" id="7_6faey"]
 [ext_resource type="PackedScene" uid="uid://bq1oxoqhnrbww" path="res://hamster_boss.tscn" id="9_6x3wt"]
+[ext_resource type="PackedScene" uid="uid://c5sulhcjpw1ms" path="res://cheese.tscn" id="10_46pvi"]
+[ext_resource type="PackedScene" uid="uid://driilhpt113id" path="res://teleporter.tscn" id="11_fvkd4"]
+[ext_resource type="PackedScene" uid="uid://qsrwr7mxbuuy" path="res://BasicRatHole.fbx" id="12_fvkd4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7be1j"]
 
@@ -348,4 +351,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.860127, 5.57376, 0)
 collision_mask = 0
 patrol_points = Array[Vector3]([Vector3(-20, 0, 0), Vector3(20, 0, 0)])
 
+[node name="Cheese" type="Node" parent="."]
+
+[node name="Cheese" parent="Cheese" instance=ExtResource("10_46pvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.555498, 7.3932905, -30.381618)
+
+[node name="Cheese2" parent="Cheese" instance=ExtResource("10_46pvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.519035, 16.882925, -10.947262)
+
+[node name="Cheese3" parent="Cheese" instance=ExtResource("10_46pvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.299225, 22.0589, -0.023880005)
+
+[node name="Cheese4" parent="Cheese" instance=ExtResource("10_46pvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.791693, 28.4687, 22.038105)
+
+[node name="Cheese5" parent="Cheese" instance=ExtResource("10_46pvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.133224, 39.7721, 24.529665)
+
+[node name="Rathole" parent="." instance=ExtResource("11_fvkd4")]
+transform = Transform3D(-0.015707368, 0, -0.9998766, 0, 1, 0, 0.9998766, 0, -0.015707368, 25.116732, 42.82816, 4.8752785)
+needed_cheese = 5
+
+[node name="BasicRatHole" parent="Rathole" instance=ExtResource("12_fvkd4")]
+transform = Transform3D(22.997164, 0, 0.36126846, 0, 23, 0, -0.36126846, 0, 22.997164, -0.03154421, -0.11695099, 0.2723465)
+
 [connection signal="jump_charge_changed" from="Player" to="Player/Hud" method="_on_player_jump_charge_changed"]
+[connection signal="cheese_collected" from="Cheese/Cheese" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese2" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese3" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese4" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese5" to="Player" method="collect_cheese"]

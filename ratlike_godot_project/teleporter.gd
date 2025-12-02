@@ -43,6 +43,7 @@ func _process(delta: float) -> void:
 			scene_manager.transition_to_scene(scene_manager.next_scene)
 			print("DEBUG: Transitioned to next scene")
 		else:
+			get_tree().quit()
 			print("DEBUG: next_scene is null")
 			
 func _on_body_entered(body):
