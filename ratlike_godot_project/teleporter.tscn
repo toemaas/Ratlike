@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://driilhpt113id"]
+[gd_scene load_steps=6 format=3 uid="uid://driilhpt113id"]
 
 [ext_resource type="Script" uid="uid://c8viv6fsxj1o6" path="res://teleporter.gd" id="1_eumkw"]
 [ext_resource type="PackedScene" uid="uid://gv8lu2mhn42n" path="res://Dialogue/dialogue_box.tscn" id="3_kk6yu"]
 [ext_resource type="PackedScene" uid="uid://blwsns1wa2teq" path="res://Rat Mafia.fbx" id="4_ahrse"]
+[ext_resource type="PackedScene" uid="uid://obc6a0m0a13h" path="res://Level 1 Assets/TexturedRatHoleReal.fbx" id="4_cpfq8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mvxmr"]
-size = Vector3(5, 5, 0.5)
+size = Vector3(5, 1.5864258, 0.024902344)
 
 [node name="RigidBody3D" type="Area3D"]
 collision_layer = 0
@@ -16,7 +17,7 @@ script = ExtResource("1_eumkw")
 transform = Transform3D(0.919456, -0.086073, 0.383657, -0.0274358, 0.959323, 0.280974, -0.392235, -0.268869, 0.879694, -0.051389, 1.80915, 4.35966)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.365117, 0, 0, 0, 1.23457, 0, 0, 0, 5.65784, 0, 2.72324, 1.46479)
+transform = Transform3D(0.365117, 0, 0, 0, 1.0892085, 0, 0, 0, 5.65784, 0, 0.9142632, 0.12077677)
 shape = SubResource("BoxShape3D_mvxmr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -25,5 +26,8 @@ shape = SubResource("BoxShape3D_mvxmr")
 
 [node name="RatMafia" parent="." instance=ExtResource("4_ahrse")]
 transform = Transform3D(-0.273315, 0, 29.9988, 0, 30, 0, -29.9988, 0, -0.273315, 0.0176355, -0.0631951, -1.19559)
+
+[node name="TexturedRatHoleReal" parent="." instance=ExtResource("4_cpfq8")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0.08146578, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

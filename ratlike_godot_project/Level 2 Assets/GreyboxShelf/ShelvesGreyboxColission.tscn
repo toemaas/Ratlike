@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://d053idmtyp03o"]
+[gd_scene load_steps=8 format=3 uid="uid://d053idmtyp03o"]
 
-[ext_resource type="PackedScene" uid="uid://btxsfklvq1mpb" path="res://Level2/GreyboxModels/GreyboxShelf/ShelvesDraft.fbx" id="1_tbws0"]
+[ext_resource type="PackedScene" uid="uid://b4mu1imek2doc" path="res://Level 2 Assets/GreyboxShelf/ShelvesTextured.glb" id="1_0wwce"]
+[ext_resource type="PackedScene" uid="uid://t2srkvhc3inl" path="res://Level 2 Assets/BookColission.tscn" id="2_loivs"]
+[ext_resource type="PackedScene" uid="uid://bscxv0w1hjqt3" path="res://Level 2 Assets/Cans/Can1/TexturedCan1.tscn" id="3_wbjj3"]
+[ext_resource type="PackedScene" uid="uid://cbi66rwjjlfak" path="res://Level 2 Assets/Cans/Can2/TexturedCan2.tscn" id="4_4c2nq"]
+[ext_resource type="PackedScene" uid="uid://nhh6bouk8y0h" path="res://Level 2 Assets/Cans/Can3/TexturedCan3.tscn" id="5_ggtox"]
+[ext_resource type="PackedScene" uid="uid://ugedqjqe3cpw" path="res://Level 2 Assets/TexturedBox/TexturedBoxColission.tscn" id="6_e13w2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbws0"]
 size = Vector3(2.83051, 0.193115, 5.55499)
 
 [node name="ShelvesGreyboxColission" type="StaticBody3D"]
-
-[node name="ShelvesDraft" parent="." instance=ExtResource("1_tbws0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.201503, 1.19209e-07, -3.42313)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.708221, 0.119751, -2.88412)
@@ -161,3 +163,145 @@ shape = SubResource("BoxShape3D_tbws0")
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 10.6711, 0, 0, 0, 0.0300406, 0.708221, 7.63661, -0.178453)
 shape = SubResource("BoxShape3D_tbws0")
+
+[node name="ShelvesTextured" parent="." instance=ExtResource("1_0wwce")]
+transform = Transform3D(-3.8891688e-08, 0, 1, 0, 1.014154, 0, -0.8897381, 0, -4.371139e-08, 6.810133, 0, 3.5357122)
+
+[node name="1L" type="Node" parent="."]
+
+[node name="1R" type="Node" parent="."]
+
+[node name="BookColission" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(4.2578677e-08, 0.97408664, 0.22617523, 1, -4.371139e-08, 0, 9.886435e-09, 0.22617523, -0.97408664, -0.1982243, 7.982964, -1.4039125)
+
+[node name="BookColission27" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(4.177769e-08, 0.9557622, -0.2941405, 1, -4.371139e-08, 0, -1.2857287e-08, -0.2941405, -0.9557622, -0.16746068, 7.982964, -4.1642227)
+
+[node name="BookColission2" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, 0, 1, 0, -0.9993581, 0, 0.03582398, 0.23505574, 0.2247878, 0.6896074)
+
+[node name="BookColission3" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.036036097, 0, 1.164429, 0, 0.8110314, 0, -1.0052755, 0, 0.04174127, 0.31566542, 0.2247878, 1.1720736)
+
+[node name="BookColission4" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.0655062, 0, 0.9696759, 0, 1.0447053, 0, -1.8273835, 0, 0.03475996, 0.23505574, 0.2247878, 1.9031689)
+
+[node name="BookColission5" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, -0.9993581, -4.371139e-08, 0.03582398, 4.368333e-08, -1, -1.5659158e-09, 0.23505574, 0.21973106, 4.3679237)
+
+[node name="BookColission26" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, -0.9993581, -2.9960642e-08, 0.03582398, 4.368333e-08, -0.6854196, -1.5659158e-09, 0.23505574, 5.296566, 5.4599657)
+
+[node name="BookColission28" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.036643244, 0, 1.6369164, -1.0222126, -2.9960642e-08, 0.058678523, 4.4682334e-08, -0.6854196, -2.5649198e-09, 0.5722973, 7.953886, 3.7220736)
+
+[node name="BookColission29" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.016836373, 9.9691814e-17, 0.9600435, -0.44798958, -0.26968816, 0.03282582, 0.14106148, -0.85648805, -0.010336087, 0.21676332, 8.38917, 2.56457)
+
+[node name="BookColission6" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.027825145, 0, 0.74217564, -0.7762199, -2.9890447e-08, 0.02660476, 3.392965e-08, -0.6838137, -1.162931e-09, 0.23505574, 0.57989943, 4.071889)
+
+[node name="BookColission7" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.0655062, 0, 0.9696759, 0, 1.0447053, 0, -1.8273835, 0, 0.03475996, 0.23505574, 0.2247878, 4.918741)
+
+[node name="BookColission8" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, 0, 1, 0, -0.9993581, 0, 0.03582398, 0.23505574, 0.2247878, -5.2392645)
+
+[node name="BookColission9" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, 0, 1, 0, -0.9993581, 0, 0.03582398, 0.44918174, 0.102948636, -4.766039)
+
+[node name="BookColission10" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, 0, 1, 0, -0.9993581, 0, 0.03582398, 0.23505574, -0.006035477, -4.2345405)
+
+[node name="BookColission11" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, 0.9993581, -4.371139e-08, -0.03582398, 4.368333e-08, 1, -1.5659158e-09, 0.23505574, 0.2247878, -3.9655256)
+
+[node name="BookColission12" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03555471, 0, 0.7898136, -0.16733745, 0.7546745, 0.004776677, -0.97762865, -0.12917513, 0.027906584, 0.44918174, 0.6520748, -3.5008023)
+
+[node name="BookColission30" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, 0, 1, 0, -0.9993581, 0, 0.03582398, 0.44918174, 10.248621, -3.1830275)
+
+[node name="BookColission31" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, 0, 1, 0, -0.9993581, 0, 0.03582398, 0.23505574, 10.139637, -2.651529)
+
+[node name="BookColission32" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, 0.9993581, -4.371139e-08, -0.03582398, 4.368333e-08, 1, -1.5659158e-09, 0.23505574, 10.3704605, -2.3825142)
+
+[node name="BookColission33" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03555471, 0, 0.7898136, -0.16733745, 0.7546745, 0.004776677, -0.97762865, -0.12917513, 0.027906584, 0.44918174, 10.797748, -1.9177909)
+
+[node name="BookColission13" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, 0, 1, 0, -0.9993581, 0, 0.03582398, 0.23505574, 2.6199965, 3.8411317)
+
+[node name="BookColission14" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.036036097, 0, 1.164429, 0, 0.8110314, 0, -1.0052755, 0, 0.04174127, 0.31566542, 2.6199965, 4.323598)
+
+[node name="BookColission15" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.0655062, 0, 0.9696759, 0, 1.0447053, 0, -1.8273835, 0, 0.03475996, 0.5655559, 2.6199965, 5.054693)
+
+[node name="BookColission16" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03582398, 0, 0.9993581, 0, 0.867309, 0, -0.9993581, 0, 0.03582398, 0.5211306, 2.6199965, 1.8867195)
+
+[node name="BookColission17" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.036036097, 0, 1.164429, 0, 0.7034148, 0, -1.0052755, 0, 0.04174127, 0.31566542, 2.6199965, 2.3691857)
+
+[node name="BookColission24" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.036036097, 0, 1.164429, 0, 0.7034148, 0, -1.0052755, 0, 0.04174127, 0.31566542, 5.215043, 1.9111345)
+
+[node name="BookColission25" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.036036097, 0, 1.164429, 0, 0.7034148, 0, -1.0052755, 0, 0.04174127, 0.31566542, 5.215043, 3.3910873)
+
+[node name="BookColission18" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.0655062, 0, 0.9696759, 0, 0.9060823, 0, -1.8273835, 0, 0.03475996, 0.23505574, 2.6199965, 3.100281)
+
+[node name="BookColission19" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.044680133, 0, 0.9909173, 0, 1, 0, -1.2464125, 0, 0.0355214, 0.23505574, 2.6199965, 0.7075402)
+
+[node name="BookColission20" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.04494469, 0, 1.154594, 0, 0.8110314, 0, -1.2537926, 0, 0.041388713, 0.31566542, 2.6199965, 1.3093584)
+
+[node name="TexturedCan1" parent="." instance=ExtResource("3_wbjj3")]
+transform = Transform3D(1.8512044, 0, 0, 0, 1.4709015, 0, 0, 0, 1.5482014, 1.4036674, 2.7450607, -2.1134133)
+
+[node name="TexturedCan2" parent="." instance=ExtResource("4_4c2nq")]
+transform = Transform3D(1.0842812, 0, 0, 0, 1.4306793, 0, 0, 0, 1, -0.06785256, 2.75155, -2.9460511)
+
+[node name="BookColission21" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.03275717, 0.3138959, 0.8582503, 0.99744457, -3.422977e-08, -0.033581644, -0.01433232, 0.71742105, -0.3755135, 0.6776146, 2.8932958, -4.027895)
+
+[node name="BookColission22" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.9183825, -0.11229771, -0.37942454, 0.11962681, 0.99280965, -0.0042882604, 0.37717786, -0.04145108, 0.92521274, 0.04474646, 2.7505784, -4.731745)
+
+[node name="BookColission23" parent="." instance=ExtResource("2_loivs")]
+transform = Transform3D(0.025281845, 0.70848763, 0.70527023, 0.9993581, -4.371139e-08, -0.03582398, -0.025380814, 0.7057232, -0.70803285, -0.18554014, 5.3891335, -3.8711896)
+
+[node name="TexturedCan3" parent="." instance=ExtResource("5_ggtox")]
+transform = Transform3D(1.2770708, 0, -1.2541566, 0, 0.3516158, 0, 1.3444353, 0, 1.1913155, 0.041262925, 5.2645683, -1.9102763)
+
+[node name="TexturedCan6" parent="." instance=ExtResource("5_ggtox")]
+transform = Transform3D(1.7887548, 0, -0.45583096, 0, 0.3516158, 0, 0.48864332, 0, 1.6686401, 1.4813249, 5.2645683, -0.7855822)
+
+[node name="TexturedCan9" parent="." instance=ExtResource("5_ggtox")]
+transform = Transform3D(1.7887548, 0, -0.45583096, 0, 0.3516158, 0, 0.48864332, 0, 1.6686401, 0.13693714, 7.794401, 5.047819)
+
+[node name="TexturedCan10" parent="." instance=ExtResource("5_ggtox")]
+transform = Transform3D(1.7887547, 0, -0.45583093, 0.24390052, 0.3046829, 0.8328819, 0.42342028, -0.17550485, 1.4459139, 0.13693714, 7.9482365, 4.45273)
+
+[node name="TexturedCan4" parent="." instance=ExtResource("5_ggtox")]
+transform = Transform3D(1.8542967, 0, 0, 0, 0.35161582, 0, 0, 0, 1.7297808, 0.10355502, 5.572368, -1.9599987)
+
+[node name="TexturedCan5" parent="." instance=ExtResource("5_ggtox")]
+transform = Transform3D(1.682419, 0, 0.7273137, 0, 0.3516158, 0, -0.7796684, 0, 1.5694447, 0.10355502, 5.8815055, -1.9092247)
+
+[node name="TexturedCan7" parent="." instance=ExtResource("3_wbjj3")]
+transform = Transform3D(2.2136986, 0, 0, 0, 2.1710835, 0, 0, 0, 1.7322906, 1.5710676, 5.26662, 1.3820791)
+
+[node name="TexturedCan8" parent="." instance=ExtResource("3_wbjj3")]
+transform = Transform3D(-1.0205612, 0, -1.5372162, 0, 2.1710835, 0, 1.9644125, 0, -0.7986221, 1.5710676, 5.26662, 3.8251164)
+
+[node name="TexturedBoxColission" parent="." instance=ExtResource("6_e13w2")]
+transform = Transform3D(1.6780102, 0, -0.33684245, 0, 0.45509076, 0, 0.4208333, 0, 1.3431094, 0.49925452, 10.168037, 4.681249)
+
+[node name="TexturedBoxColission2" parent="." instance=ExtResource("6_e13w2")]
+transform = Transform3D(0.73982567, 0, 0.005711496, 0, 0.5992785, 0, -0.007076174, 0, 0.5971421, 0.11658639, 10.95685, 5.0032535)

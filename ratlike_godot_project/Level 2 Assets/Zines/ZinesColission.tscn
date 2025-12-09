@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c82e2cd0x1noc"]
+
+[ext_resource type="PackedScene" uid="uid://4odgsgglug2x" path="res://Level 1 Assets/TexturedMagazinePile.fbx" id="1_ftwuk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_by7d5"]
+size = Vector3(1.7390137, 1.1414795, 1.4333801)
+
+[node name="ZinesColission" type="StaticBody3D"]
+
+[node name="TexturedMagazinePile" parent="." instance=ExtResource("1_ftwuk")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02355957, 0.070739746, 0.002609253)
+shape = SubResource("BoxShape3D_by7d5")

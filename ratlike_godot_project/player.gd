@@ -386,7 +386,3 @@ func playAnimation():
 			animation_player.play("Going Up")
 		else:
 			animation_player.play("Going Down")
-
-
-func _on_cheese_4_cheese_collected() -> void:
-	pass # Replace with function body.

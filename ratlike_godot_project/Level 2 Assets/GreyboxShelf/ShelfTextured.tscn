@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk2cef7kr75es"]
+
+[ext_resource type="PackedScene" uid="uid://bicd4pdbe6n0e" path="res://Level 2 Assets/GreyboxShelf/TexturedShelf.fbx" id="1_vd7qa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n7jug"]
+size = Vector3(4.248535, 0.09680176, 0.8936157)
+
+[node name="ShelfTextured" type="StaticBody3D"]
+
+[node name="TexturedShelf" parent="." instance=ExtResource("1_vd7qa")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0.0065472126, 0, 0.43457013)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0061035156, 0.0004272461, 0.43417358)
+shape = SubResource("BoxShape3D_n7jug")

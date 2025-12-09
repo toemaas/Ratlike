@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ugedqjqe3cpw"]
+
+[ext_resource type="PackedScene" uid="uid://bskgcjaqbyxdb" path="res://Level 2 Assets/TexturedBox/TexturedBoxTest2.fbx" id="1_wjony"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2udjy"]
+size = Vector3(1.2028809, 1.5986023, 1.2023926)
+
+[node name="TexturedBoxColission" type="StaticBody3D"]
+
+[node name="TexturedBoxTest2" parent="." instance=ExtResource("1_wjony")]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -0.004448414, 0.7963195, -0.00814271)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004272461, 0.7995315, -0.00793457)
+shape = SubResource("BoxShape3D_2udjy")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://nhh6bouk8y0h"]
+
+[ext_resource type="PackedScene" uid="uid://t3hrq2udmnnx" path="res://Level 1 Assets/TexturedCan1Real.fbx" id="1_2brsh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_h1o2j"]
+height = 0.8522949
+radius = 0.21923828
+
+[node name="TexturedCan3" type="StaticBody3D"]
+
+[node name="TexturedCan1Real" parent="." instance=ExtResource("1_2brsh")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -0.020267576, 0.41410363, -0.012004256)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016553432, 0.4119873, 0)
+shape = SubResource("CylinderShape3D_h1o2j")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://g1u0hqc2jr2"]
+[gd_scene load_steps=23 format=3 uid="uid://g1u0hqc2jr2"]
 
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="1_7be1j"]
 [ext_resource type="Script" uid="uid://cdjql83hlw1dt" path="res://level2.gd" id="1_wwdpc"]
@@ -10,149 +10,28 @@
 [ext_resource type="PackedScene" uid="uid://baurs0gde82o3" path="res://power_up_choice.tscn" id="7_6faey"]
 [ext_resource type="PackedScene" uid="uid://bq1oxoqhnrbww" path="res://hamster_boss.tscn" id="9_6x3wt"]
 [ext_resource type="PackedScene" uid="uid://c5sulhcjpw1ms" path="res://cheese.tscn" id="10_46pvi"]
+[ext_resource type="PackedScene" uid="uid://ugedqjqe3cpw" path="res://Level 2 Assets/TexturedBox/TexturedBoxColission.tscn" id="11_8tfmj"]
 [ext_resource type="PackedScene" uid="uid://driilhpt113id" path="res://teleporter.tscn" id="11_fvkd4"]
-[ext_resource type="PackedScene" uid="uid://qsrwr7mxbuuy" path="res://BasicRatHole.fbx" id="12_fvkd4"]
+[ext_resource type="PackedScene" uid="uid://bk2cef7kr75es" path="res://Level 2 Assets/GreyboxShelf/ShelfTextured.tscn" id="13_pj4lr"]
+[ext_resource type="PackedScene" uid="uid://dkbfxaoki4hjh" path="res://Level 2 Assets/Chair/CharColission.tscn" id="14_jw1dd"]
+[ext_resource type="PackedScene" uid="uid://obc6a0m0a13h" path="res://Level 1 Assets/TexturedRatHoleReal.fbx" id="16_0xt02"]
+[ext_resource type="PackedScene" uid="uid://cxtpxwcd7226l" path="res://Level 2 Assets/Room2/RoomTwo.tscn" id="16_jw1dd"]
+[ext_resource type="PackedScene" uid="uid://bscxv0w1hjqt3" path="res://Level 2 Assets/Cans/Can1/TexturedCan1.tscn" id="17_0rx21"]
+[ext_resource type="PackedScene" uid="uid://cbi66rwjjlfak" path="res://Level 2 Assets/Cans/Can2/TexturedCan2.tscn" id="18_nqrl8"]
+[ext_resource type="PackedScene" uid="uid://nhh6bouk8y0h" path="res://Level 2 Assets/Cans/Can3/TexturedCan3.tscn" id="19_fx3gb"]
+[ext_resource type="PackedScene" uid="uid://t2srkvhc3inl" path="res://Level 2 Assets/BookColission.tscn" id="20_mgfd6"]
+[ext_resource type="PackedScene" uid="uid://c82e2cd0x1noc" path="res://Level 2 Assets/Zines/ZinesColission.tscn" id="21_a454t"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7be1j"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_7be1j"]
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_nc7oo"]
-vertices = PackedVector3Array(-74.5, 0.5, -74.5, -74.5, 0.5, 74.5, 74.5, 0.5, 74.5, 74.5, 0.5, -74.5)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
-
-[sub_resource type="BoxMesh" id="BoxMesh_v74eq"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_t4ii8"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_jw1dd"]
+size = Vector3(0.08734131, 0.08761597, 0.02420044)
 
 [node name="Level2" type="Node3D"]
 script = ExtResource("1_wwdpc")
 
 [node name="Player" parent="." instance=ExtResource("1_7be1j")]
-transform = Transform3D(0.999992, -0.00389094, 0.000596775, 0.00389253, 0.999989, -0.00268346, -0.000586351, 0.00268575, 0.999996, 23.8022, 2.31824, 23.7401)
+transform = Transform3D(0.999992, -0.00389094, 0.000596775, 0.00389253, 0.999989, -0.00268346, -0.000586351, 0.00268575, 0.999996, 21.93831, -0.057421207, 18.920494)
 
 [node name="Hud" parent="Player" instance=ExtResource("3_nc7oo")]
-
-[node name="Room" type="Node" parent="."]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Room"]
-transform = Transform3D(25.3517, 0, 0, 0, 2.95845, 0, 0, 0, 26.3868, 0, 0, 0)
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D"]
-transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
-shape = SubResource("BoxShape3D_7be1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D"]
-mesh = SubResource("PlaneMesh_7be1j")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="Room"]
-transform = Transform3D(38.5493, 0, 0, 0, 2.95845, 0, 0, 0, 26.3868, -13.0512, 0, -28.4485)
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D2"]
-transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
-shape = SubResource("BoxShape3D_7be1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D2"]
-mesh = SubResource("PlaneMesh_7be1j")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="Room"]
-transform = Transform3D(13.0868, 0, -13.5635, 0, 2.95845, 0, 14.2035, 0, 12.4972, -24.9603, 0, -0.207024)
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D3"]
-transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
-shape = SubResource("BoxShape3D_7be1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D3"]
-mesh = SubResource("PlaneMesh_7be1j")
-
-[node name="StaticBody3D4" type="StaticBody3D" parent="Room"]
-transform = Transform3D(17.0339, 0, 0, 0, 2.95845, 0, 0, 0, 15.2575, -34.5855, -1.90735e-06, -68.7734)
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D4"]
-transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
-shape = SubResource("BoxShape3D_7be1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D4"]
-mesh = SubResource("PlaneMesh_7be1j")
-
-[node name="StaticBody3D5" type="StaticBody3D" parent="Room"]
-transform = Transform3D(-1.24367e-06, 2.95994, 0, -28.4519, -1.29383e-07, 0, 0, 0, 40.5357, -51.6085, 20.8807, -42.9061)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D5"]
-transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
-shape = SubResource("BoxShape3D_7be1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D5"]
-mesh = SubResource("PlaneMesh_7be1j")
-
-[node name="StaticBody3D6" type="StaticBody3D" parent="Room"]
-transform = Transform3D(5.43627e-14, -1.29383e-07, -17.4924, -28.4519, -1.29383e-07, 0, -1.24367e-06, 2.95994, -7.64619e-07, -34.9425, 20.8807, -83.3107)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D6"]
-transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
-shape = SubResource("BoxShape3D_7be1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D6"]
-mesh = SubResource("PlaneMesh_7be1j")
-
-[node name="StaticBody3D7" type="StaticBody3D" parent="Room"]
-transform = Transform3D(1.24367e-06, -2.95994, -1.31618e-06, -28.4519, -1.29383e-07, 0, -1.08725e-13, 2.58766e-07, -15.0554, -17.5842, 20.8807, -69.9409)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D7"]
-transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
-shape = SubResource("BoxShape3D_7be1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D7"]
-mesh = SubResource("PlaneMesh_7be1j")
-
-[node name="StaticBody3D8" type="StaticBody3D" parent="Room"]
-transform = Transform3D(5.43627e-14, -1.29383e-07, -21.4267, -28.4519, -1.29383e-07, 0, -1.24367e-06, 2.95994, -9.3659e-07, 3.88984, 20.849, -54.9087)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D8"]
-transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
-shape = SubResource("BoxShape3D_7be1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D8"]
-mesh = SubResource("PlaneMesh_7be1j")
-
-[node name="StaticBody3D9" type="StaticBody3D" parent="Room"]
-transform = Transform3D(5.43627e-14, -1.29383e-07, 25.3623, -28.4519, -1.29383e-07, 0, 1.24367e-06, -2.95994, -1.10862e-06, -0.161778, 20.849, 26.358)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D9"]
-transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
-shape = SubResource("BoxShape3D_7be1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D9"]
-mesh = SubResource("PlaneMesh_7be1j")
-
-[node name="StaticBody3D10" type="StaticBody3D" parent="Room"]
-transform = Transform3D(-1.24367e-06, -2.95994, 0, 28.4519, -1.29383e-07, 0, 0, 0, 40.5357, 24.8332, 20.8807, -14.4241)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D10"]
-transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
-shape = SubResource("BoxShape3D_7be1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D10"]
-mesh = SubResource("PlaneMesh_7be1j")
-
-[node name="StaticBody3D11" type="StaticBody3D" parent="Room"]
-transform = Transform3D(5.66214e-14, 2.18854, 13.3311, -28.4519, -8.71116e-08, 6.39929e-07, 1.24367e-06, -1.99288, 14.6399, -38.4001, 20.849, 11.6713)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D11"]
-transform = Transform3D(1.96771, 0, 0, 0, 0.251802, 0, 0, 0, 1.98339, 0.0151463, -0.12143, 0.00487757)
-shape = SubResource("BoxShape3D_7be1j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D11"]
-mesh = SubResource("PlaneMesh_7be1j")
-skeleton = NodePath("../../StaticBody3D11")
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Room"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-navigation_mesh = SubResource("NavigationMesh_nc7oo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.90166694, 0.27106142, -0.336931, -0.41219297, 0.7743142, -0.48014006, 0.130743, 0.57180697, 0.8099031, 0, 25.569859, 0)
@@ -162,184 +41,58 @@ transform = Transform3D(-0.987595, -0.000698298, 0.157018, -0.000549307, 0.99999
 
 [node name="Room Objects" type="Node" parent="."]
 
-[node name="DoorFrame" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(1.69188, 0, 0, 0, 35.3215, 0, 0, 0, 1.15262, 24.1996, 16.7178, -24.7434)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/DoorFrame"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/DoorFrame"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="Door" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(1, 0, 0, 0, 34.1694, 0, 0, 0, 20.8145, 24.6636, 17.2428, -35.7807)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Door"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Door"]
-shape = SubResource("BoxShape3D_t4ii8")
-
 [node name="DeskGreyboxColission" parent="Room Objects" instance=ExtResource("3_t4ii8")]
-transform = Transform3D(-2.85497e-07, 0, -7.04242, 0, 4.71191, 0, 6.53141, 0, -3.07834e-07, -34.3548, 0.166014, -70.246)
+transform = Transform3D(-2.85497e-07, 0, -6.3404884, 0, 4.71191, 0, 6.53141, 0, -2.771516e-07, -35.585094, 0.7708753, -69.90349)
 
 [node name="TableDraftCollission" parent="Room Objects" instance=ExtResource("2_v74eq")]
-transform = Transform3D(8.45631, 0, 0, 0, 8.45631, 0, 0, 0, 8.45631, -47.7786, -0.00967614, -24.1772)
-
-[node name="Entry Ledge" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(6.22815, 0, -2.26995, 0, 6.13389, 0, 1.41214, 0, 10.0114, 13.8172, 3.12724, 20.4983)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Entry Ledge"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Entry Ledge"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="Entry Ledge4" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(2.86759, 0, 0.264559, 0, 3.17927, 0, -0.26824, 0, 2.82824, 18.2864, 1.66132, 24.4235)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Entry Ledge4"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Entry Ledge4"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="Entry Ledge2" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(38.9135, 0, 0, 0, 1, 0, 0, 0, 4.74209, 1.18123, 39.2721, 25.4084)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Entry Ledge2"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Entry Ledge2"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="Entry Ledge3" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(2.93058, 0, 0, 0, 0.717727, 0, 0, 0, 14.8029, 23.6944, 42.4061, 10.0033)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Entry Ledge3"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Entry Ledge3"]
-shape = SubResource("BoxShape3D_t4ii8")
+transform = Transform3D(8.45631, 0, 0, 0, 8.45631, 0, 0, 0, 8.45631, -45.329906, -0.00967614, -24.161201)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Room Objects"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/StaticBody3D"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/StaticBody3D"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="Chairr" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(6.88179, 0, 2.24622, 0, 7.89192, 0, -2.1045, 0, 7.34521, -31.1723, 3.44733, -31.2305)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Chairr"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Chairr"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="Room Objects/Chairr"]
-transform = Transform3D(0.293124, 0, 0, 0, 1.80613, 0, 0, 0, 1.03517, 0.522687, 0.422613, -0.0116653)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Chairr/StaticBody3D2"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Chairr/StaticBody3D2"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="ShelfBottom" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(2.30615, 0, 18.6869, 0, 1, 0, -2.03623, 0, 21.1641, -38.2711, 21.5589, 9.1155)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/ShelfBottom"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/ShelfBottom"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="ShelfTop" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(2.30615, 0, 18.6869, 0, 1, 0, -2.03623, 0, 21.1641, -38.2711, 33.6988, 9.1155)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/ShelfTop"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/ShelfTop"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="ShelfMiddle" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(2.30615, 0, 18.6869, 0, 1, 0, -2.03623, 0, 21.1641, -34.8714, 27.9687, 12.9659)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/ShelfMiddle"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/ShelfMiddle"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="Box1" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(17.0352, 0, 0.121068, 0, 5.22783, 0, -0.394616, 0, 5.22642, 16.0614, 2.68768, -51.2106)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Box1"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Box1"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="Box2" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(4.82794, 0, -0.247543, 0, 9.69538, 0, 0.291907, 0, 4.0942, 4.72114, 4.90856, -51.2106)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Box2"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Box2"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="Box3" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(4.80282, 0, 0.485086, 0, 6.7322, 0, -0.572021, 0, 4.07289, 21.2419, 8.7925, -51.2106)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Box3"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Box3"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="Box4" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(8.53325, 0, -0.292466, 0, 1.10782, 0, 0.494116, 0, 5.0508, 19.5084, 12.8609, -51.2106)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Box4"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Box4"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="Box5" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(9.52674, 0, 0.473872, 0, 20.0994, 0, -0.532794, 0, 8.47317, -2.7476, 10.0436, -50.1323)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/Box5"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/Box5"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="DoorFrame2" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(1.69188, 0, 0, 0, 35.3215, 0, 0, 0, 1.15262, 24.1996, 16.7178, -46.425)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/DoorFrame2"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/DoorFrame2"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="DoorFrame3" type="StaticBody3D" parent="Room Objects"]
-transform = Transform3D(1.69188, 0, 0, 0, 1.02661, 0, 0, 0, 22.8465, 24.1996, 34.79, -35.4955)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room Objects/DoorFrame3"]
-mesh = SubResource("BoxMesh_v74eq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room Objects/DoorFrame3"]
-shape = SubResource("BoxShape3D_t4ii8")
-
-[node name="ShelvesGreyboxColission" parent="." instance=ExtResource("4_64jee")]
+[node name="ShelvesGreyboxColission" parent="Room Objects" instance=ExtResource("4_64jee")]
 transform = Transform3D(-2.68927, 0, 0.0519901, 0, 2.45799, 0, -0.0469416, 0, -2.9785, 22.5479, 0.0132272, -1.10192)
+
+[node name="TexturedBoxColission" parent="Room Objects" instance=ExtResource("11_8tfmj")]
+transform = Transform3D(3.3018837, 0, 3.9817684, 0, 3.7443607, 0, -7.34531, 0, 1.7898953, 12.672524, 0, 19.49871)
+
+[node name="TexturedBoxColission2" parent="Room Objects" instance=ExtResource("11_8tfmj")]
+transform = Transform3D(0.8580746, 0, 2.13594, 0, 1.9698385, 0, -3.2754424, 0, 0.5595567, 16.236002, -9.5367426e-07, 22.273026)
+
+[node name="TexturedBoxColission3" parent="Room Objects" instance=ExtResource("11_8tfmj")]
+transform = Transform3D(8.895747, 0, 0.81029695, 0, 12.59293, 0, -0.9535078, 0, 7.559663, -5.153751, 0.016907692, -52.53779)
+
+[node name="TexturedBoxColission4" parent="Room Objects" instance=ExtResource("11_8tfmj")]
+transform = Transform3D(4.403029, 0, -0.35247052, 0, 6.091226, 0, 0.3584363, 0, 4.3297453, 3.9765506, 0.016908646, -53.992287)
+
+[node name="TexturedBoxColission5" parent="Room Objects" instance=ExtResource("11_8tfmj")]
+transform = Transform3D(3.2701113, 0, 1.3398937, 0, 4.36779, 0, -1.9217095, 0, 2.280054, 19.630846, 5.331933, -51.687458)
+
+[node name="TexturedBoxColission6" parent="Room Objects" instance=ExtResource("11_8tfmj")]
+transform = Transform3D(6.4095464, 0, 0.78544766, 0, 0.6987847, 0, -1.270984, 0, 3.9609966, 19.88436, 12.337957, -52.787884)
+
+[node name="TexturedBoxColission7" parent="Room Objects" instance=ExtResource("11_8tfmj")]
+transform = Transform3D(12.991897, -0.8977467, -2.9802312e-08, -1.1405388e-07, -1.2986918e-07, -4.344068, 3.811899, 3.0597432, -1.8812716e-07, 17.325125, 2.6721468, -54.85625)
+
+[node name="CharColission" parent="Room Objects" instance=ExtResource("14_jw1dd")]
+transform = Transform3D(1.037434, 0, -3.8631244, 0, 4.0345144, 0, 3.8631244, 0, 1.037434, -30.19782, 0.026752472, -31.2249)
+
+[node name="ShelfTextured" parent="Room Objects" instance=ExtResource("13_pj4lr")]
+transform = Transform3D(-4.284857, 0, 2.8440795, 0, 4.6549363, 0, -4.6617074, 0, -2.6141653, -35.837795, 21.842594, 7.2606845)
+
+[node name="ShelfTextured3" parent="Room Objects" instance=ExtResource("13_pj4lr")]
+transform = Transform3D(-4.284857, 0, 2.8440795, 0, 4.6549363, 0, -4.6617074, 0, -2.6141653, -35.837795, 34.00008, 7.2606845)
+
+[node name="ShelfTextured4" parent="Room Objects" instance=ExtResource("13_pj4lr")]
+transform = Transform3D(-9.0769825, 0, -3.3771283e-07, 0, 4.6549363, 0, 7.9353504e-07, 0, -3.8629844, 1.2239202, 39.558613, 25.617867)
+
+[node name="ShelfTextured5" parent="Room Objects" instance=ExtResource("13_pj4lr")]
+transform = Transform3D(4.76121e-07, 0, -3.4183779, 0, 4.6549363, 0, 3.6307929, 0, 4.4826612e-07, 24.926521, 42.536324, 9.9519615)
+
+[node name="ShelfTextured2" parent="Room Objects" instance=ExtResource("13_pj4lr")]
+transform = Transform3D(-4.284857, 0, 2.8440795, 0, 4.6549363, 0, -4.6617074, 0, -2.6141653, -32.06266, 28.314072, 11.644606)
+
+[node name="RoomTwo" parent="Room Objects" instance=ExtResource("16_jw1dd")]
+transform = Transform3D(-1.2911775e-07, 0, -2.7035034, 0, 2.8000002, 0, 2.9538698, 0, -1.1817389e-07, 3.8705173, 0.116831064, -18.916378)
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_6faey")]
 
@@ -347,33 +100,124 @@ transform = Transform3D(-2.68927, 0, 0.0519901, 0, 2.45799, 0, -0.0469416, 0, -2
 visible = false
 
 [node name="HamsterBoss" parent="." instance=ExtResource("9_6x3wt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.860127, 5.57376, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.860127, 1.9283872, 0)
 collision_mask = 0
 patrol_points = Array[Vector3]([Vector3(-20, 0, 0), Vector3(20, 0, 0)])
 
 [node name="Cheese" type="Node" parent="."]
 
 [node name="Cheese" parent="Cheese" instance=ExtResource("10_46pvi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.555498, 7.3932905, -30.381618)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.555498, 7.030588, -30.381618)
 
 [node name="Cheese2" parent="Cheese" instance=ExtResource("10_46pvi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.519035, 16.882925, -10.947262)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.061337, 6.148948, -11.226019)
 
 [node name="Cheese3" parent="Cheese" instance=ExtResource("10_46pvi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.299225, 22.0589, -0.023880005)
 
 [node name="Cheese4" parent="Cheese" instance=ExtResource("10_46pvi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.791693, 28.4687, 22.038105)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.989883, 24.097532, -81.86055)
 
 [node name="Cheese5" parent="Cheese" instance=ExtResource("10_46pvi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.133224, 39.7721, 24.529665)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.427937, 34.263393, -2.475655)
+
+[node name="Cheese6" parent="Cheese" instance=ExtResource("10_46pvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.087927, 19.090698, 6.597471)
+
+[node name="Cheese7" parent="Cheese" instance=ExtResource("10_46pvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.284267, 33.028767, -44.822212)
+
+[node name="Cheese8" parent="Cheese" instance=ExtResource("10_46pvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.355808, 0.06288719, -55.6231)
+
+[node name="Cheese9" parent="Cheese" instance=ExtResource("10_46pvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.44182, 4.7698445, -82.501274)
+
+[node name="Cheese10" parent="Cheese" instance=ExtResource("10_46pvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.695126, 15.081248, -23.14412)
 
 [node name="Rathole" parent="." instance=ExtResource("11_fvkd4")]
-transform = Transform3D(-0.015707368, 0, -0.9998766, 0, 1, 0, 0.9998766, 0, -0.015707368, 25.116732, 42.82816, 4.8752785)
+transform = Transform3D(-0.015707368, 0, -0.9998766, 0, 1, 0, 0.9998766, 0, -0.015707368, 24.741756, 42.708702, 4.8693876)
 needed_cheese = 5
 
-[node name="BasicRatHole" parent="Rathole" instance=ExtResource("12_fvkd4")]
-transform = Transform3D(22.997164, 0, 0.36126846, 0, 23, 0, -0.36126846, 0, 22.997164, -0.03154421, -0.11695099, 0.2723465)
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 56.931686, 21.953678, 0.17712033, 25.104134)
+
+[node name="TexturedRatHoleReal" parent="StaticBody3D" instance=ExtResource("16_0xt02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99992216, 0.00039672852, 0.039321892, 0.0022182763)
+shape = SubResource("BoxShape3D_jw1dd")
+
+[node name="TexturedCan1" parent="." instance=ExtResource("17_0rx21")]
+transform = Transform3D(3.6969433, 0, 0, 0, 3, 0, 0, 0, 3.6662543, -38.596012, 22.078331, 3.5721703)
+
+[node name="TexturedCan9" parent="." instance=ExtResource("17_0rx21")]
+transform = Transform3D(0.0621335, 0, -3.6657364, 0, 3, 0, 3.6964211, 0, 0.061617717, -28.284367, 28.596327, 12.351232)
+
+[node name="TexturedCan2" parent="." instance=ExtResource("18_nqrl8")]
+transform = Transform3D(-0.31599385, 0, 3.987499, 0, 2.8531992, 0, -3.987499, 0, -0.31599385, -36.221558, 22.084822, 4.342931)
+
+[node name="TexturedCan4" parent="." instance=ExtResource("18_nqrl8")]
+transform = Transform3D(-3.8819418, 0, -0.96463877, 0, 1.1156665, 0, 0.96463877, 0, -3.8819418, -28.869843, 22.084822, 13.106512)
+
+[node name="TexturedCan7" parent="." instance=ExtResource("18_nqrl8")]
+transform = Transform3D(-3.8819418, 0, -0.96463877, 0, 1.1156665, 0, 0.96463877, 0, -3.8819418, -38.558743, 28.300014, 3.701149)
+
+[node name="TexturedCan3" parent="." instance=ExtResource("19_fx3gb")]
+transform = Transform3D(2.5845525, 0, -2.3601034, 0, 3.5, 0, 2.3601034, 0, 2.5845525, -35.30389, 22.076279, 6.599182)
+
+[node name="TexturedCan8" parent="." instance=ExtResource("19_fx3gb")]
+transform = Transform3D(-0.34378946, 0, -3.4830747, 0, 3.5, 0, 3.4830747, 0, -0.34378946, -33.14384, 28.600887, 9.346433)
+
+[node name="BookColission" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(-1.4956932, 0, 1.2790358, 0, 1.7982204, 0, -1.5444602, 0, -1.2386496, -33.77097, 22.078367, 7.497142)
+
+[node name="BookColission2" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(-1.4042313, 0, 1.1445355, 0, 1.5732248, 0, -1.4500163, 0, -1.1083963, -33.45357, 22.078367, 8.618832)
+
+[node name="BookColission7" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(-1.4956932, 0, 1.2790358, 0, 1.7982204, 0, -1.5444602, 0, -1.2386496, -33.77097, 34.25475, 7.497142)
+
+[node name="BookColission11" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(-1.4956932, 0, 1.2790358, 0, 1.7982204, 0, -1.5444602, 0, -1.2386496, -36.028355, 34.25475, 5.1661534)
+
+[node name="BookColission12" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(-1.1195236e-07, -1.2509762, 1.2790359, -2.0191078, -7.860271e-08, 0, 1.1195236e-07, -1.2917644, -1.2386496, -36.53826, 34.634483, 4.639621)
+
+[node name="BookColission8" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(-1.4042313, 0, 1.1445355, 0, 1.5732248, 0, -1.4500163, 0, -1.1083963, -33.45357, 34.242725, 8.618832)
+
+[node name="BookColission9" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(-1.4956932, 0, 1.2790358, 0, 1.5253016, 0, -1.5444602, 0, -1.2386496, -35.294796, 34.25475, 5.9236293)
+
+[node name="BookColission10" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(-1.4042313, 0, 1.1445355, 0, 1.3344539, 0, -1.4500163, 0, -1.1083963, -34.884216, 34.242725, 7.1415396)
+
+[node name="BookColission3" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(-5.9604645e-08, 1.475434, -0.64314353, -2.0185175, -9.5158896e-08, 7.8360344e-08, 5.9604645e-08, 0.5460138, 1.737897, -32.669113, 22.568771, 9.461258)
+
+[node name="BookColission6" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(1.9076319e-07, -0.6010828, -1.712496, 1.6655707, 1.2589197e-07, 1.9328111e-07, -1.2219213e-08, -1.4538691, 0.7080088, -22.52844, 28.930851, 19.56617)
+
+[node name="BookColission4" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(-9.937976e-08, -2.12781, -0.62200963, 2.2735438, -9.300953e-08, -2.7188904e-08, 0, -0.53557456, 2.4712121, -5.590588, 20.637548, -53.45544)
+
+[node name="BookColission5" parent="." instance=ExtResource("20_mgfd6")]
+transform = Transform3D(-8.066335e-08, -1.0564568, -0.899827, 1.8453622, -4.6179196e-08, -3.9332683e-08, 0, -0.7058753, 1.346737, -6.6106267, 21.419893, -53.564507)
+
+[node name="TexturedCan5" parent="." instance=ExtResource("17_0rx21")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 22.40447, 13.463641, -52.2591)
+
+[node name="ZinesColission" parent="." instance=ExtResource("21_a454t")]
+transform = Transform3D(4.1015806, 0, -0.58782303, 0, 2.3642612, 0, 0.57497966, 0, 4.1931977, -36.069614, 0.24218036, 0.6964997)
+
+[node name="TexturedBoxColission" parent="." instance=ExtResource("11_8tfmj")]
+transform = Transform3D(4.895752, 0, 1.232934, 0, 6.2162776, 0, -1.3923746, 0, 4.33514, -39.001137, 0.23125368, -5.172771)
+
+[node name="TexturedCan6" parent="." instance=ExtResource("17_0rx21")]
+transform = Transform3D(1.3741875, 0, -4.34571, 0, 6.017159, 0, 4.6463256, 0, 1.2852778, -34.291344, 0.23601699, -3.2881804)
 
 [connection signal="jump_charge_changed" from="Player" to="Player/Hud" method="_on_player_jump_charge_changed"]
 [connection signal="cheese_collected" from="Cheese/Cheese" to="Player" method="collect_cheese"]
@@ -381,3 +225,8 @@ transform = Transform3D(22.997164, 0, 0.36126846, 0, 23, 0, -0.36126846, 0, 22.9
 [connection signal="cheese_collected" from="Cheese/Cheese3" to="Player" method="collect_cheese"]
 [connection signal="cheese_collected" from="Cheese/Cheese4" to="Player" method="collect_cheese"]
 [connection signal="cheese_collected" from="Cheese/Cheese5" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese6" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese7" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese8" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese9" to="Player" method="collect_cheese"]
+[connection signal="cheese_collected" from="Cheese/Cheese10" to="Player" method="collect_cheese"]

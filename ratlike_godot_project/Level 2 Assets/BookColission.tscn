@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://t2srkvhc3inl"]
+
+[ext_resource type="PackedScene" uid="uid://bevm12ded0o12" path="res://Level 1 Assets/TexturedBook.fbx" id="1_1h65h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v5b5m"]
+size = Vector3(0.49786377, 1.9905853, 1.3774414)
+
+[node name="BookColission" type="StaticBody3D"]
+
+[node name="TexturedBook" parent="." instance=ExtResource("1_1h65h")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0.010296285, 0.9864546, 0.067644835)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010467529, 0.988533, 0.049072266)
+shape = SubResource("BoxShape3D_v5b5m")

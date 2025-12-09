@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcyjnyknuw5se"]
+[gd_scene load_steps=14 format=3 uid="uid://bcyjnyknuw5se"]
 
-[ext_resource type="PackedScene" uid="uid://6vlkir5jnvo5" path="res://Level2/GreyboxModels/GreyboxTable/TableDraft.fbx" id="1_eqobm"]
+[ext_resource type="PackedScene" uid="uid://ngft4wikaaxo" path="res://Level 2 Assets/GreyboxTable/DeskTextured.glb" id="1_ngfro"]
+[ext_resource type="PackedScene" uid="uid://ugedqjqe3cpw" path="res://Level 2 Assets/TexturedBox/TexturedBoxColission.tscn" id="2_bi4mc"]
+[ext_resource type="PackedScene" uid="uid://bscxv0w1hjqt3" path="res://Level 2 Assets/Cans/Can1/TexturedCan1.tscn" id="3_kd85t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uj8wj"]
 size = Vector3(1.92456, 1.55908, 0.0346069)
@@ -12,10 +14,10 @@ size = Vector3(0.56543, 1.56927, 1.23145)
 size = Vector3(2.00385, 0.861328, 1.34216)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q85qo"]
-size = Vector3(2.00293, 1.87781, 0.106628)
+size = Vector3(2.00293, 1.997987, 0.106628)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eh0as"]
-size = Vector3(0.536682, 18.4541, 1.34106)
+size = Vector3(0.536682, 19.90393, 1.34106)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m38ar"]
 size = Vector3(1.99146, 0.472412, 3.6936)
@@ -25,6 +27,12 @@ size = Vector3(1.92578, 0.432617, 1.89795)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mbwq0"]
 size = Vector3(0.0754395, 2.51489, 2.03607)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0mbxm"]
+size = Vector3(1.918457, 1.7287598, 0.03744507)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_op36y"]
+size = Vector3(0.24951172, 2.5820313, 2.1325684)
 
 [node name="TableDraftCollission" type="Node3D"]
 
@@ -39,11 +47,7 @@ shape = SubResource("BoxShape3D_uj8wj")
 transform = Transform3D(0.121992, 0, -0.357218, 0, 9.99911, 0, 0.0466572, 0, 0.933998, 1.25081, 8.07324, 0.0525371)
 shape = SubResource("BoxShape3D_eqobm")
 
-[node name="TableDraft" parent="StaticBody3D" instance=ExtResource("1_eqobm")]
-transform = Transform3D(1, 0, 0, 0, 9.99911, 0, 0, 0, 1, -0.00197673, 9.56916, -1.17711)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_awgtp")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
@@ -59,11 +63,11 @@ transform = Transform3D(1, 0, 0, 0, 2.12241, 0, 0, 0, 1, 0, 16.5392, 0)
 shape = SubResource("BoxShape3D_awgtp")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(0.999958, 0, 0, 0, 9.99911, 0, 0, 0, 2.19355, -0.00234911, 8.97603, -2.91261)
+transform = Transform3D(0.999958, 0, 0, 0, 9.99911, 0, 0, 0, 2.19355, -0.0023491103, 9.576861, -2.91261)
 shape = SubResource("BoxShape3D_q85qo")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(0.507316, 0, 0, 0, 1, 0, 0, 0, 0.999975, -0.867588, 8.72705, 0.00378442)
+transform = Transform3D(0.507316, 0, 0, 0, 1, 0, 0, 0, 0.999975, -0.867588, 9.451965, 0.003784418)
 shape = SubResource("BoxShape3D_eh0as")
 
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D"]
@@ -77,3 +81,36 @@ shape = SubResource("BoxShape3D_iv6gn")
 [node name="CollisionShape3D10" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(0.999972, 0, 0, 0, 1, 0, 0, 0, 0.999972, 1.2779, 17.9975, -1.73288)
 shape = SubResource("BoxShape3D_mbwq0")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2614746, 18.379177, -0.7674866)
+shape = SubResource("BoxShape3D_0mbxm")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2614746, 18.379177, -2.7008739)
+shape = SubResource("BoxShape3D_0mbxm")
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85245585, 17.93348, -1.7348026)
+shape = SubResource("BoxShape3D_op36y")
+
+[node name="DeskTextured" parent="." instance=ExtResource("1_ngfro")]
+transform = Transform3D(-1.41666705e-08, 0, -0.32148403, 0, 0.32723895, 0, 0.32409564, 0, -1.4052513e-08, 5.5667195, 0.031020403, 0.7799591)
+
+[node name="TexturedBoxColission" parent="." instance=ExtResource("2_bi4mc")]
+transform = Transform3D(0.40825272, 0, 0, 0, 0.40825272, 0, 0, 0, 0.40825272, -0.42151332, 0.083366245, 1.3945158)
+
+[node name="TexturedBoxColission2" parent="." instance=ExtResource("2_bi4mc")]
+transform = Transform3D(0.843037, 0, 0, 0, 0.19923648, 0, 0, 0, 0.40825272, -0.10905504, 0.083366245, 0.89401436)
+
+[node name="TexturedCan1" parent="." instance=ExtResource("3_kd85t")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.52260095, 0.40642953, 1.0081246)
+
+[node name="TexturedBoxColission3" parent="." instance=ExtResource("2_bi4mc")]
+transform = Transform3D(0.32749596, 0, 0.06497166, 0, 0.08739704, 0, -0.079356685, 0, 0.26813063, 0.56977856, 1.7888384, 0.11945534)
+
+[node name="TexturedBoxColission4" parent="." instance=ExtResource("2_bi4mc")]
+transform = Transform3D(0.20680743, 0, -0.21782167, 0, 0.08739703, 0, 0.26604837, 0, 0.16931938, -0.28149733, 1.7888384, -1.2391317)
+
+[node name="TexturedBoxColission6" parent="." instance=ExtResource("2_bi4mc")]
+transform = Transform3D(-0.03964738, 0, -0.40270424, 0, 0.08739703, 0, 0.35252, 0, -0.04529154, 0.24858165, 1.7888384, -1.3323928)
