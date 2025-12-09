@@ -39,7 +39,7 @@ collision_mask = 19
 transform = Transform3D(1, 0, 0, 0, 0.270432, 0.962739, 0, -0.962739, 0.270432, 0, 52.5451, 0)
 
 [node name="Rathole" parent="." instance=ExtResource("3_foyw7")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 37.15085, 40.9057, 11.577588)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 37.166298, 40.9057, 11.577588)
 needed_cheese = 5
 
 [node name="Cheese" type="Node3D" parent="."]

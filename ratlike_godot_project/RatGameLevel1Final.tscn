@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://c3q4oacop5lk4"]
+[gd_scene load_steps=64 format=3 uid="uid://c3q4oacop5lk4"]
 
 [ext_resource type="PackedScene" uid="uid://c5reh20srvl6r" path="res://Level 1 Assets/TexturedFloorReal.fbx" id="1_yxbqi"]
 [ext_resource type="PackedScene" uid="uid://obc6a0m0a13h" path="res://Level 1 Assets/TexturedRatHoleReal.fbx" id="2_xwssj"]
@@ -24,9 +24,6 @@ size = Vector3(75, 1, 60)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_san6q"]
 size = Vector3(2.5, 2.5, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_r401p"]
-size = Vector3(2.4, 2.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fyici"]
 size = Vector3(30, 25, 30)
@@ -194,13 +191,6 @@ shape = SubResource("BoxShape3D_san6q")
 
 [node name="Rat Hole Exit" type="StaticBody3D" parent="Map"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 37.3717, 42.1954, 11.5597)
-
-[node name="TexturedRatHoleReal" parent="Map/Rat Hole Exit" instance=ExtResource("2_xwssj")]
-transform = Transform3D(27, 0, 0, 0, 30, 0, 0, 0, 40, 0.0045681, -1.20744, 0.176285)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Rat Hole Exit"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0657539)
-shape = SubResource("BoxShape3D_r401p")
 
 [node name="Washing Machine" type="Node3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.89867)
