@@ -22,11 +22,15 @@ script = ExtResource("1_0l1we")
 [node name="Environment" parent="." instance=ExtResource("2_xq862")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 25.150469, 5.326341, 8.0213175)
 navigation_mesh = SubResource("NavigationMesh_466b2")
 
 [node name="NavigationRegion3D2" type="NavigationRegion3D" parent="Environment"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -10.2151, 24.5, -4.53875)
+navigation_mesh = SubResource("NavigationMesh_466b2")
+
+[node name="NavigationRegion3D3" type="NavigationRegion3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.024, -1, 8.663)
 navigation_mesh = SubResource("NavigationMesh_466b2")
 
 [node name="Player" parent="." instance=ExtResource("2_foyw7")]
@@ -72,24 +76,29 @@ visible = false
 
 [node name="Node3D" type="Node3D" parent="."]
 
-[node name="Hamster" parent="Node3D" instance=ExtResource("9_evv1w")]
+[node name="Mouse" parent="Node3D" instance=ExtResource("9_evv1w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.372, 5.4, 6.291)
 patrol_points = Array[Vector3]([Vector3(25, 5.4, 12.5), Vector3(25, 5.4, 4.7)])
-movement_speed = 15.0
+movement_speed = 10.0
 
-[node name="Hamster2" parent="Node3D" instance=ExtResource("9_evv1w")]
+[node name="Mouse2" parent="Node3D" instance=ExtResource("9_evv1w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 25, -15)
 patrol_points = Array[Vector3]([Vector3(-15, 0, -15), Vector3(3, 0, 3), Vector3(3, 0, -15), Vector3(-15, 0, 3)])
 movement_speed = 15.0
 
-[node name="Hamster3" parent="Node3D" instance=ExtResource("9_evv1w")]
+[node name="Mouse3" parent="Node3D" instance=ExtResource("9_evv1w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 25, 3)
 patrol_points = Array[Vector3]([Vector3(-15, 0, 3), Vector3(-15, 0, -15), Vector3(3, 0, -15), Vector3(3, 0, 3)])
 movement_speed = 15.0
 
-[node name="Hamster4" parent="Node3D" instance=ExtResource("9_evv1w")]
+[node name="Mouse4" parent="Node3D" instance=ExtResource("9_evv1w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 25, -15)
 patrol_points = Array[Vector3]([Vector3(3, 0, -15), Vector3(3, 0, 3), Vector3(-15, 0, 3), Vector3(-15, 0, -15)])
+movement_speed = 15.0
+
+[node name="Mouse5" parent="Node3D" instance=ExtResource("9_evv1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.96064, 0, 25.40438)
+patrol_points = Array[Vector3]([Vector3(6, 0, 27), Vector3(3, 0, 6.8), Vector3(13.351, 0, 10.4), Vector3(15.931, 0, 18.412), Vector3(17.961, 0, 25.404)])
 movement_speed = 15.0
 
 [node name="Powerups" type="Node3D" parent="."]
@@ -107,9 +116,10 @@ script = ExtResource("10_evv1w")
 [connection signal="cheese_collected" from="Cheese/Cheese 6" to="Player" method="collect_cheese"]
 [connection signal="cheese_collected" from="Cheese/Cheese 7" to="Player" method="collect_cheese"]
 [connection signal="powerup_chosen" from="PowerUpChoice" to="Player" method="update_powers"]
-[connection signal="squashed" from="Node3D/Hamster" to="Player" method="squashed"]
-[connection signal="squashed" from="Node3D/Hamster2" to="Player" method="squashed"]
-[connection signal="squashed" from="Node3D/Hamster3" to="Player" method="squashed"]
-[connection signal="squashed" from="Node3D/Hamster4" to="Player" method="squashed"]
+[connection signal="squashed" from="Node3D/Mouse" to="Player" method="squashed"]
+[connection signal="squashed" from="Node3D/Mouse2" to="Player" method="squashed"]
+[connection signal="squashed" from="Node3D/Mouse3" to="Player" method="squashed"]
+[connection signal="squashed" from="Node3D/Mouse4" to="Player" method="squashed"]
+[connection signal="squashed" from="Node3D/Mouse5" to="Player" method="squashed"]
 [connection signal="body_entered" from="Powerups/Powerup" to="Powerups/Powerup" method="_on_body_entered"]
 [connection signal="powerup_obtained" from="Powerups/Powerup" to="PowerUpChoice" method="_on_powerup_powerup_obtained"]

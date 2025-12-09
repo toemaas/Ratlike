@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal squashed(cheese)
+
 @export var patrol_points: Array[Vector3]
 @export var movement_speed: float = 15.0
 
@@ -15,8 +17,12 @@ extends CharacterBody3D
 @onready var sight_area = $SightArea
 
 @onready var animation_player = $Pivot/'Hamster All Animations'/AnimationPlayer
-@onready var skeleton: PhysicalBoneSimulator3D = $"Pivot/Temp Hamster/metarig/Skeleton3D/PhysicalBoneSimulator3D"
+@onready var skeleton: PhysicalBoneSimulator3D = $"Pivot/Hamster All Animations/Armature/Skeleton3D/PhysicalBoneSimulator3D"
 @export var gravity_multiplier = 2.5
+
+@onready var squeak = $squeak
+var cheese_count = 0
+var cheese_lock = false
 
 var current_patrol_index: int = 0
 
@@ -102,7 +108,7 @@ func _windup_state(delta):
 		if has_ball:
 			_play_anim_safe("Ball Charging Up")
 		else:
-			_play_anim_safe("No Ball Charging Up")
+			_play_anim_safe("No Ball Charge Up")
 	else:
 		if has_ball:
 			_play_anim_safe("Ball Charging Jump")
@@ -115,7 +121,7 @@ func _windup_state(delta):
 		
 	state_timer -= delta
 	if state_timer <= 0:
-		if attack_type > 1.0: # randf() 0.0 - 1.0
+		if attack_type > 0.5: # randf() 0.0 - 1.0
 			current_state = State.LUNGE
 			state_timer = lunge_duration
 			
@@ -159,6 +165,7 @@ func _windup_state(delta):
 			velocity.x = jump_horizontal_velocity.x
 	
 func _lunge_state(delta):
+	print("CALLING lunge ATTACK")
 	velocity = lunge_speed * attack_direction
 	move_and_slide()
 	
@@ -187,8 +194,12 @@ func _jump_attack_state(delta):
 		else:
 			_play_anim_safe("No Ball Stun")
 	
+	#if is_on_floor():
+		#current_state = State.COOLDOWN
+		#state_timer = cooldown_duration
+		#velocity = Vector3.ZERO 
 	await get_tree().create_timer(1.59).timeout
-	
+		
 	current_state = State.COOLDOWN
 	state_timer = cooldown_duration
 	velocity = Vector3.ZERO
@@ -208,6 +219,7 @@ func _cooldown_state(delta):
 		set_movement_target(patrol_points[current_patrol_index])
 
 func _hit_state(delta):
+	print("HIT STATE")
 	velocity = Vector3.ZERO
 	move_and_slide()
 	
@@ -231,18 +243,53 @@ func _on_sight_area_body_entered(body: Node3D) -> void:
 			state_timer = windup_duration
 			navigation_agent.set_target_position(global_position)
 
-func _on_sight_area_body_exited(body: Node3D) -> void:
-	if body == player_target:
-		player_target = null
-
 func squished():
-	print("HAMSTER SQUASHED")
+	print("HAMSTER SQUISHED")
+	squeak.play()
 	if has_ball:
 		print("HAS BALL")
 		current_state = State.HIT
 		state_timer = hit_duration
 	else:
+		squash()
 		set_physics_process(false)
 		_play_anim_safe("No Ball Stun")
+		$Timer.start()
 		#$HamsterCollision.disabled = true
 		#skeleton.physical_bones_start_simulation()
+
+
+func _on_timer_timeout() -> void:
+	#$HamsterCollision.disabled = false
+	$CollisionShape3D.disabled = false
+	$"Pivot/Hamster All Animations/Ball1".visible = true
+	has_ball = 1
+	#skeleton.physical_bones_stop_simulation()
+	animation_player.play_backwards("Ball Break")
+	
+func _on_animation_player_animation_finished(anim_name: String) -> void:
+	if anim_name == "Ball Break":
+		set_physics_process(true)
+		current_state = State.IDLE
+		set_movement_target(patrol_points[current_patrol_index])
+
+func squash():
+	if cheese_lock or cheese_count == 0:
+		return
+		
+	cheese_lock = true
+	
+	cheese_count -= 1
+	squashed.emit(true)
+	if cheese_count == 0:
+		$Cheese.visible = false
+		
+	await get_tree().create_timer(0.25).timeout
+	cheese_lock = false
+
+func steal_cheese():
+	cheese_count += 1
+	$Cheese.visible = true
+	$Label3D.visible = true
+	await get_tree().create_timer(2.0).timeout
+	$Label3D.visible = false

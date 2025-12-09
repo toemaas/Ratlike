@@ -10,6 +10,9 @@ var physicsDisabled = false
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var skeleton: PhysicalBoneSimulator3D = $Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D
 
+@onready var squeak = $squeak
+@onready var goomba = $goomba
+
 var cheese = false # cheese flag, true if cheese is stolen
 
 # This will keep track of which point we are moving towards.
@@ -74,11 +77,13 @@ func squash():
 	skeleton.physical_bones_start_simulation()
 	$Cheese.visible = false
 	$"Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Mid/Death Stars".visible = true
+	goomba.play()
 
 func steal_cheese():
 	cheese = true
 	$Cheese.visible = true
 	$Label3D.visible = true
+	squeak.play()
 	await get_tree().create_timer(2.0).timeout
 	$Label3D.visible = false
 

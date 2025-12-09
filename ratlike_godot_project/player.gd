@@ -223,7 +223,7 @@ func _physics_process(delta):
 			if enemy.is_in_group("mob"):
 				get_mob_knockback(enemy, collision)
 			elif enemy.is_in_group("boss"):
-				get_boss_knockback(enemy, collision, hit_impulse)
+				get_boss_knockback(enemy, collision, hit_impulse * 2)
 				
 		velocity.x += knockback.x
 		velocity.z += knockback.z
@@ -302,10 +302,16 @@ func get_mob_knockback(mob, collision):
 func get_boss_knockback(boss, collision, impulse):
 	if Vector3.UP.dot(collision.get_normal()) > 0.1:
 		# If so, we squash it and bounce.
-		
 		boss.squished()
 		target_velocity.y = bounce_impulse
 	else:
+		if cheese_count > 0:
+			cheese_count -= 1
+			update_ui()
+			collision.get_collider().steal_cheese()
+			$Label3D.visible = true
+			await get_tree().create_timer(2.0).timeout
+			$Label3D.visible = false
 		var bounce_direction = collision.get_normal().slide(Vector3.UP).normalized()
 		knockback.x = bounce_direction.x * impulse
 		knockback.y = 0.005 * impulse

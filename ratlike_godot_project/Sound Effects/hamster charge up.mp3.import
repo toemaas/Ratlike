@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cupmbwi3ddcw7"
+path="res://.godot/imported/hamster charge up.mp3-dddb73c89d8bdac204d0a0eaf54f7031.mp3str"
+
+[deps]
+
+source_file="res://Sound Effects/hamster charge up.mp3"
+dest_files=["res://.godot/imported/hamster charge up.mp3-dddb73c89d8bdac204d0a0eaf54f7031.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

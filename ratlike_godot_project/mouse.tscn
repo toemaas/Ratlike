@@ -1,8 +1,10 @@
-[gd_scene load_steps=23 format=4 uid="uid://diog71fvn2qmr"]
+[gd_scene load_steps=25 format=4 uid="uid://diog71fvn2qmr"]
 
 [ext_resource type="Script" uid="uid://b4hd2vgoqu6nd" path="res://mouse.gd" id="1_s70uv"]
 [ext_resource type="PackedScene" uid="uid://c6b44vldubhv8" path="res://Assets/Star.fbx" id="3_1jbr0"]
 [ext_resource type="PackedScene" uid="uid://ds512fl7oyvxw" path="res://Cheese Wheel.fbx" id="3_uto4n"]
+[ext_resource type="AudioStream" uid="uid://4fo4eejsgtvq" path="res://Sound Effects/mouse squeak.mp3" id="4_18cwl"]
+[ext_resource type="AudioStream" uid="uid://bwy4je6gu4jhh" path="res://Sound Effects/goomba stomp.wav" id="5_86rlw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnnks"]
 resource_name = "Fur"
@@ -613,11 +615,11 @@ skin = SubResource("Skin_uopgq")
 [node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Pivot/RatModelDraft1Brown/Armature/Skeleton3D"]
 
 [node name="Physical Bone Butt" type="PhysicalBone3D" parent="Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(0.012979437, -1.4043908e-09, -1.6395285e-09, -1.4043906e-09, -0.012979437, 4.436451e-12, -1.6395285e-09, -4.436229e-12, -0.012979437, 0.005767351, -0.000130552, -0.0034753892)
+transform = Transform3D(0.012979437, -1.4043908e-09, -1.6395285e-09, -1.4043906e-09, -0.012979437, -1.4327761e-11, -1.6395285e-09, 1.4327983e-11, -0.012979437, 0.005767351, -0.000130552, -0.0034753892)
 collision_layer = 4
 joint_type = 1
-joint_offset = Transform3D(0.999997, 0, 0, 0, 1, 0, 0, 0, 0.999997, -6.729688e-08, 5.6469707e-10, 0.21705647)
-body_offset = Transform3D(0.012979437, -3.1368505e-11, -2.6650637e-10, -2.6650648e-10, -4.436451e-12, -0.012979437, 3.1368234e-11, 0.012979437, -4.4365622e-12, 9.313226e-10, 0.0028172708, -6.366463e-12)
+joint_offset = Transform3D(0.999997, 0, 0, 0, 1, 0, 0, 0, 0.999997, -6.729688e-08, 2.508993e-10, 0.21705647)
+body_offset = Transform3D(0.012979437, -3.136851e-11, -2.6650637e-10, -2.6650648e-10, 1.4327872e-11, -0.012979437, 3.1368234e-11, 0.012979437, 1.4327761e-11, 9.313226e-10, 0.0028172708, -6.366463e-12)
 bone_name = "Butt"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -628,11 +630,11 @@ transform = Transform3D(1, 0, 3.28911e-15, 3.28911e-15, 0, 1, 0, -1, 0, 0.084228
 shape = SubResource("BoxShape3D_1jbr0")
 
 [node name="Physical Bone Mid" type="PhysicalBone3D" parent="Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(0.012979437, -1.6145734e-09, 2.1732771e-09, -1.6145735e-09, -0.012979437, -2.9496627e-11, 2.1732771e-09, 2.9496294e-11, -0.012979437, 0.0057544485, -0.00013055197, 0.0016131001)
+transform = Transform3D(0.012979437, -1.6145734e-09, 2.1732771e-09, -1.6145735e-09, -0.012979437, -5.5314642e-11, 2.1732771e-09, 5.531431e-11, -0.012979437, 0.0057018865, -0.00013055195, 0.0016131001)
 collision_layer = 4
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0009940335, 1.8275464e-09, 0.17498599)
-body_offset = Transform3D(0.012979437, -2.2315971e-10, 4.701467e-10, 4.701467e-10, 2.9496627e-11, -0.012979437, 2.2316053e-10, 0.012979437, 2.9496516e-11, -1.2902077e-05, 0.0022712196, -2.910383e-11)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005043668, 2.0404973e-09, 0.17498599)
+body_offset = Transform3D(0.012979437, -2.2315971e-10, 4.701467e-10, 4.701467e-10, 5.531453e-11, -0.012979437, 2.2316053e-10, 0.012979437, 5.531431e-11, -6.546406e-05, 0.0022712196, -3.7289283e-11)
 bone_name = "Mid"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -656,11 +658,11 @@ transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0.21844798, 0.7291321, -0.529
 transform = Transform3D(8, 0, 0, 2.2959e-41, 8, 0, 0, 0, 8, -1.23881025e-14, 0.8364687, -0.24438384)
 
 [node name="Physical Bone Head" type="PhysicalBone3D" parent="Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(-5.3969496e-11, 0.012713812, 0.002612424, 0.012979437, 5.4138027e-11, 4.6682658e-12, -6.3239414e-12, 0.002612424, -0.012713812, 0.0053249067, -0.000130552, 0.0060375608)
+transform = Transform3D(-5.3969496e-11, 0.012713812, 0.002612424, 0.012979437, 5.933454e-11, -2.0621393e-11, -3.2141845e-11, 0.002612424, -0.012713812, 0.0053249067, -0.000130552, 0.0060375608)
 collision_layer = 4
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0145051e-09, -2.1234155e-07, 0.16936225)
-body_offset = Transform3D(-1.3520607e-09, 0.012713812, 0.0026124222, -6.3239414e-12, 0.0026124222, -0.012713812, -0.012979437, -1.3256638e-09, -2.6594027e-10, -0.00044244295, 0.0021532401, 5.820766e-11)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3444987e-09, -2.1234155e-07, 0.16936225)
+body_offset = Transform3D(-1.3520607e-09, 0.012713812, 0.0026124222, -3.2141956e-11, 0.0026124222, -0.012713812, -0.012979437, -1.3308605e-09, -2.406505e-10, -0.00044244295, 0.0021532401, 5.820766e-11)
 bone_name = "Head"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -686,11 +688,11 @@ transform = Transform3D(1, 3.72529e-09, -6.10948e-07, 0, 2.33704e-07, 1, 5.58794
 shape = SubResource("CapsuleShape3D_6j7kw")
 
 [node name="Physical Bone FrontLegBottom_L" type="PhysicalBone3D" parent="Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(2.1992277e-09, -0.0036478203, 0.01245629, -0.00058782566, 0.01244351, 0.003644077, -0.01296612, -0.0005641336, -0.00016520398, 0.0013078451, -0.0021450461, 0.0032394975)
+transform = Transform3D(2.1992277e-09, -0.0036478203, 0.01245629, -0.00058782566, 0.01244351, 0.003644077, -0.01296612, -0.0005641336, -0.00016520398, 0.0013078451, -0.0021450461, 0.003217412)
 collision_layer = 4
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013077071, 0.004643312, 0.053833272)
-body_offset = Transform3D(0.00058781385, -0.012443511, -0.00364408, 0, 0.0036478231, -0.012456291, 0.012966122, 0.0005641215, 0.00016520286, 0.00024626497, 0.000653625, -0.0001810717)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011377232, 0.004569357, 0.053811613)
+body_offset = Transform3D(0.00058781385, -0.012443511, -0.00364408, 0, 0.0036478231, -0.012456291, 0.012966122, 0.0005641215, 0.00016520286, 0.00024626497, 0.000653625, -0.00015898608)
 bone_name = "FrontLegBottom.L"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -701,11 +703,11 @@ transform = Transform3D(1, -9.31323e-08, -1.13621e-06, 6.70552e-08, 1.66998e-07,
 shape = SubResource("CapsuleShape3D_yf125")
 
 [node name="Physical Bone BackLegBottom_R" type="PhysicalBone3D" parent="Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(9.1356345e-09, -0.0036756282, 0.012448114, -0.0013695266, -0.012378626, -0.0036551089, 0.012906981, -0.0013134617, -0.00038784306, 0.0011163921, 0.001804813, -0.005312473)
+transform = Transform3D(9.1356345e-09, -0.0036756282, 0.012448114, -0.0013695266, -0.012378626, -0.0036551089, 0.012906981, -0.0013134617, -0.00038784306, 0.0011142909, 0.001809054, -0.005312473)
 collision_layer = 4
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037867572, -0.0023383908, 0.06695022)
-body_offset = Transform3D(0.012906981, -0.0013134577, -0.0003878323, -6.217249e-15, 0.003675627, -0.012448113, 0.00136952, 0.0123786265, 0.0036551093, -0.000465862, 0.0008419991, -0.00026762474)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03790205, -0.0020726044, 0.06719751)
+body_offset = Transform3D(0.012906981, -0.0013134577, -0.0003878323, -6.217249e-15, 0.003675627, -0.012448113, 0.00136952, 0.0123786265, 0.0036551093, -0.000465862, 0.0008441004, -0.00027186587)
 bone_name = "BackLegBottom.R"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -731,11 +733,11 @@ transform = Transform3D(1, -7.66688e-24, -3.3513e-31, 0, -4.37114e-08, 1, -7.666
 shape = SubResource("CapsuleShape3D_fkjwk")
 
 [node name="Physical Bone BackLegBottom_L" type="PhysicalBone3D" parent="Pivot/RatModelDraft1Brown/Armature/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(-1.0084836e-08, -0.0036757044, 0.012448092, -0.0013694958, 0.012378605, 0.0036551862, -0.012906985, -0.0013134291, -0.0003878432, 0.0011135357, -0.002145047, -0.0048204805)
+transform = Transform3D(-1.0084836e-08, -0.0036757044, 0.012448092, -0.0013694958, 0.012378605, 0.0036551862, -0.012906985, -0.0013134291, -0.0003878432, 0.0011012561, -0.002145047, -0.0048204805)
 collision_layer = 4
 joint_type = 1
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2619725e-08, -6.615257e-05, 0.06759845)
-body_offset = Transform3D(0.0013694881, -0.012378605, -0.0036551873, 8.7041485e-14, 0.0036757044, -0.012448091, 0.012906984, 0.0013134244, 0.0003878313, 0.00024626602, 0.0008417148, -2.6130583e-05)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2619725e-08, -0.0003340773, 0.0685058)
+body_offset = Transform3D(0.0013694881, -0.012378605, -0.0036551873, 8.7041485e-14, 0.0036757044, -0.012448091, 0.012906984, 0.0013134244, 0.0003878313, 0.00024626602, 0.0008539944, -2.6130583e-05)
 bone_name = "BackLegBottom.L"
 joint_constraints/bias = 0.3
 joint_constraints/damping = 1.0
@@ -770,3 +772,11 @@ billboard = 2
 text = "My cheese hehe haha"
 font_size = 112
 outline_size = 40
+
+[node name="squeak" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_18cwl")
+
+[node name="goomba" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_86rlw")
+volume_db = 10.0
+max_db = 5.0
