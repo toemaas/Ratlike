@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://g1u0hqc2jr2"]
+[gd_scene load_steps=24 format=3 uid="uid://g1u0hqc2jr2"]
 
 [ext_resource type="PackedScene" uid="uid://0nd7lniffuj4" path="res://player.tscn" id="1_7be1j"]
 [ext_resource type="Script" uid="uid://cdjql83hlw1dt" path="res://level2.gd" id="1_wwdpc"]
@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://nhh6bouk8y0h" path="res://Level 2 Assets/Cans/Can3/TexturedCan3.tscn" id="19_fx3gb"]
 [ext_resource type="PackedScene" uid="uid://t2srkvhc3inl" path="res://Level 2 Assets/BookColission.tscn" id="20_mgfd6"]
 [ext_resource type="PackedScene" uid="uid://c82e2cd0x1noc" path="res://Level 2 Assets/Zines/ZinesColission.tscn" id="21_a454t"]
-[ext_resource type="PackedScene" uid="uid://diog71fvn2qmr" path="res://mouse.tscn" id="22_nqrl8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jw1dd"]
 size = Vector3(0.08734131, 0.08761597, 0.02420044)
@@ -105,9 +104,9 @@ transform = Transform3D(-1.2911775e-07, 0, -2.7035034, 0, 2.8000002, 0, 2.953869
 visible = false
 
 [node name="HamsterBoss" parent="." instance=ExtResource("9_6x3wt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.919113, 4.788286, -46.63129)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.290176, 1.9283872, -42.842197)
 collision_mask = 0
-patrol_points = Array[Vector3]([Vector3(-29, 0, -10), Vector3(-26, 0, 4.3), Vector3(-15, 0, 17.5), Vector3(1.9, 0, 17.5), Vector3(10.3, 0, 5.3), Vector3(-21.8, 0, -20), Vector3(-7.4, 0, -5.37), Vector3(9, 0, -9), Vector3(1.09, 0, -26.8), Vector3(-19.29, 0, -42.842), Vector3(15.861, 0, -42.8), Vector3(15.861, 0, -26.897), Vector3(-4.464, 0, -24.218), Vector3(-1.545, 0, -4.774), Vector3(-32.919, 0, -46.631)])
+patrol_points = Array[Vector3]([Vector3(-29, 0, -10), Vector3(-26, 0, 4.3), Vector3(-15, 0, 17.5), Vector3(1.9, 0, 17.5), Vector3(10.3, 0, 5.3), Vector3(-21.8, 0, -20), Vector3(-7.4, 0, -5.37), Vector3(9, 0, -9), Vector3(1.09, 0, -26.8), Vector3(-19.29, 0, -42.842)])
 
 [node name="Cheese" type="Node" parent="."]
 
@@ -225,79 +224,8 @@ transform = Transform3D(4.895752, 0, 1.232934, 0, 6.2162776, 0, -1.3923746, 0, 4
 transform = Transform3D(1.3741875, 0, -4.34571, 0, 6.017159, 0, 4.6463256, 0, 1.2852778, -34.291344, 0.23601699, -3.2881804)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.6, -12.935783, 1.5, -13.478611)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 navigation_mesh = SubResource("NavigationMesh_0rx21")
-
-[node name="Node3D" type="Node3D" parent="."]
-
-[node name="Desk" type="NavigationRegion3D" parent="Node3D"]
-transform = Transform3D(0.1, 0, 0, 0, 0.25, 0, 0, 0, 0.2, -44.147232, 16.805061, -24.703562)
-navigation_mesh = SubResource("NavigationMesh_0rx21")
-
-[node name="Desk Drawer" type="NavigationRegion3D" parent="Node3D"]
-transform = Transform3D(0.01, 0, 0, 0, 0.063, 0, 0, 0, 0.1, -35.9399, 15.133645, -29.426313)
-navigation_mesh = SubResource("NavigationMesh_0rx21")
-
-[node name="Desk Drawer2" type="NavigationRegion3D" parent="Node3D"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -35.328934, 0.23006296, -73.512856)
-navigation_mesh = SubResource("NavigationMesh_0rx21")
-
-[node name="Shelf1" type="NavigationRegion3D" parent="Node3D"]
-transform = Transform3D(0.021213202, 0, 0.021213202, 0, 0.03, 0, -0.021213202, 0, 0.021213202, -38.007214, 35.138374, 3.4092903)
-navigation_mesh = SubResource("NavigationMesh_0rx21")
-
-[node name="Shelf2" type="NavigationRegion3D" parent="Node3D"]
-transform = Transform3D(-8.7422775e-10, 0, 0.05, 0, 0.02, 0, -0.02, 0, -2.1855695e-09, 20.561916, 12.877742, -9.030046)
-navigation_mesh = SubResource("NavigationMesh_0rx21")
-
-[node name="Shelf3" type="NavigationRegion3D" parent="Node3D"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -33.52336, 14.317507, -72.49443)
-navigation_mesh = SubResource("NavigationMesh_0rx21")
-
-[node name="Mouse" parent="Node3D" instance=ExtResource("22_nqrl8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.49184, 17.250818, -17.779491)
-patrol_points = Array[Vector3]([Vector3(-41.51, 5.4, -12.786), Vector3(-38.093, 5.4, -38.781), Vector3(-45.39, 0, -34.325), Vector3(-49.46, 0, -22.222), Vector3(-44.492, 0, -17.779)])
-movement_speed = 15.0
-
-[node name="Mouse2" parent="Node3D" instance=ExtResource("22_nqrl8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.833836, 15.560263, -35.938244)
-patrol_points = Array[Vector3]([Vector3(-35.834, 5.4, -23.215), Vector3(-35.834, 5.4, -35.938)])
-movement_speed = 8.0
-
-[node name="Mouse3" parent="Node3D" instance=ExtResource("22_nqrl8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.34432, 0.59190106, -64.526215)
-patrol_points = Array[Vector3]([Vector3(-21.995, 5.4, -60.608), Vector3(-21.995, 0, -82.242), Vector3(-36.473, 0, -82.242), Vector3(-38.532, 0, -74.831), Vector3(-43.344, 0, -64.526)])
-movement_speed = 15.0
-
-[node name="Mouse4" parent="Node3D" instance=ExtResource("22_nqrl8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.687096, 35.4076, 2.5420845)
-patrol_points = Array[Vector3]([Vector3(-37.299, 5.4, 4.135), Vector3(-38.687, 5.4, 2.542)])
-movement_speed = 5.0
-
-[node name="Mouse5" parent="Node3D" instance=ExtResource("22_nqrl8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.923115, 13.037026, -8.965216)
-patrol_points = Array[Vector3]([Vector3(23.478, 5.4, -8.965), Vector3(18.923, 5.4, -8.965)])
-movement_speed = 8.0
-
-[node name="Mouse6" parent="Node3D" instance=ExtResource("22_nqrl8")]
-transform = Transform3D(-0.54463905, 0, -0.83867055, 0, 1, 0, 0.83867055, 0, -0.54463905, -37.21139, 14.584544, -75.090515)
-patrol_points = Array[Vector3]([])
-movement_speed = 15.0
-
-[node name="Mouse7" parent="Node3D" instance=ExtResource("22_nqrl8")]
-transform = Transform3D(0.49999997, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.49999997, -37.07385, 14.524124, -72.82916)
-patrol_points = Array[Vector3]([])
-movement_speed = 15.0
-
-[node name="Mouse8" parent="Node3D" instance=ExtResource("22_nqrl8")]
-transform = Transform3D(-0.3746066, 0, 0.92718387, 0, 1, 0, -0.92718387, 0, -0.3746066, -33.85045, 14.518223, -74.95626)
-patrol_points = Array[Vector3]([])
-movement_speed = 15.0
-
-[node name="Mouse9" parent="Node3D" instance=ExtResource("22_nqrl8")]
-transform = Transform3D(0.06975651, 0, 0.9975641, 0, 1, 0, -0.9975641, 0, 0.06975651, -33.82277, 14.492848, -73.200806)
-patrol_points = Array[Vector3]([Vector3(-33.823, 0, -73.201)])
-movement_speed = 15.0
 
 [connection signal="jump_charge_changed" from="Player" to="Player/Hud" method="_on_player_jump_charge_changed"]
 [connection signal="squashed" from="HamsterBoss" to="Player" method="squashed"]
@@ -311,12 +239,3 @@ movement_speed = 15.0
 [connection signal="cheese_collected" from="Cheese/Cheese8" to="Player" method="collect_cheese"]
 [connection signal="cheese_collected" from="Cheese/Cheese9" to="Player" method="collect_cheese"]
 [connection signal="cheese_collected" from="Cheese/Cheese10" to="Player" method="collect_cheese"]
-[connection signal="squashed" from="Node3D/Mouse" to="Player" method="squashed"]
-[connection signal="squashed" from="Node3D/Mouse2" to="Player" method="squashed"]
-[connection signal="squashed" from="Node3D/Mouse3" to="Player" method="squashed"]
-[connection signal="squashed" from="Node3D/Mouse4" to="Player" method="squashed"]
-[connection signal="squashed" from="Node3D/Mouse5" to="Player" method="squashed"]
-[connection signal="squashed" from="Node3D/Mouse6" to="Player" method="squashed"]
-[connection signal="squashed" from="Node3D/Mouse7" to="Player" method="squashed"]
-[connection signal="squashed" from="Node3D/Mouse8" to="." method="squashed"]
-[connection signal="squashed" from="Node3D/Mouse9" to="." method="squashed"]

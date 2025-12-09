@@ -4,14 +4,19 @@ signal squashed(cheese)
 
 @export var patrol_points: Array[Vector3]
 @export var movement_speed: float = 15.0
+@export var wander_radius: float = 10.0
+@export var wander_center: Node3D
 
 @export var jump_speed = 20.0
 @export var jump_strength = 20.0
 @export var lunge_speed = 50.0
 @export var lunge_duration = 0.5
+@export var jump_duration = 1.59
 @export var windup_duration = 0.5
 @export var hit_duration = 2
 @export var cooldown_duration = 1.0
+@export var projectile_scene: PackedScene
+@export var projectile_speed: float = 90.0
 
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var sight_area = $SightArea
@@ -21,12 +26,14 @@ signal squashed(cheese)
 @export var gravity_multiplier = 2.5
 
 @onready var squeak = $squeak
+@onready var throwing_hit = $"Throwing Hit"
 var cheese_count = 0
 var cheese_lock = false
 
 var current_patrol_index: int = 0
+var is_waiting: bool = false
 
-enum State {IDLE, WINDUP, LUNGE, COOLDOWN, HIT, JUMP_ATTACK}
+enum State {IDLE, WINDUP, LUNGE, COOLDOWN, HIT, JUMP_ATTACK, THROW}
 var current_state = State.IDLE
 var player_target = null
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -38,15 +45,15 @@ var attack_type = 0
 var jump_horizontal_velocity = Vector3.ZERO
 
 func _ready():
-	navigation_agent.path_desired_distance = 0.5
-	navigation_agent.target_desired_distance = 1.0
-	actor_setup.call_deferred()
+	$"Wander Timer".timeout.connect(_on_wander_timer_timeout)
 
 func actor_setup():
 	await get_tree().physics_frame
-	if patrol_points.is_empty():
-		return
-	set_movement_target(patrol_points[current_patrol_index])
+	
+	if not patrol_points.is_empty():
+		set_movement_target(patrol_points[current_patrol_index])
+	else:
+		current_state = State.IDLE
 
 func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)
@@ -72,17 +79,16 @@ func _physics_process(delta):
 			_hit_state(delta)
 		State.JUMP_ATTACK:
 			_jump_attack_state(delta)
+		State.THROW:
+			_throw_state(delta)
 
 func _idle_state():
-	if patrol_points.is_empty():
-		#_play_anim_safe("Idle")
-		return
-
 	if navigation_agent.is_navigation_finished():
-		# _play_anim_safe("Idle") 
+		if is_waiting:
+			return
 		
-		current_patrol_index = (current_patrol_index + 1) % patrol_points.size()
-		set_movement_target(patrol_points[current_patrol_index])
+		is_waiting = true
+		$"Wander Timer".start(0.25)
 		return
 
 	# Standard movement code
@@ -92,10 +98,9 @@ func _idle_state():
 	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 	
 	if has_ball:
-		_play_anim_safe("Ball Walk") 
+		_play_anim_safe("Ball Walk")
 	else:
-		_play_anim_safe("No Ball Walk") 
-
+		_play_anim_safe("No Ball Walk")
 	
 	$Pivot.look_at(global_position + velocity, Vector3.UP)
 	move_and_slide()
@@ -104,7 +109,7 @@ func _windup_state(delta):
 	velocity = Vector3.ZERO
 	move_and_slide()
 	
-	if attack_type > 0.5:
+	if attack_type < 0.33:
 		if has_ball:
 			_play_anim_safe("Ball Charging Up")
 		else:
@@ -121,7 +126,8 @@ func _windup_state(delta):
 		
 	state_timer -= delta
 	if state_timer <= 0:
-		if attack_type > 0.5: # randf() 0.0 - 1.0
+		# LUNGE ATTACK
+		if attack_type < 0.33: # randf() 0.0 - 1.0
 			current_state = State.LUNGE
 			state_timer = lunge_duration
 			
@@ -130,9 +136,10 @@ func _windup_state(delta):
 			else:
 				attack_direction = -$Pivot.global_transform.basis.z.normalized()
 			attack_direction.y = 0
-		# jump attack
-		else:
+		# JUMP ATTACK
+		elif attack_type < 0.80:
 			current_state = State.JUMP_ATTACK
+			state_timer = jump_duration
 			
 			if not player_target:
 				current_state = State.IDLE
@@ -163,6 +170,11 @@ func _windup_state(delta):
 			velocity.y = jump_speed
 			velocity.z = jump_horizontal_velocity.z
 			velocity.x = jump_horizontal_velocity.x
+		# THROWING ATTACK
+		else:
+			current_state = State.THROW
+			state_timer = 1.0
+			
 	
 func _lunge_state(delta):
 	print("CALLING lunge ATTACK")
@@ -187,22 +199,26 @@ func _jump_attack_state(delta):
 	move_and_slide()
 	
 	if velocity.y > 0:
-		_play_anim_safe("Ball Jump")
+		if has_ball:
+			_play_anim_safe("Ball Jump")
+		else:
+			_play_anim_safe("No Ball Jump")
 	else:
 		if has_ball:
 			_play_anim_safe("Ball Stun")
 		else:
 			_play_anim_safe("No Ball Stun")
 	
-	#if is_on_floor():
-		#current_state = State.COOLDOWN
-		#state_timer = cooldown_duration
-		#velocity = Vector3.ZERO 
-	await get_tree().create_timer(1.59).timeout
-		
-	current_state = State.COOLDOWN
-	state_timer = cooldown_duration
-	velocity = Vector3.ZERO
+	state_timer -= delta 
+	if state_timer <= 0:
+		current_state = State.COOLDOWN
+		state_timer = cooldown_duration
+		velocity = Vector3.ZERO
+	#await get_tree().create_timer(1.59).timeout
+		#
+	#current_state = State.COOLDOWN
+	#state_timer = cooldown_duration
+	#velocity = Vector3.ZERO
 
 func _cooldown_state(delta):
 	velocity = Vector3.ZERO
@@ -216,7 +232,6 @@ func _cooldown_state(delta):
 	state_timer -= delta
 	if state_timer <= 0:
 		current_state = State.IDLE
-		set_movement_target(patrol_points[current_patrol_index])
 
 func _hit_state(delta):
 	print("HIT STATE")
@@ -232,13 +247,58 @@ func _hit_state(delta):
 			$"Pivot/Hamster All Animations/Ball1".visible = false
 			has_ball = 0
 		current_state = State.IDLE
-		set_movement_target(patrol_points[current_patrol_index])
+
+func _throw_state(delta):
+	velocity = Vector3.ZERO 
+	move_and_slide()
+	
+	#_play_anim_safe("Throwing")
+	
+	if player_target:
+		$Pivot.look_at(player_target.global_position, Vector3.UP)
+
+	if state_timer > 0.5 and state_timer - delta <= 0.5:
+		spawn_projectile()
+
+	state_timer -= delta
+	if state_timer <= 0:
+		current_state = State.IDLE
+
+func spawn_projectile():
+	var new_projectile = projectile_scene.instantiate()
+	new_projectile.player_hit.connect(_on_successful_hit)
+	get_tree().current_scene.add_child(new_projectile)
+
+	var spawn_pos = global_position + Vector3(0, 2, 0)
+	
+	new_projectile.global_position = spawn_pos
+	var dir = Vector3.FORWARD
+	
+	var target_spot = player_target.global_position + Vector3(0, 0.5, 0)
+	dir = spawn_pos.direction_to(target_spot)
+	new_projectile.direction = dir
+	new_projectile.speed = projectile_speed
+	new_projectile.look_at(new_projectile.global_position + dir)
+
+func _on_successful_hit():
+	throwing_hit.play()
+	steal_cheese()
 
 func _on_sight_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player_target = body
 		if current_state == State.IDLE:
 			attack_type = randf()
+			current_state = State.WINDUP
+			state_timer = windup_duration
+			navigation_agent.set_target_position(global_position)
+
+func _on_throw_area_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		player_target = body
+		if current_state == State.IDLE:
+			# throwing range
+			attack_type = 0.81
 			current_state = State.WINDUP
 			state_timer = windup_duration
 			navigation_agent.set_target_position(global_position)
@@ -254,10 +314,9 @@ func squished():
 		squash()
 		set_physics_process(false)
 		_play_anim_safe("No Ball Stun")
-		$Timer.start()
+		$"Respawn Timer".start()
 		#$HamsterCollision.disabled = true
 		#skeleton.physical_bones_start_simulation()
-
 
 func _on_timer_timeout() -> void:
 	#$HamsterCollision.disabled = false
@@ -271,7 +330,6 @@ func _on_animation_player_animation_finished(anim_name: String) -> void:
 	if anim_name == "Ball Break":
 		set_physics_process(true)
 		current_state = State.IDLE
-		set_movement_target(patrol_points[current_patrol_index])
 
 func squash():
 	if cheese_lock or cheese_count == 0:
@@ -288,8 +346,28 @@ func squash():
 	cheese_lock = false
 
 func steal_cheese():
+	throwing_hit.play()
 	cheese_count += 1
 	$Cheese.visible = true
 	$Label3D.visible = true
 	await get_tree().create_timer(2.0).timeout
 	$Label3D.visible = false
+
+func get_random_nav_point(center_pos: Vector3, radius: float) -> Vector3:
+	var random_dir = Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)).normalized()
+	var random_dist = randf_range(0, radius)
+	var target_pos = center_pos + (random_dir * random_dist)
+	var map = get_world_3d().navigation_map
+	return NavigationServer3D.map_get_closest_point(map, target_pos)
+
+func _on_wander_timer_timeout():
+	is_waiting = false
+	
+	# Patrol
+	if not patrol_points.is_empty():
+		var random_point = patrol_points.pick_random()
+		set_movement_target(random_point)
+	else:
+		# Wander
+		var new_target = get_random_nav_point(global_position, wander_radius)
+		set_movement_target(new_target)

@@ -40,3 +40,7 @@ func toggle_choice():
 
 func update_jump_charge(charge_value):
 	charge_bar.value = charge_value	
+
+
+func squashed(cheese: Variant) -> void:
+	pass # Replace with function body.

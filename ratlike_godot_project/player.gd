@@ -42,6 +42,7 @@ var knockback = Vector3.ZERO # If there is knockback
 # animation_player must be set when Player is first created
 @onready var animation_player = $Pivot/'Rat Player All Animations'/AnimationPlayer
 @onready var health_bar = $Hud/HealthLabel
+@onready var throw = $"Throwing Hit"
 var target_velocity = Vector3.ZERO
 var jump_charge_impulse = jump_impulse # value for charged jump
 var jump_charge_happened = false # flag for charging jump
@@ -392,3 +393,11 @@ func playAnimation():
 			animation_player.play("Going Up")
 		else:
 			animation_player.play("Going Down")
+
+func lose_cheese():
+	throw.play()
+	if cheese_count > 0:
+		cheese_count -= 1
+		update_ui()
+		return cheese_count + 1
+	return cheese_count

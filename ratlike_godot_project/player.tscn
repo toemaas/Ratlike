@@ -63,9 +63,13 @@ text = "##########"
 font_size = 64
 outline_size = 24
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." groups=["player"]]
 stream = ExtResource("4_hqtel")
+volume_db = -10.0
+max_db = 0.0
 autoplay = true
+
+[node name="Throwing Hit" type="AudioStreamPlayer3D" parent="."]
 
 [connection signal="timeout" from="Timers/RollCooldown" to="." method="_on_roll_cooldown_timeout"]
 [connection signal="set_cam_rotation" from="CamRoot" to="." method="_on_cam_root_set_cam_rotation"]
